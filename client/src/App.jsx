@@ -8,8 +8,6 @@ import Capture from './pages/Capture'
 import About from './pages/About'
 
 
-
-
 export default function App() {
   return  <BrowserRouter>
   <Header/>
