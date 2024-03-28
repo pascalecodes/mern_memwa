@@ -25,7 +25,8 @@ const UserSchema = new mongoose.Schema({
     },
     avatar: {
       type: String,
-      required: false
+      required: false,
+      default: "https://www.freepik.com/free-photos-vectors/default-user"
     },
     bio: {
       type: String,
