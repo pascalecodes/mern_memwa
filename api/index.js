@@ -1,3 +1,4 @@
+//index.js
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
@@ -19,7 +20,7 @@ const app = express()
 
 app.use(express.json())
 
-app.use(cookieParser)
+app.use(cookieParser())
 
 app.listen(7100, ()=> {
     console.log('Server is running on port 7100')
