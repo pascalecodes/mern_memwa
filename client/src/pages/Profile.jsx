@@ -11,6 +11,7 @@ function Profile() {
   const [fileUploadError, setFileUploadError] = useState(false)
   const [formData, setFormData] = useState({})
 
+  console.log(formData)
   useEffect(()=> {
     if (file) {
       handleFileUpload(file)
@@ -38,6 +39,10 @@ function Profile() {
     )
   }
 
+  const handleChange = (e) => {
+    setFormData({...formData, [e.target.id]: e.target.value})
+  }
+
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
@@ -54,14 +59,14 @@ function Profile() {
             (<span className="text-green-700">Image Successfully Uploaded</span> )
             : ""
           } 
-        
+    
         </p> 
-        <input typer='text' placeholder="Username" id='username' className="border p-3 rounded-lg"/>
-        <input typer='email' placeholder="Email" id='email' className="border p-3 rounded-lg"/>
+        <input typer='text' placeholder="Username" defaultValue= {currentUser.username} id='username' className="border p-3 rounded-lg" onChange={handleChange}/>
+        <input typer='email' placeholder="Email" defaultValue={currentUser.email} id='email' className="border p-3 rounded-lg" onChange={handleChange}/>
         <input typer='password' placeholder="Password" id='password' className="border p-3 rounded-lg"/>
-        <input typer='text' placeholder="First Name" id='firstName' className="border p-3 rounded-lg"/>
-        <input typer='text' placeholder="Last Name" id='lastName' className="border p-3 rounded-lg"/>
-        <input typer='text' placeholder="Bio" id='bio' className="border p-3 rounded-lg"/>
+        <input typer='text' placeholder="First Name" defaultValue={currentUser.firstName} id='firstName' className="border p-3 rounded-lg" onChange={handleChange}/>
+        <input typer='text' placeholder="Last Name" defaultValue={currentUser.lasttName} id='lastName' className="border p-3 rounded-lg" onChange={handleChange}/>
+        <input typer='text' placeholder="Bio" id='bio' defaultValue={currentUser.bio} className="border p-3 rounded-lg"/>
         <button className="bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80">Update</button>
         <div className="flex justify-between mt-5">
           <span className="text-red-700 cursor-pointer">Delete Account</span>
