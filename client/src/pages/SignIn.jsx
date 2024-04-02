@@ -15,12 +15,11 @@ function SignIn() {
       [e.target.id]: e.target.value,
     })
   }
-  const handleSubmit = async (e) =>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      dispatch(signInStart())
-      const res = await fetch('/api/auth/signin',
-      {
+      dispatch(signInStart());
+      const res = await fetch('/api/auth/signin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -28,15 +27,15 @@ function SignIn() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      // console.log(data)
-      if(data.success === false) {
-        dispatch(signInFailure(data.message))
+      console.log(data);
+      if (data.success === false) {
+        dispatch(signInFailure(data.message));
         return;
       }
-      dispatch(signInSuccess(data))
+      dispatch(signInSuccess(data));
       navigate('/');
     } catch (error) {
-      dispatch(signInFailure(error.message))
+      dispatch(signInFailure(error.message));
     }
   };
   return (
