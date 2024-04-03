@@ -6,13 +6,17 @@ const PostSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    caption: {
+      type: String,
+      required: true,
+    },
     description: {
       type: String,
       required: true,
     },
-    caption: {
-      type: String,
-      required: true,
+    tags: {
+      type: Array,
+      required: false,
     },
     privacy: {
       type: Boolean,

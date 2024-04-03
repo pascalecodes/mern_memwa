@@ -4,6 +4,7 @@ import {getDownloadURL, getStorage, ref, uploadBytesResumable} from 'firebase/st
 import { app } from '../firebase'
 import { updateUserStart, updateUserFailure, updateUserSuccess, deleteUserFailure, deleteUserStart, deleteUserSuccess, signOutUserStart, signOutUserFailure, signOutUserSuccess } from "../redux/user/userSlice"
 import { useDispatch } from "react-redux"
+import { Link } from 'react-router-dom'
 
 function Profile() {
   const fileRef = useRef(null)
@@ -126,7 +127,11 @@ function Profile() {
         <input type='text' placeholder="Last Name" defaultValue={currentUser.lasttName} id='lastName' className="border p-3 rounded-lg" onChange={handleChange}/>
         <input type='text' placeholder="Bio" onChange={handleChange} id='bio' defaultValue={currentUser.bio} className="border p-3 rounded-lg"/>
         <button disabled={loading} className="bg-slate-700 text-white rounded-lg p-3 uppercase hover:opacity-95 disabled:opacity-80">{loading ? 'Loading...': 'Update'}</button>
+        <Link className="bg-green-700 text-white p-3 rounded-lg uppercase text-center hover:opacity-95" to={"/create-post"}> 
+         Create a Moment 
+      </Link>
       </form>
+      
       <div className="flex justify-between mt-5">
         <span onClick={handleDeleteUser} className="text-red-700 cursor-pointer">Delete Account</span>
         <span onClick={handleSignOut} className="text-red-700 cursor-pointer">Sign Out</span>
