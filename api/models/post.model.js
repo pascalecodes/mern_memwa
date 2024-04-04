@@ -20,10 +20,10 @@ const PostSchema = new mongoose.Schema(
     },
     privacy: {
       type: Boolean,
-      required: true,
+      required: false,
     },
-    media: {
-      type: String,
+    mediaUrls: {
+      type: Array,
       required: true,
     },
     cloudinaryId: {
