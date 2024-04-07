@@ -6,6 +6,13 @@ export default function CreatePost() {
     const [files, setFiles] = useState([]);
     const [formData, setFormData] = useState({
         mediaUrls: [],
+        title: '',
+        caption: '',
+        description: '',
+        tags:'',
+        privacy: false,
+        cloudinaryId: '',
+        likes: 0,
     });
     const [uploading, setUploading] = useState(false);
     const [mediaUploadError, setMediaUploadError] = useState(false);
@@ -63,18 +70,32 @@ const handleRemoveMedia = (index) => {
     });
 
 }
+
+const handleChange = (e) => {
+
+};
   return (
     <main className='p-3 max-w-4xl mx-auto'>
         <h1 className='text-3xl font-semibold text-center my-7'>Create a Moment</h1>
         <form className='flex flex-col sm:flex-row gap-4'>
             <div className='flex flex-col gap-4 flex-1'>
-                <input type="text" placeholder='Title' className='border p-3 rounded-lg' id='title' maxLength='62' minLength='4' required/>
-                <input type="text" placeholder='Caption' className='border p-3 rounded-lg' id='caption' required/>
-                <textarea type="text" placeholder='Description' className='border p-3 rounded-lg' id='description' required/>
-                <input type="text" placeholder='Tags' className='border p-3 rounded-lg' id='tags'/>
+                <input type="text" placeholder='Title' className='border p-3 rounded-lg' id='title' maxLength='62' minLength='4' required
+                onChange={handleChange}
+                value={formData.title}/>
+                <input type="text" placeholder='Caption' className='border p-3 rounded-lg' id='caption' required
+                onChange={handleChange}
+                value={formData.caption}/>
+                <textarea type="text" placeholder='Description' className='border p-3 rounded-lg' id='description' required
+                onChange={handleChange}
+                value={formData.description}/>
+                <input type="text" placeholder='Tags' className='border p-3 rounded-lg' id='tags'
+                onChange={handleChange}
+                value={formData.tags}/>
                 <div className='flex gp-6 flex-wrap'>
                     <div className='flex gap-2'>
-                        <input type="checkbox" id="privacy" className='w-5' />
+                        <input type="checkbox" id="privacy" className='w-5' 
+                        onChange={handleChange}
+                        value={formData.privacy=== true}/>
                         <span>Make Private</span>
                     </div>
                 </div>  
