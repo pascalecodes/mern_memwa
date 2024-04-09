@@ -1,13 +1,14 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
 import { app } from "../firebase";
 import {useSelector} from 'react-redux'
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 
-export default function CreatePost() {
+export default function UpdatePost() {
     const {currentUser} = useSelector(state => state.user);
     const navigate = useNavigate();
+    const params = useParams();
     const [files, setFiles] = useState([]);
     const [formData, setFormData] = useState({
         mediaUrls: [],
@@ -19,11 +20,25 @@ export default function CreatePost() {
         cloudinaryId: '',
         likes: 0,
     });
-    console.log(formData)
-    const [uploading, setUploading] = useState(false);
     const [mediaUploadError, setMediaUploadError] = useState(false);
+    const [uploading, setUploading] = useState(false);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
+    
+    useEffect(() => {
+        const fetchPost = async () => {
+            const postId = params.postId;
+            const res = await fetch(`/api/post/get/${postId}`);
+            const data = await res.json();
+            setFormData(data);
+            if (data.success === false) {
+                console.log(data.message);
+                return;
+            }
+        }
+        fetchPost();
+    }, []);
+
     const handleMediaSubmit = (e) => {
         if (files.length > 0 && files.length + formData.mediaUrls.length < 7) {
             setUploading(true);
@@ -97,11 +112,11 @@ const handleChange = (e) => {
 const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-        if (formData.mediaUrls.length < 1 )
+        if (formData.mediaUrls.length < 1) 
         return setError('You must upload at least one image');
         setLoading(true);
         setError(false);
-        const res = await fetch('/api/post/create', {
+        const res = await fetch(`/api/post/update/${params.postId}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -124,7 +139,7 @@ const handleSubmit = async (e) => {
 }
   return (
     <main className='p-3 max-w-4xl mx-auto'>
-        <h1 className='text-3xl font-semibold text-center my-7'>Create a Moment</h1>
+        <h1 className='text-3xl font-semibold text-center my-7'>Update a Moment</h1>
         <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-4'>
             <div className='flex flex-col gap-4 flex-1'>
                 <input type="text" placeholder='Title' className='border p-3 rounded-lg' id='title' maxLength='62' minLength='4' required
@@ -168,7 +183,7 @@ const handleSubmit = async (e) => {
                     ))
                 }
 
-                <button disabled={loading || uploading} className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:80'>{loading ? 'Creating...' : 'Create Moment'}</button>
+                <button disabled={loading || uploading} className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:80'>{loading ? 'Updating...' : 'Update Moment'}</button>
                 {error && <p className="text-red-700 text-sm">{error}</p>}
             </div>
         </form>
