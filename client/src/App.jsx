@@ -9,6 +9,7 @@ import About from './pages/About'
 import PrivateRoute from './components/PrivateRoute'
 import CreatePost from './pages/CreatePost';
 import UpdatePost from './pages/UpdatePost';
+import Post from './pages/Post';
 
 
 export default function App() {
@@ -26,6 +27,7 @@ export default function App() {
       </Route>
       <Route path='/capture' element={<Capture />} />
       <Route path="/about" element={<About />} />
+      <Route path="/post/:postId" element={<Post />} />
     
     </Routes>
 
