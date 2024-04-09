@@ -6,7 +6,7 @@ import { updateUserStart, updateUserFailure, updateUserSuccess, deleteUserFailur
 import { useDispatch } from "react-redux"
 import { Link } from 'react-router-dom'
 
-function Profile() {
+export default function Profile() {
   const fileRef = useRef(null)
   const {currentUser, loading, error} = useSelector((state) => state.user)
   const [file, setFile] = useState(undefined)
@@ -14,7 +14,9 @@ function Profile() {
   const [fileUploadError, setFileUploadError] = useState(false)
   const [formData, setFormData] = useState({})
   const [updateSuccess, setUpdateSuccess] = useState(false)
-  const dispatch = useDispatch();
+  const [showPostsError, setShowPostsError] = useState(false);
+  const [userPosts, setUserPosts] = useState([]);
+  const dispatch = useDispatch(); 
 
   useEffect(()=> {
     if (file) {
@@ -101,7 +103,23 @@ function Profile() {
       } catch(error) {
         dispatch(signOutUserFailure(data.message))
       }
-  }
+  };
+
+  const handleShowPosts = async () => {
+    try {
+      setShowPostsError(false);
+      const res = await fetch(`/api/user/posts/${currentUser._id}`);
+      const data = await res.json();
+      if (data.success === false) {
+        setShowPostsError(true);
+        return;
+      }
+      setUserPosts(data);
+    } catch (error) {
+      setShowPostsError(true); 
+    }
+  };
+
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
@@ -136,11 +154,37 @@ function Profile() {
         <span onClick={handleDeleteUser} className="text-red-700 cursor-pointer">Delete Account</span>
         <span onClick={handleSignOut} className="text-red-700 cursor-pointer">Sign Out</span>
       </div>
-
     
+      <p className='text-red-700 mt-5'>{error ? error : ''}</p>
       <p className="text-green-700 mt-5">{updateSuccess ? 'User is updated successfully!' : ''}</p>
+      <button onClick={handleShowPosts} className="text-green-700 w-full">Show Posts
+      </button>
+      <p className="text-red-700 mt-5">{showPostsError ? 'Error showing posts' : ''}</p>
+      
+      {userPosts && userPosts.length > 0 && (
+     <div className="flex flex-col gap-4">
+      <h1 className="text-center text-2xl font-semibold">Your Posts</h1>
+       {userPosts.map((post) => (
+      <div key ={post._id} className="border rounded-lg p-3 flex justify-between items-center gap-4">
+        <Link to={`/post/${post._id}`}> <img
+                  src={post.mediaUrls[0]}
+                  alt='post cover'
+                  className='h-16 w-16 object-contain'
+                />
+        </Link>
+        <Link to={`/post/${post._id}`} className="text-slate-700 font-semibold  hover:underline truncate flex-1" >
+        <p >{post.title}</p>
+        </Link>
+        <div className="flex flex-col items-center">
+          <button className="text-red-700 uppercase">Delete</button>
+          <button className="text-green-700 uppercase">Edit</button>
+        </div>
+      </div>
+      ))}
+     </div>
+      )}
     </div>
-  )
+  );
 }
 
-export default Profile
+
