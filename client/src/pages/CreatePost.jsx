@@ -14,7 +14,7 @@ export default function CreatePost() {
         title: '',
         caption: '',
         description: '',
-        tags:'',
+        tags:[],
         privacy: false,
         cloudinaryId: '',
         likes: 0,
@@ -79,13 +79,20 @@ const handleRemoveMedia = (index) => {
 }
 
 const handleChange = (e) => {
-    if(
-        e.target.id === 'privacy'
-    ) {
+    //testing adding tags into array
+    if (e.target.tags){
+        const tagsArray = tagsInput.split(",").map(tag => tag.trim()); // Split into array, trim spaces
+        setFormData({ ...FormData, tags: tagsArray }); // Update state
+
+    }
+    
+    if (
+        e.target.id === 'privacy') {
         setFormData({
             ...formData, [e.target.id]: e.target.checked,
         });
     }
+
 
     if(e.target.type === 'number' || e.target.type === 'text' || e.target.type === 'textarea'){
         setFormData({
@@ -138,7 +145,7 @@ const handleSubmit = async (e) => {
                 value={formData.description}/>
                 <input type="text" placeholder='Tags' className='border p-3 rounded-lg' id='tags'
                 onChange={handleChange}
-                value={formData.tags}/>
+                value={formData.tags.join(", ")}/>
                 <div className='flex gp-6 flex-wrap'>
                     <div className='flex gap-2'>
                         <input type="checkbox" id="privacy" className='w-5' 

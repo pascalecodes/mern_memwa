@@ -6,11 +6,22 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from 'swiper';
 import 'swiper/css/bundle';
 
+import {
+    FaBath,
+    FaBed,
+    FaChair,
+    FaMapMarkedAlt,
+    FaMapMarkerAlt,
+    FaParking,
+    FaShare,
+  } from 'react-icons/fa';
+
 export default function Post() {
     SwiperCore.use([Navigation]);
     const [post, setPost] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
+    const [copied, setCopied] = useState(false);
     const params = useParams()
 
     useEffect (() => {
@@ -59,6 +70,64 @@ export default function Post() {
               </SwiperSlide>
             ))}
           </Swiper>
+          <div className='fixed top-[13%] right-[3%] z-10 border rounded-full w-12 h-12 flex justify-center items-center bg-slate-100 cursor-pointer'>
+            <FaShare
+              className='text-slate-500'
+              onClick={() => {
+                navigator.clipboard.writeText(window.location.href);
+                setCopied(true);
+                setTimeout(() => {
+                  setCopied(false);
+                }, 2000);
+              }}
+            />
+          </div>
+          {copied && (<p className='fixed top-[23%] right-[5%] z-10 rounded-md bg-slate-100 p-2'>Link Copied!</p>)}
+
+          <div className='flex flex-col max-w-4xl mx-auto p-3 my-7 gap-4'>
+            <p className='text-2xl font-semibold'>
+              {post.title} 
+            </p>
+            {/* <p className='flex items-center mt-6 gap-2 text-slate-600  text-sm'>
+              <FaMapMarkerAlt className='text-green-700' />
+              {post.location}
+            </p> */}
+            <p className='text-slate-800'>
+              <span className='font-semibold text-black'>Caption - </span>
+              {post.caption}
+            </p>
+    
+            <p className='text-slate-800'>
+              <span className='font-semibold text-black'>Description - </span>
+              {post.description}
+            </p>
+            {/* <ul className=' text-blue-500 font-semibold text-sm'>
+                <li className='flex items-center gap-1 whitespace-nowrap'>
+                    {post.tags}
+                </li>
+            </ul> */}
+            <ul className='text-blue-500 font-semibold text-sm flex flex-wrap items-center gap-4 sm:gap-6'>
+                {post.tags.map((tag, index) => (
+                    <li key={index} className='flex items-center gap-1 whitespace-nowrap'>
+                    {`#${tag}`}
+                    </li>
+                ))}
+                </ul>
+
+            
+            {/* {currentUser && listing.userRef !== currentUser._id && !contact && (
+                <button
+                    onClick = {() => setContact(true)}
+                    className="bg-slate-700 text-white rounded-lg uppercase p-3 hover:opacity-95"
+                >Contact Landlord</button>
+            )}
+            
+            {contact && <Contact listing={listing} /> } */}
+
+
+          </div>
+        
+
         </div>
         )}
     </main>
