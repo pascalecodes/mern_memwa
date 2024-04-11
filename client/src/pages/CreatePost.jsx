@@ -80,12 +80,7 @@ const handleRemoveMedia = (index) => {
 
 const handleChange = (e) => {
     //testing adding tags into array
-    if (e.target.tags){
-        const tagsArray = tagsInput.split(",").map(tag => tag.trim()); // Split into array, trim spaces
-        setFormData({ ...FormData, tags: tagsArray }); // Update state
-
-    }
-    
+  
     if (
         e.target.id === 'privacy') {
         setFormData({
@@ -145,7 +140,7 @@ const handleSubmit = async (e) => {
                 value={formData.description}/>
                 <input type="text" placeholder='Tags' className='border p-3 rounded-lg' id='tags'
                 onChange={handleChange}
-                value={formData.tags.join(", ")}/>
+                value={formData.tags}/>
                 <div className='flex gp-6 flex-wrap'>
                     <div className='flex gap-2'>
                         <input type="checkbox" id="privacy" className='w-5' 
