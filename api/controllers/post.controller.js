@@ -60,4 +60,30 @@ export const getPost = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-}
+};
+
+export const getPosts = async (req, res, next) => {
+  try {
+    const limit = parseInt(req.query.limit) || 9;
+    const startIndex = parseInt(req.query.startIndex) || 0;
+    
+    const searchTerm = req.query.searchTerm || '';
+    const sort = req.query.sort || 'createdAt';
+    const order = req.query.order || 'desc';
+
+    const posts = await Post.find({
+      $or: [
+        { title: { $regex: searchTerm, $options: 'i' } },
+        { description: { $regex: searchTerm, $options: 'i' } },
+        { caption: { $regex: searchTerm, $options: 'i' } },
+        { tags: { $regex: searchTerm, $options: 'i' } }
+      ]
+    }).sort(
+      {[sort]: order}
+    ).limit(limit).skip(startIndex);
+    return res.status(200).json(posts);
+  } catch (error) {
+    next(error);
+  }
+
+};
