@@ -10,6 +10,7 @@ import PrivateRoute from './components/PrivateRoute'
 import CreatePost from './pages/CreatePost';
 import UpdatePost from './pages/UpdatePost';
 import Post from './pages/Post';
+import Search from './pages/Search'
 
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
       <Route path="/" element={<Home />} />
       <Route path="/sign-in" element={<SignIn />} />
       <Route path="/sign-up" element={<SignUp />} />
+      <Route path='/search' element={<Search />}/>
       <Route element={<PrivateRoute />}>
       <Route path="/profile" element={<Profile />} />
       <Route path="/create-post" element={<CreatePost />} />
