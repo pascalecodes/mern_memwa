@@ -4,17 +4,10 @@ import { Link } from 'react-router-dom';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from 'swiper';
+import { useSelector } from 'react-redux';
 import 'swiper/css/bundle';
-
-import {
-    FaBath,
-    FaBed,
-    FaChair,
-    FaMapMarkedAlt,
-    FaMapMarkerAlt,
-    FaParking,
-    FaShare,
-  } from 'react-icons/fa';
+import {FaShare,} from 'react-icons/fa';
+import Contact from '../components/Contact';
 
 export default function Post() {
     SwiperCore.use([Navigation]);
@@ -22,7 +15,9 @@ export default function Post() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [copied, setCopied] = useState(false);
+    const [contact, setContact] = useState(false);
     const params = useParams()
+    const {currentUser} = useSelector((state) => state.user);   
 
     useEffect (() => {
         const fetchPost = async () => {
@@ -115,14 +110,14 @@ export default function Post() {
                 </ul>
 
             
-            {/* {currentUser && listing.userRef !== currentUser._id && !contact && (
+            {currentUser && post.userRef !== currentUser._id && !contact &&(
                 <button
                     onClick = {() => setContact(true)}
                     className="bg-slate-700 text-white rounded-lg uppercase p-3 hover:opacity-95"
-                >Contact Landlord</button>
+                >Contact Author</button>
             )}
             
-            {contact && <Contact listing={listing} /> } */}
+            {contact && <Contact post={post} /> }
 
 
           </div>
