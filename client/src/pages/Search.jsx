@@ -1,16 +1,52 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 export default function Search() {
     const navigate = useNavigate();
     const [sidebardata, setSidebardata] = useState({
         searchTerm: '',
-        // include: 'all',
         sort: 'created_at',
         order: 'desc',
     });
 
-const handleChange = (e) =>{
+    const [loading, setLoading] =useState(false);
+    const [posts, setPosts] = useState([]);
+
+    console.log(posts);
+
+    useEffect(() => {
+        const urlParams = new URLSearchParams(location.search);
+        const searchTermFromUrl = urlParams.get('searchTerm');
+        const sortFromUrl = urlParams.get('sort');
+        const orderFromUrl = urlParams.get('order');
+
+        if(
+            searchTermFromUrl ||
+            sortFromUrl ||
+            orderFromUrl
+        ){
+           setSidebardata({
+            searchTerm: searchTermFromUrl || '',
+            sort: sortFromUrl || 'created_at',
+            order: orderFromUrl || 'desc',
+           }); 
+        }
+
+        const fetchPosts = async () => {
+            setLoading(true);
+            const searchQuery = urlParams.toString();
+            const res = await fetch(`/api/post/get?${searchQuery}`);
+            const data = await res.json();
+            setPosts(data);
+            setLoading(false);
+        }
+
+        fetchPosts();
+
+    }, [location.search]);
+    
+
+    const handleChange = (e) =>{
     // if(e.target.id === 'all'|| e.target.id === 'title' || e.target.id === 'description'|| e.target.id === 'tags'|| e.target.id === 'author') {
     //     setSidebardata({...sidebardata, include: e.target.id})
     // }
@@ -31,9 +67,9 @@ const handleChange = (e) =>{
         setSidebardata({ ...sidebardata, sort, order });
       }
 
-};
+    };
 
-const handleSubmit = (e) => {
+    const handleSubmit = (e) => {
     e.preventDefault();
     const urlParams = new URLSearchParams();
     urlParams.set('searchTerm', sidebardata.searchTerm);
@@ -41,9 +77,9 @@ const handleSubmit = (e) => {
     urlParams.set('order', sidebardata.order);
     const searchQuery = urlParams.toString();
     navigate(`/search?${searchQuery}`);
-  };
+    };
 
-return (
+    return (
     <div className='flex flex-col md:flex-row'>
         <div className='p-7 border-b-2 md:border-r-2 md:min-h-screen'>
         <form onSubmit={handleSubmit} className='flex flex-col gap-8'>
@@ -137,5 +173,5 @@ return (
 
         </div>
     </div>
-  ) 
+    ) 
 }
