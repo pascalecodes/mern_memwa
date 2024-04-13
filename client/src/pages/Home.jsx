@@ -26,7 +26,9 @@ export default function Home() {
   return (
     <div>
       {/* Top */}
-      <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto'> 
+      <div className='flex flex-col gap-6 p-2 px-3 max-w-6xl mx-auto'>
+      <Link className="text-decoration-none" to={"/"}><img className="mx-auto mb-4" src="/img/logo.svg"  alt="Memwa" width="120" height="120" />
+      </Link> 
         <h1 className='text-slate-700 font-bold text-3xl lg:text-6xl'> The best way to preserve your <span className='text-slate-400'>stories</span>, your <span className='text-slate-400'>history</span>, your <span className='text-slate-400'>legacy</span>
         </h1>
         <div className='text-gray-400 text-xs sm:text-sm'>
@@ -39,8 +41,11 @@ export default function Home() {
         </Link>
         
       </div>
-      <h1 className='text-blue-700 font-bold text-2xl lg:text-4xl mx-auto text-center'>Memwa CAPTURE</h1>
-      <div className='max-w-6xl mx-auto p-3 flex  gap-8 my-10 text-center'> 
+      <div className='mx-auto'>
+      <h1 className='text-blue-700 font-bold text-2xl lg:text-4xl mx-auto text-center'><Link to={'/capture'}>Memwa CAPTURE</Link></h1>
+      <h2 className='text-gray-400 text-xs sm:text-sm text-center mx-auto'>Record or upload moments to Memwa. Add videos, pictures or other media. Don't have any yet, got to the Interview Room respond to cureated questions to capture your story.</h2>
+      
+      <div className="max-w-6xl mx-auto p-3 flex justify-center gap-8 my-10 items-center"> 
         <Link className='text-2xl font-semibold text-slate-600 hover:underline flex flex-wrap gap-2' to={`/capture`}>
         <FaCamera />Record
         </Link>
@@ -51,21 +56,25 @@ export default function Home() {
         <FaMicrophone />Interview Room 
         </Link>
       </div>
+
+      </div>
+      
       {/* Swiper */}
       <div className=' mx-auto'> 
-      <h1 className='text-blue-700 font-bold text-2xl lg:text-4xl mx-auto text-center'>Memwa WATCH</h1>
+      <h1 className='text-blue-700 font-bold text-2xl lg:text-4xl mx-auto text-center'><Link to={'/watch'}>Memwa WATCH</Link></h1>
+      <h2 className='text-gray-400 text-xs sm:text-sm text-center mx-auto'>Watch stories from everywhere!</h2>
       <Swiper navigation>
         {posts &&
           posts.length > 0 &&
           posts.map((post) => (
-            <SwiperSlide>
+            <SwiperSlide key={post._id}>
               <div
                 style={{
                   background: `url(${post.mediaUrls[0]}) center no-repeat`,
                   backgroundSize: 'cover',
                 }}
                 className='h-[500px]'
-                key={post._id}
+                
               ></div>
             </SwiperSlide>
           ))}
@@ -73,20 +82,22 @@ export default function Home() {
       </div>
       
       {/* Find */}
-      <h1 className='text-blue-700 font-bold text-2xl lg:text-4xl mx-auto text-center'>Memwa FIND</h1>
-      <div className='max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10'>
+      
+      <div className='mx-auto'>
+      <h1 className='text-blue-700 font-bold text-2xl lg:text-4xl mx-auto text-center'><Link to={'/search'}>Memwa FIND</Link></h1>
+      <h2 className='text-gray-400 text-xs sm:text-sm text-center mx-auto'>Discover more Stories</h2>
         {
           posts && posts.length > 0 && (
-            <div className=''>
+            <div className='text-center mx-auto'>
               <div className='my-3'>
-                <h1 className='text-slate-700 font-bold text-3xl lg:text-6xl'>Discover more Stories</h1>
                 <h2 className='text-1xl font-semibold text-slate-600'>Browse and Discover new stories!</h2>
-                  <p className="">Search for people, stories, events from around the world. New stories are being added everyday.</p>
+                  <p className='text-gray-400 text-xs sm:text-sm text-center mx-auto p-3'>Search for people, stories, events from around the world. New stories are being added everyday.
+                  Browse through <b><span style={{ color: '#3563E9' }}>2,100</span></b> stories from <b><span style={{ color: '#3563E9' }}>68</span></b> countries</p>
                 <Link className='text-xl text-blue-800 hover:underline' to={`/search?order=desc`}>
                 Show more Moments 
                 {/* <FaSearch /> */}
                 </Link>
-                <p>Browse through <b><span style={{ color: '#3563E9' }}>2,100</span></b> stories from <b><span style={{ color: '#3563E9' }}>68</span></b> countries</p>
+               
               </div>
             </div>
           )
