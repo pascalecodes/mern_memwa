@@ -11,6 +11,7 @@ import CreatePost from './pages/CreatePost';
 import UpdatePost from './pages/UpdatePost';
 import Post from './pages/Post';
 import Search from './pages/Search'
+import Footer from './components/Footer'
 
 
 export default function App() {
@@ -30,8 +31,8 @@ export default function App() {
       <Route path='/capture' element={<Capture />} />
       <Route path="/about" element={<About />} />
       <Route path="/post/:postId" element={<Post />} />
-    
     </Routes>
+    <Footer />
 
   </BrowserRouter>
   );
