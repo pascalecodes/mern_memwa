@@ -40,14 +40,7 @@ export default function Header () {
         <Link to='/Search'><li className='hidden sm:inline text-slate-700 hover:underline'>Find</li></Link>
       </ul>
     
-     <ul className='flex gap-2'>
-      <Link to='/profile'>
-        {currentUser ? (
-         <li className='hidden sm:inline text-slate-700 hover:underline'><img className='rounded-full h-7 w-7 object-cover' src={currentUser.avatar} alt='profile' /> Profile</li> 
-        ) : ( <li className='sm:inline text-slate-700 hover:underline'>Sign In</li>)} 
-        </Link>
-      {/* <Link to='/sign-up'><li className='hidden sm:inline text-slate-700 hover:underline'>Sign Up</li></Link> */}
-     </ul>
+    
 
      <form onSubmit={handleSubmit} className='bg-slate-100 p-3 rounded-lg flex items-center'>
       <input type="search" placeholder="Search...." aria-label="Search" name="searchTerm" className='bg-transparent focus:outline-none w-24 sm:w-64'
@@ -59,8 +52,16 @@ export default function Header () {
 
       <FaSearch className='text-slate-600' />
       </button>
-     
      </form>
+
+     <ul className='flex gap-2'>
+      <Link to='/profile'>
+        {currentUser ? (
+         <li className='hidden sm:inline text-slate-700 hover:underline'><img className='rounded-full h-7 w-7 object-cover' src={currentUser.avatar} alt='profile' /> Profile</li> 
+        ) : ( <li className='sm:inline text-slate-700 hover:underline'>Sign In</li>)} 
+        </Link>
+      {/* <Link to='/sign-up'><li className='hidden sm:inline text-slate-700 hover:underline'>Sign Up</li></Link> */}
+     </ul>
     </div>
     
     </header>
