@@ -12,8 +12,7 @@ export default function Search() {
 
     const [loading, setLoading] =useState(false);
     const [posts, setPosts] = useState([]);
-
-    console.log(posts);
+    const [showMore, setShowMore] = useState(false);
 
     useEffect(() => {
         const urlParams = new URLSearchParams(location.search);
@@ -35,9 +34,15 @@ export default function Search() {
 
         const fetchPosts = async () => {
             setLoading(true);
+            setShowMore(false);
             const searchQuery = urlParams.toString();
             const res = await fetch(`/api/post/get?${searchQuery}`);
             const data = await res.json();
+            if(data.length >8){
+                setShowMore(true)
+            } else {
+                setShowMore(false)
+            }
             setPosts(data);
             setLoading(false);
         }
@@ -78,6 +83,21 @@ export default function Search() {
     urlParams.set('order', sidebardata.order);
     const searchQuery = urlParams.toString();
     navigate(`/search?${searchQuery}`);
+    };
+
+    const onShowMoreClick = async () => {
+        const numberOfPosts = posts.length;
+        const startIndex = numberOfPosts;
+        const urlParams = new URLSearchParams(location.search);
+        urlParams.set('startIndex', startIndex);
+        const searchQuery = urlParams.toString();
+        const res = await fetch(`/api/post/get?${searchQuery}`);
+        const data = await res.json();
+        if (data.length < 9) {
+            setShowMore(false);
+        }
+        setPosts([...posts, ...data]);
+
     };
 
     return (
@@ -178,9 +198,16 @@ export default function Search() {
                     {loading && (
                         <p className='text-xl text-slate-700 text-center w-full'>Loading....</p>
                     )}
-                    { !loading && posts && posts.map((post) => 
+                    { !loading && posts && posts.map((post) => (
                         <PostItem key={post._id}  post={post} />
-                    ) }
+                    ))}
+                    {showMore && (
+                        <button
+                            onClick={onShowMoreClick}
+                            className='text-green-700 hover:underline p-7 text-center w-full'>
+                                Show more
+                            </button>
+                    )}
             </div>
         </div>
     </div>
