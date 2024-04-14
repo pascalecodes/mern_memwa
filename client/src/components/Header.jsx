@@ -34,9 +34,7 @@ export default function Header () {
           <span className=" text-blue-500" >MEMWA</span>
         </h1>
         </Link>
-     
 
-     
       <ul className='flex flex-auto gap-8 pr-8 '>
         <Link to='/'><li className='hidden sm:inline text-slate-700 hover:underline'>Home</li> </Link>
         <Link to='/capture'><li className='hidden sm:inline text-slate-700 hover:underline'>Capture</li></Link>

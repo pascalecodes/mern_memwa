@@ -5,12 +5,13 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
   return (
     // <footer className='bg-slate-200 shadow-md flex flex-col mx-auto'>
-    <footer className='bg-slate-200 shadow-md flex flex-col mx-auto bottom-0 left-0 right-0'>
-    
-        <div className="p-2"> 
+    // <footer className='bg-slate-200 shadow-md flex flex-col mx-auto bottom-0 left-0 right-0'>
+    <footer className='py-14'>
+        <div className="container grid-cols-1 grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* <div className="p-2">  */}
           <Link to='/'>
           <h1 className='font-bold text-sm sm:text-xl flex flex-wrap'>
-                <img src="/img/logo.svg"  alt="logo"/>
+          <img src="/img/logo.svg"  alt="logo"/>
             <span className=" text-blue-500" >MEMWA</span>
           </h1>
           </Link> 
