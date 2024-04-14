@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom';
 
 export default function About() {
   return (
-    <div className='py-20 px-8 max-6xl mx-auto'>
+    // <div className='py-20 px-8 max-6xl mx-auto'>
+    <div className='py-20 px-8 max-w-6xl mx-auto min-h-[20vh]'>
       <h1 className='text-5xl font-bold mb-4 text-blue-600 text-center' >About Memwa</h1>
       <h2 className='text-3xl text-slate-700 mb-4'>Our Story</h2>
       <p className='mb-4 text-slate-700'>Memwa was conceived after the passing of my maternal grandmother in 2020 during the covid shutdowns. My grandma and I had a deep realtionship, filled with many conversations ranging from her childhood stories to her points of view on thrash tv like Jerry springer. After her passing I missed being able to hear her voice, seeing her smile when she was telling a story and I feared that I would lose the stories and the details she use to tell and I would not be able to do them justice in attempting to retell them to my nieces and nephews. I had so few videos of our countless moments that I sunk into despair I lost her forever with not enough lasting memories. I may have missed out for my grandma but I could capture stories of all the other folks I loved. So I set out to create a way for stories to be captured and shared for future generations to come. I didn't want anyone else to lose out on the encyclopedic knowledge of our elders.</p>

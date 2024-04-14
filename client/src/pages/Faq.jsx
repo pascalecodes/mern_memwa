@@ -1,12 +1,10 @@
 import React from 'react'
 
-function Capture() {
+export default function Faq() {
   return (
     // <div>
     <div className='py-20 px-8 max-w-6xl mx-auto min-h-[20vh]'>
-      Capture
+      FAQ
     </div>
   )
 }
-
-export default Capture

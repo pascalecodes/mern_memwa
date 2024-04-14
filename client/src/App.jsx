@@ -12,6 +12,11 @@ import UpdatePost from './pages/UpdatePost';
 import Post from './pages/Post';
 import Search from './pages/Search'
 import Footer from './components/Footer'
+import Faq from './pages/Faq'
+import Privacy from './pages/Privacy'
+import Support from './pages/Support'
+import Terms from './pages/Terms'
+import Watch from './pages/Watch'
 
 
 export default function App() {
@@ -22,14 +27,24 @@ export default function App() {
       <Route path="/" element={<Home />} />
       <Route path="/sign-in" element={<SignIn />} />
       <Route path="/sign-up" element={<SignUp />} />
-      <Route path='/search' element={<Search />}/>
+      
       <Route element={<PrivateRoute />}>
       <Route path="/profile" element={<Profile />} />
       <Route path="/create-post" element={<CreatePost />} />
       <Route path="/update-post/:postId" element={<UpdatePost />} />
       </Route>
+
       <Route path='/capture' element={<Capture />} />
+      <Route path='/search' element={<Search />}/>
+      <Route path='/watch' element={<Watch />}/>
+
       <Route path="/about" element={<About />} />
+      <Route path='/faq' element={<Faq />} />
+      <Route path='/privacy' element={<Privacy />} />
+      <Route path='/support' element={<Support />} />
+      <Route path='/terms' element={<Terms />} />
+
+      
       <Route path="/post/:postId" element={<Post />} />
     </Routes>
     <Footer />

@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   return (
-    <footer className='bg-slate-200 shadow-md flex flex-col mx-auto'>
+    // <footer className='bg-slate-200 shadow-md flex flex-col mx-auto'>
+    <footer className='bg-slate-200 shadow-md flex flex-col mx-auto bottom-0 left-0 right-0'>
     
         <div className="p-2"> 
           <Link to='/'>
@@ -48,7 +49,7 @@ export default function Footer() {
             <Link to='/'><li className='hidden sm:inline text-slate-700 hover:underline p-2'>Home</li> </Link>
             <Link to='/capture'><li className='hidden sm:inline text-slate-700 hover:underline p-2'>Capture</li></Link>
             <Link to='/watch'><li className='hidden sm:inline text-slate-700 hover:underline p-2'>Watch</li></Link>
-            <Link to='/Search'><li className='hidden sm:inline text-slate-700 hover:underline p-2'>Find</li></Link>
+            <Link to='/search'><li className='hidden sm:inline text-slate-700 hover:underline p-2'>Find</li></Link>
           </ul>
         </div>
   

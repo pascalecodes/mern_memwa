@@ -37,7 +37,7 @@ export default function Header () {
         <Link to='/'><li className='hidden sm:inline text-slate-700 hover:underline'>Home</li> </Link>
         <Link to='/capture'><li className='hidden sm:inline text-slate-700 hover:underline'>Capture</li></Link>
         <Link to='/watch'><li className='hidden sm:inline text-slate-700 hover:underline'>Watch</li></Link>
-        <Link to='/Search'><li className='hidden sm:inline text-slate-700 hover:underline'>Find</li></Link>
+        <Link to='/search'><li className='hidden sm:inline text-slate-700 hover:underline'>Find</li></Link>
       </ul>
     
     
@@ -60,7 +60,6 @@ export default function Header () {
          <li className='hidden sm:inline text-slate-700 hover:underline'><img className='rounded-full h-7 w-7 object-cover' src={currentUser.avatar} alt='profile' /> Profile</li> 
         ) : ( <li className='sm:inline text-slate-700 hover:underline'>Sign In</li>)} 
         </Link>
-        <Link to={'/about'} className='hidden sm:inline text-slate-700 hover:underline'>About</Link>
       {/* <Link to='/sign-up'><li className='hidden sm:inline text-slate-700 hover:underline'>Sign Up</li></Link> */}
      </ul>
     </div>

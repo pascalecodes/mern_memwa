@@ -1,12 +1,10 @@
 import React from 'react'
 
-function Capture() {
+export default function Terms() {
   return (
-    // <div>
+    // <div className='container mx-auto w-full h-50'>
     <div className='py-20 px-8 max-w-6xl mx-auto min-h-[20vh]'>
-      Capture
+      Terms of Service
     </div>
   )
 }
-
-export default Capture
