@@ -67,20 +67,21 @@ export default function Footer() {
     //     </div>
 
     // </footer>
-  <footer className='py-14 p-8'>
-    <div className='container grid-cols-1 grid md:grid-cols-2 lg:grid-cols-4 gap-8'>
+  <footer className='py-8 p-2 sm:text-center'>
+    <div className='container grid-cols-1 grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2'>
 
       <div>
         {/* <img src="/img/logo.svg"  alt="logo" className='h-7'/> */}
         <Link to='/'>
-            <h1 className='font-bold text-sm sm:text-xl flex flex-wrap'>
+            <h1 className='font-bold text-sm sm:text-xl flex flex-wrap sm:justify-center pb-2'>
             <img src="/img/logo.svg"  alt="logo"/>
             </h1>
             <span className=" text-blue-600 font-bold text-sm sm:text-xl " >MEMWA</span>
         </Link> 
 
         <div className='flex flex-col gap-2 mt-5'>
-            <p>Address: 474829 ksjks test, Los Angeles, CA</p>
+            <p>Address: 474829 ksjks test </p>
+            <p>Los Angeles, CA</p>
             <p>Email: example@domain.com</p>
             <p>Call: 555-555-5555</p>
         </div>
@@ -111,7 +112,7 @@ export default function Footer() {
         <h3 level={5} className="font-bold text-blue-700">Follow Us</h3>
         {/* <div className='flex flex-col gap-4'> */}
         <div className="col-md-5 offset-md-1 mb-3">
-            <ul className='flex gap-4'>
+            <ul className='flex gap-4 sm:justify-center'>
            <Link to='https://twitter.com/' target="_blank"><li className='p-2' ><FaTwitter className='h-6 w-6' /></li> </Link>
           <Link to='https://www.instagram.com/'><li className='p-2'><FaInstagram className='h-6 w-6'/></li></Link>
           <Link to='https://www.tiktok.com/'><li className='p-2'><FaTiktok className='h-6 w-6'/></li></Link>
@@ -120,13 +121,13 @@ export default function Footer() {
         </div>
         <div className="col-md-5 offset-md-1 mb-3 pt-4">
             <h3 className="font-bold text-blue-700">Subscribe to our newsletter</h3>
-            <p className='text-left'>Monthly highlight of new and exciting shared stories.</p>
+            <p className='text-left sm:justify-center flex'>Monthly highlight of new and exciting shared stories.</p>
             <form>
               <label htmlFor="newsletter1" className="visually-hidden">Email address</label>
               {/* <input id="newsletter1" type="email" name="email" className="form-control" placeholder="Email address" /> */}
               <input
                 type='text'
-                 className='p-3 w-full border bg-white-100 border-gray-300 rounded-md outline-none'
+                 className='p-3 w-full border bg-white-100 border-gray-300 rounded-md outline-none flex sm:justify-center'
                     placeholder='Enter your email address'/>
                 <br />
                 {/* <button className="btn btn-primary" type="submit">Subscribe</button> */}
