@@ -35,7 +35,7 @@ function Capture() {
                     ):null}
                     {permission ? (
                         <button type="button">
-                            Record
+                            Record Button goes here
                         </button>
                     ):null}
                 </div>
