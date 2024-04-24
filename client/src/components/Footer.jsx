@@ -67,8 +67,9 @@ export default function Footer() {
     //     </div>
 
     // </footer>
-  <footer className='py-8 p-2 sm:text-center'>
+  <footer className='py-8 p-2 sm:text-center '>
     <div className='container grid-cols-1 grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2'>
+      {/* <div className='grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2'> */}
 
       <div>
         {/* <img src="/img/logo.svg"  alt="logo" className='h-7'/> */}
@@ -89,22 +90,22 @@ export default function Footer() {
       </div>
       <div>
         <p level={5} className="font-bold text-blue-700">Company</p>
-        <div className='flex flex-col gap-4'>
-          <Link to='/about'><li className='hidden sm:inline text-slate-700 hover:underline p-2'>About</li></Link>
-          <Link to='/faq'><li className='hidden sm:inline text-slate-700 hover:underline p-2'>FAQ</li></Link>
-          <Link to='/privacy'><li className='hidden sm:inline text-slate-700 hover:underline p-2'>Privacy</li></Link>
-          <Link to='/support'><li className='hidden sm:inline text-slate-700 hover:underline p-2'>Support</li></Link>
-          <Link to='/terms'><li className='hidden sm:inline text-slate-700 hover:underline p-2'>Terms of Service</li></Link>
+        <div className='flex flex-col sm: gap-2 mt-2'>
+          <Link to='/about' className=' sm:inline text-slate-700  hover:underline p-2'>About</Link>
+          <Link to='/faq' className=' sm:inline text-slate-700 hover:underline p-2'>FAQ</Link>
+          <Link to='/privacy' className='sm:inline text-slate-700 hover:underline p-2'>Privacy</Link>
+          <Link to='/support' className='sm:inline text-slate-700 hover:underline p-2'>Support</Link>
+          <Link to='/terms' className='sm:inline text-slate-700 hover:underline p-2'>Terms of Service</Link>
         </div>
       </div>
 
       <div>
         <p level={5} className="font-bold text-blue-700">Pages</p>
         <div className='flex flex-col gap-4'>
-          <Link to='/'><li className='hidden sm:inline text-slate-700 hover:underline p-2'>Home</li> </Link>
-          <Link to='/capture'><li className='hidden sm:inline text-slate-700 hover:underline p-2'>Capture</li></Link>
-          <Link to='/watch'><li className='hidden sm:inline text-slate-700 hover:underline p-2'>Watch</li></Link>
-          <Link to='/search'><li className='hidden sm:inline text-slate-700 hover:underline p-2'>Find</li></Link>
+          <Link to='/'className='sm:inline text-slate-700 hover:underline p-2'>Home</Link>
+          <Link to='/capture'className='sm:inline text-slate-700 hover:underline p-2'>Capture</Link>
+          <Link to='/watch'className='sm:inline text-slate-700 hover:underline p-2'>Watch</Link>
+          <Link to='/search'className='sm:inline text-slate-700 hover:underline p-2'>Find</Link>
         </div>
       </div>
 
