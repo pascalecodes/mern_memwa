@@ -36,10 +36,10 @@ export default function Header () {
         </Link>
 
       <ul className='flex gap-4'>
-        <Link to='/'><li className='hidden md:inline text-slate-700 hover:underline'>Home</li> </Link>
-        <Link to='/capture'><li className='hidden md:inline text-slate-700 hover:underline'>Capture</li></Link>
-        <Link to='/watch'><li className='hidden md:inline text-slate-700 hover:underline'>Watch</li></Link>
-        <Link to='/search'><li className='hidden md:inline text-slate-700 hover:underline'>Find</li></Link>
+        <Link to='/'><li className='hidden sm:inline text-slate-700 hover:underline'>Home</li> </Link>
+        <Link to='/capture'><li className='hidden sm:inline text-slate-700 hover:underline'>Capture</li></Link>
+        <Link to='/watch'><li className='hidden sm:inline text-slate-700 hover:underline'>Watch</li></Link>
+        <Link to='/search'><li className='hidden sm:inline text-slate-700 hover:underline'>Find</li></Link>
       </ul>
     
 

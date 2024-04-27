@@ -5,6 +5,7 @@ import { Navigation } from 'swiper/modules';
 import SwiperCore from 'swiper';
 import { FaCamera, FaMicrophone, FaSearch, FaUpload, FaUsers,  } from 'react-icons/fa';
 import 'swiper/css/bundle';
+import backgroundImage from '/img/map.png';
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
@@ -22,6 +23,16 @@ export default function Home() {
     }
     fetchPosts();
   }, []);
+
+
+  const containerStyle = {
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'contain',
+    backgroundPosition: "center",
+    width: "100%",
+    height: "100vh"
+};
 
   return (
     <div>
@@ -83,7 +94,7 @@ export default function Home() {
       
       {/* Find */}
       
-      <div className='mx-auto'>
+      <div className='mx-auto' style={containerStyle}>
       <h1 className='text-blue-700 font-bold text-2xl lg:text-4xl mx-auto text-center'><Link to={'/search'}>Memwa FIND</Link></h1>
       <h2 className='text-gray-400 text-xs sm:text-sm text-center mx-auto'>Discover more Stories</h2>
         {
