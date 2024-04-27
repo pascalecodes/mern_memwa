@@ -94,20 +94,37 @@ export default function Home() {
       
       {/* Find */}
       
-      <div className='mx-auto' style={containerStyle}>
-      <h1 className='text-blue-700 font-bold text-2xl lg:text-4xl mx-auto text-center'><Link to={'/search'}>Memwa FIND</Link></h1>
-      <h2 className='text-gray-400 text-xs sm:text-sm text-center mx-auto'>Discover more Stories</h2>
+      <div className='mx-auto pt-10' style={containerStyle} >
+      <h1 className='text-blue-700 font-bold text-2xl lg:text-4xl mx-auto text-center pt-12a'><Link to={'/search'}>Memwa FIND</Link></h1>
+      <h2 className='text-gray-400  sm:text-sm text-xl  lg:text-2xl text-center mx-auto'>Discover more Stories</h2>
         {
           posts && posts.length > 0 && (
             <div className='text-center mx-auto'>
               <div className='my-3'>
-                <h2 className='text-1xl font-semibold text-slate-600'>Browse and Discover new stories!</h2>
-                  <p className='text-gray-400 text-xs sm:text-sm text-center mx-auto p-3'>Search for people, stories, events from around the world. New stories are being added everyday.
+                <h2 className='text-xl font-semibold text-slate-600'>Browse and Discover new stories!</h2>
+
+                <form  className='flex-2 flex-col gap-2'>
+                  <div className='flex items-center gap-2 p-4'>
+                      <label className='whitespace-nowrap font-semibold'></label>
+                      <input
+                      type='text'
+                      id='searchTerm'
+                      placeholder='Search...'
+                      className='border rounded-lg p-3 w-full'
+                  
+                      />
+                  </div>
+                  <button className='bg-slate-700 text-white p-3 rounded-lg uppercase hove:opacity-95'>Search</button>
+                </form>
+
+
+                  <p className='text-gray-400 text-xl text-center mx-auto p-3'>Search for people, stories, events from around the world. New stories are being added everyday.
                   Browse through <b><span style={{ color: '#3563E9' }}>2,100</span></b> stories from <b><span style={{ color: '#3563E9' }}>68</span></b> countries</p>
                 <Link className='text-xl text-blue-800 hover:underline' to={`/search?order=desc`}>
                 Show more Moments 
                 {/* <FaSearch /> */}
                 </Link>
+                
                
               </div>
             </div>
