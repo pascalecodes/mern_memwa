@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide} from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import SwiperCore from 'swiper';
@@ -9,8 +9,19 @@ import backgroundImage from '/img/map.png';
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
   SwiperCore.use([Navigation]);
+  const navigate = useNavigate();
   console.log(posts)
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.set('searchTerm', searchTerm);
+    const searchQuery = urlParams.toString();
+    navigate(`/search?${searchQuery}`);
+  };
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -103,7 +114,7 @@ export default function Home() {
               <div className='my-3'>
                 <h2 className='text-xl font-semibold text-slate-600'>Browse and Discover new stories!</h2>
 
-                <form  className='flex-2 flex-col gap-2'>
+                <form  onSubmit={handleSubmit} className='flex-2 flex-col gap-2'>
                   <div className='flex items-center gap-2 p-4'>
                       <label className='whitespace-nowrap font-semibold'></label>
                       <input
@@ -111,11 +122,23 @@ export default function Home() {
                       id='searchTerm'
                       placeholder='Search...'
                       className='border rounded-lg p-3 w-full'
-                  
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
                       />
+                      <button className='bg-slate-700 text-white p-3 rounded-lg uppercase hove:opacity-95'>Search</button>
                   </div>
-                  <button className='bg-slate-700 text-white p-3 rounded-lg uppercase hove:opacity-95'>Search</button>
+                  {/* <button className='bg-slate-700 text-white p-3 rounded-lg uppercase hove:opacity-95'>Search</button> */}
                 </form>
+
+                {/* <form onSubmit={handleSubmit} className='bg-slate-100 p-3 rounded-lg flex items-center'>
+                  <input type="search" placeholder="Search...." aria-label="Search" name="searchTerm" className='bg-transparent focus:outline-none rounded-lg p-3 w-full'
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                  <button>
+                  <FaSearch className='text-slate-600' />
+                  </button>
+                </form> */}
 
 
                   <p className='text-gray-400 text-xl text-center mx-auto p-3'>Search for people, stories, events from around the world. New stories are being added everyday.

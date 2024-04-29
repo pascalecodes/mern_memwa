@@ -3,6 +3,15 @@ import { Link } from 'react-router-dom';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+
+  // const footerStyle = {
+  //   position: 'fixed',
+  //   left: 0,
+  //   bottom: 0,
+  //   width: '100%',
+  //   height: '300px', // Adjust the height according to your footer's content
+  // };
+
   return (
     // <footer className='bg-slate-200 shadow-md flex flex-col mx-auto'>
     // <footer className='bg-slate-200 shadow-md flex flex-col mx-auto bottom-0 left-0 right-0'>
@@ -67,7 +76,7 @@ export default function Footer() {
     //     </div>
 
     // </footer>
-  <footer className='py-8 p-2 sm:text-center '>
+  <footer className='py-8 p-2 sm:text-center ' >
     <div className='container grid-cols-1 grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2'>
       {/* <div className='grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-2'> */}
 
