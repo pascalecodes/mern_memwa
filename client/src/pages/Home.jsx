@@ -49,7 +49,7 @@ export default function Home() {
     <div>
       {/* Top */}
       <div className='flex flex-col gap-6 p-2 px-3 max-w-6xl mx-auto'>
-      <Link className="text-decoration-none" to={"/"}><img className="mx-auto mb-4" src="/img/logo.svg"  alt="Memwa" width="120" height="120" />
+      <Link className="text-decoration-none" to={"/"}><img className="mx-auto mb-4" src="/img/logo.svg"  alt="Memwa" width="100" height="100" />
       </Link> 
         <h1 className='text-slate-700 font-bold text-3xl lg:text-6xl'> The best way to preserve your <span className='text-slate-400'>stories</span>, your <span className='text-slate-400'>history</span>, your <span className='text-slate-400'>legacy</span>
         </h1>
