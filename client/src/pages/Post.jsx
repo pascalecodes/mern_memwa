@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import 'swiper/css/bundle';
 import {FaShare,} from 'react-icons/fa';
 import Contact from '../components/Contact';
+import ReactPlayer from 'react-player';
 
 export default function Post() {
     SwiperCore.use([Navigation]);
@@ -17,7 +18,10 @@ export default function Post() {
     const [copied, setCopied] = useState(false);
     const [contact, setContact] = useState(false);
     const params = useParams()
-    const {currentUser} = useSelector((state) => state.user);   
+    const {currentUser} = useSelector((state) => state.user); 
+
+    
+    
 
     useEffect (() => {
         const fetchPost = async () => {
@@ -40,7 +44,18 @@ export default function Post() {
         };
         fetchPost();
     }, [params.postId]);
+
+
+    const getVideoType = async (url) => {
+      const response = await fetch(url);
+      const contentType = response.headers.get('content-type');
+      return contentType ? contentType.split('/')[1] : 'video/mp4'; // Default to mp4 if unknown
+    };
+
+  
+
   return (
+    
     <main>
         {loading && <p className='text-center my-7 text-2xl'>Loading...</p>}
         
@@ -55,16 +70,20 @@ export default function Post() {
           <Swiper navigation>
             {post.mediaUrls.map((url) => (
               <SwiperSlide key={url}>
-                <div
+                {/* <div
                   className='h-[550px]'
                   style={{
                     background: `url(${url}) center no-repeat`,
                     backgroundSize: 'contain',
                   }}
-                ></div>
+                ></div> */}
+                <div>
+                  <ReactPlayer url={url} playing={true} controls width="640px" height="360px" />
+                </div>
               </SwiperSlide>
             ))}
           </Swiper>
+
           <div className='fixed top-[13%] right-[3%] z-10 border rounded-full w-12 h-12 flex justify-center items-center bg-slate-100 cursor-pointer'>
             <FaShare
               className='text-slate-500'
