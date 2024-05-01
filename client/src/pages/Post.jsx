@@ -77,8 +77,10 @@ export default function Post() {
                     backgroundSize: 'contain',
                   }}
                 ></div> */}
-                <div>
-                  <ReactPlayer url={url} playing={true} controls width="640px" height="360px" />
+                <div className="h-[550px]">
+                  <ReactPlayer url={url} playing={true} controls 
+                  width="100%"
+                  height="100%" />
                 </div>
               </SwiperSlide>
             ))}
