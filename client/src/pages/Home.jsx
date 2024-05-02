@@ -6,6 +6,7 @@ import SwiperCore from 'swiper';
 import { FaCamera, FaMicrophone, FaSearch, FaUpload, FaUsers,  } from 'react-icons/fa';
 import 'swiper/css/bundle';
 import backgroundImage from '/img/map.png';
+import ReactPlayer from 'react-player';
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
@@ -90,6 +91,17 @@ export default function Home() {
           posts.length > 0 &&
           posts.map((post) => (
             <SwiperSlide key={post._id}>
+              {post.mediaUrls[0].includes('.webm' || 'video/mp4') ? (
+                <div className="h-[550px]">
+                <ReactPlayer
+                  url={post.mediaUrls[0]}
+                  controls
+                  width="100%"
+                  height="100%"
+                />
+                </div>
+
+              ) : (  
               <div
                 style={{
                   background: `url(${post.mediaUrls[0]}) center no-repeat`,
@@ -98,6 +110,7 @@ export default function Home() {
                 className='h-[500px]'
                 
               ></div>
+              )}
             </SwiperSlide>
           ))}
       </Swiper>
