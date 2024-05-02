@@ -93,7 +93,7 @@ export default function Home() {
             <SwiperSlide key={post._id}>
               <Link to={`/post/${post._id}`}>
               <p className='text-2xl font-semibold mx-auto'>
-              {post.title}</p>
+              {post.title}</p></Link>
               {post.mediaUrls[0].includes('.webm' || 'video/mp4') ? (
                 <div className="h-[550px]">
                 <ReactPlayer
@@ -115,7 +115,6 @@ export default function Home() {
               ></div>
               )}
               
-              </Link>
             </SwiperSlide>
           ))}
       </Swiper>
