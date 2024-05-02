@@ -19,8 +19,6 @@ export default function Post() {
     const [contact, setContact] = useState(false);
     const params = useParams()
     const {currentUser} = useSelector((state) => state.user); 
-
-    
     
 
     useEffect (() => {
@@ -29,6 +27,10 @@ export default function Post() {
                 setLoading(true);
                 const res = await fetch(`/api/post/get/${params.postId}`);
                 const data = await res.json();
+                console.log(data)
+              //  console.log(data.mediaUrls[0].includes('.webm' || 'video/mp4')? 'video/webm' : 'image/png')
+            
+               
                 if (data.success === false) {
                     setError(true);
                     setLoading(false);
@@ -43,16 +45,18 @@ export default function Post() {
             }
         };
         fetchPost();
+       
+   
     }, [params.postId]);
 
 
-    const getVideoType = async (url) => {
-      const response = await fetch(url);
-      const contentType = response.headers.get('content-type');
-      return contentType ? contentType.split('/')[1] : 'video/mp4'; // Default to mp4 if unknown
-    };
+    // const getVideoType = async (url) => {
+    //   const response = await fetch(url);
+    //   const contentType = response.headers.get('Content-type');
+    //   return contentType ? contentType.split('/')[1] : 'video/mp4'; // Default to mp4 if unknown
+    // };
 
-  
+    
 
   return (
     
@@ -67,16 +71,16 @@ export default function Post() {
         
         {post && !loading && !error && ( 
         <div>
-          <Swiper navigation>
+          {/* <Swiper navigation>
             {post.mediaUrls.map((url) => (
               <SwiperSlide key={url}>
-                {/* <div
+                <div
                   className='h-[550px]'
                   style={{
                     background: `url(${url}) center no-repeat`,
                     backgroundSize: 'contain',
                   }}
-                ></div> */}
+                ></div>
                 <div className="h-[550px]">
                   <ReactPlayer url={url} playing={true} controls 
                   width="100%"
@@ -84,7 +88,54 @@ export default function Post() {
                 </div>
               </SwiperSlide>
             ))}
+          </Swiper> */}
+
+          {/* testign media player */}
+          <Swiper navigation>
+            {post.mediaUrls.map((url) => (
+              <SwiperSlide key={url}>
+                {url.includes('.webm' || 'video/mp4') ? (
+                  <div className="h-[550px]">
+                    <ReactPlayer
+                      url={url}
+                      controls
+                      width="100%"
+                      height="100%"
+                    />
+                    {/* <ReactPlayer
+                      url={url}
+                      config={{
+                        file: {
+                          attributes: {
+                            type: getVideoType(url),
+                          },
+                        },
+                      }}
+                      controls
+                      width="100%"
+                      height="100%"
+                    /> */}
+                  </div>
+                ) : (
+                  <div
+                    className="h-[550px]"
+                    style={{
+                      background: url.length > 0 ? `url(${url}) center no-repeat`: 'none',
+                      backgroundSize: 'contain',
+                      display:'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                  >
+                    {url.length < 1 ? null : <span>No Image Found</span>}
+                  </div>
+                )}
+              </SwiperSlide>
+            ))}
           </Swiper>
+
+
+          {/* testing end */}
 
           <div className='fixed top-[13%] right-[3%] z-10 border rounded-full w-12 h-12 flex justify-center items-center bg-slate-100 cursor-pointer'>
             <FaShare
