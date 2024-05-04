@@ -1,4 +1,5 @@
 import React from 'react'
+import { useEffect, useState } from 'react';
 import styled from 'styled-components'
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownOffAltOutlinedIcon from "@mui/icons-material/ThumbDownOffAltOutlined";
@@ -6,6 +7,7 @@ import ReplyOutlinedIcon from "@mui/icons-material/ReplyOutlined";
 import AddTaskOutlinedIcon from "@mui/icons-material/AddTaskOutlined";
 import Card from "../components/Card";
 // import Comments from '../components/Comments';
+import ReactPlayer from 'react-player';
 
 const Container = styled.div`
 display: flex;
@@ -106,6 +108,23 @@ const Subscribe = styled.button`
 
 
 export default function Watch() {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const res = await fetch(`/api/post/get?order=desc&limit=4`);
+        const data = await res.json();
+        setPosts(data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchPosts();
+  }, []);
+
+
+
   return (
     <Container>
       <Content>
