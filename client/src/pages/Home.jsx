@@ -75,7 +75,7 @@ export default function Home() {
         <Link className='text-2xl font-semibold text-slate-600 hover:underline flex flex-wrap gap-2' to={`/capture`}>
         <FaUpload />Upload 
         </Link>
-        <Link className='text-2xl font-semibold text-slate-600 hover:underline flex flex-wrap gap-2' to={`/capture`}>
+        <Link className='text-2xl font-semibold text-slate-600 hover:underline flex flex-wrap gap-2' to={`/interview-room`}>
         <FaMicrophone />Interview Room 
         </Link>
       </div>

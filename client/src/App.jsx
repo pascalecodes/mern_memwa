@@ -17,6 +17,7 @@ import Privacy from './pages/Privacy'
 import Support from './pages/Support'
 import Terms from './pages/Terms'
 import Watch from './pages/Watch'
+import InterviewRoom from './pages/InterviewRoom'
 
 
 export default function App() {
@@ -32,6 +33,7 @@ export default function App() {
       <Route path="/profile" element={<Profile />} />
       <Route path="/create-post" element={<CreatePost />} />
       <Route path="/update-post/:postId" element={<UpdatePost />} />
+      <Route path='/interview-room' element={<InterviewRoom />}/>
       </Route>
 
       <Route path='/capture' element={<Capture />} />
