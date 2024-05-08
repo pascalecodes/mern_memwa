@@ -31,6 +31,7 @@ export default function InterviewRoom() {
         const fetchQuestions = async () => {
           try {
             const questions = await getQuestions();
+            console.log(questions)
             return questions; // Do something with the questions
           } catch (error) {
             console.error('Error fetching questions:', error);
@@ -40,12 +41,9 @@ export default function InterviewRoom() {
         fetchQuestions();
       }, []);
     
-   
-
 
   return (
     <Container>
-       
         <div className='flex flex-col p-2 px-3 max-w-6xl mx-auto'>
         <img className="mx-auto " src="/img/logo.svg"  alt="Memwa" width="sm-80" height="sm-80"  />
         <h1 className='text-blue-700 font-bold text-2xl lg:text-4xl mx-auto text-center'>Interview Room</h1> 
@@ -68,6 +66,7 @@ export default function InterviewRoom() {
             <>
                 {/* <div id="prompt"></div>
                 <div id="questionButtons"> */}
+                <p>{questions[0].name}</p>
                 <button id="more-question" className="btn btn-secondary">Next</button>
                 <button id="recordAnswer" className="btn btn-primary">Answer</button>
                 {/* <button className="btn btn-secondary" onClick={readQuestion}>Repeat Question</button>
@@ -76,8 +75,7 @@ export default function InterviewRoom() {
             </>
             )}
             </div>
-            
-      
+
     </Container>
   )
 }
