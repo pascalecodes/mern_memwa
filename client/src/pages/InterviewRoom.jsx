@@ -5,42 +5,41 @@ const Container = styled.div`
 `;
 
 export default function InterviewRoom() {
-    // const getQuestions = async () => {
-    //     //  const url = 'https://memwaquestionsapp.onrender.com/questions'
-    //     const url = 'http://localhost:8130/questions'
-    //     const response = await fetch(url, { mode: 'no-cors' })
-    //     //const response = await fetch(url);
-    //     let data = await response.json()
-    //     //console.log(data)
-    //     return data;
-    // }
-    let currentQuestionIndex = 0;
-    let questions = [];
-   
+    const [questions, setQuestions] = useState([]);
+    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
     const getQuestions = async () => {
-        const url = 'https://memwaquestionsapp.onrender.com/questions'
+         const url = 'https://memwaquestionsapp.onrender.com/questions'
         //const url = 'http://localhost:8130/questions';
         const response = await fetch(url);
         const data = await response.json();
-        // return data;
-        return data
+        setQuestions(data); // Update the questions state with the retrieved data
       };
-    
+
       useEffect(() => {
         const fetchQuestions = async () => {
           try {
-            const questions = await getQuestions();
-            console.log(questions)
-            return questions; // Do something with the questions
+            await getQuestions(); // Wait for the questions to be fetched and set in the state
           } catch (error) {
             console.error('Error fetching questions:', error);
           }
         };
-    
+      
         fetchQuestions();
       }, []);
-    
+
+      const nextQuestion = () => {
+        if (currentQuestionIndex >= questions.length) {
+          setCurrentQuestionIndex(0);
+        }
+      
+        const randomQuestionIndex = Math.floor(Math.random() * questions.length);
+        const question = questions[randomQuestionIndex];
+      
+        setCurrentQuestionIndex(randomQuestionIndex); // Update the currentQuestionIndex with the randomQuestionIndex
+      };
+
+
 
   return (
     <Container>
@@ -59,23 +58,24 @@ export default function InterviewRoom() {
                 <option value="ht-HT">Haitian Creole (Haiti)</option>
             </select>
 
-            {questions ? <h1>yes questions</h1> : <h1>none</h1>}
-            {questions.length === 0 ? (
-            <p>You have no questions.</p>
-            ) : (
-            <>
-                {/* <div id="prompt"></div>
-                <div id="questionButtons"> */}
-                <p>{questions[0].name}</p>
-                <button id="more-question" className="btn btn-secondary">Next</button>
-                <button id="recordAnswer" className="btn btn-primary">Answer</button>
-                {/* <button className="btn btn-secondary" onClick={readQuestion}>Repeat Question</button>
-                </div>
-                <div id="translated"></div> */}
-            </>
-            )}
+            <div className='p-3'>
+                {/* <span className="text-info">{currentQuestionIndex + 1} of {questions.length} questions</span> */}
+                <h5 className='text-xl text-slate-700' id="question-text">{questions[currentQuestionIndex]?.name}</h5>
+                <button 
+                onClick={nextQuestion}
+                    className='text-white text-center bg-blue-700 p-2' >Next Question</button>
             </div>
 
+      
+            </div>
+
+            {/* <div>
+      <span className="text-info">{currentQuestionIndex + 1} of {questions.length} questions</span>
+      <h5 id="question-text">{questions[currentQuestionIndex]?.name}</h5>
+      <button onClick={nextQuestion}>Next Question</button>
+    </div> */}
+
+    
     </Container>
   )
 }
