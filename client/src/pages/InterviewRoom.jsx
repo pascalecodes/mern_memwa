@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+// import translate from 'google-translate-api';
 
 const Container = styled.div`
 `;
@@ -7,14 +8,25 @@ const Container = styled.div`
 export default function InterviewRoom() {
     const [questions, setQuestions] = useState([]);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+    // const [translatedQuestion, setTranslatedQuestion] = useState('');
 
     const getQuestions = async () => {
-         const url = 'https://memwaquestionsapp.onrender.com/questions'
+        const url = 'https://memwaquestionsapp.onrender.com/questions'
         //const url = 'http://localhost:8130/questions';
         const response = await fetch(url);
         const data = await response.json();
         setQuestions(data); // Update the questions state with the retrieved data
       };
+
+    //   const translateText = async (text, targetLang) => {
+    //     try {
+    //       const result = await translate(text, { to: targetLang });
+    //       return result.text;
+    //     } catch (error) {
+    //       console.error('Error translating text:', error);
+    //       return '';
+    //     }
+    //   };
 
       useEffect(() => {
         const fetchQuestions = async () => {
@@ -35,9 +47,14 @@ export default function InterviewRoom() {
       
         const randomQuestionIndex = Math.floor(Math.random() * questions.length);
         const question = questions[randomQuestionIndex];
+
+        // const translatedText = translateText(question.name, 'en'); // Translate the question to English
+        // setTranslatedQuestion(translatedText);
       
         setCurrentQuestionIndex(randomQuestionIndex); // Update the currentQuestionIndex with the randomQuestionIndex
       };
+
+      
 
 
 
@@ -61,6 +78,7 @@ export default function InterviewRoom() {
             <div className='p-3'>
                 {/* <span className="text-info">{currentQuestionIndex + 1} of {questions.length} questions</span> */}
                 <h5 className='text-xl text-slate-700' id="question-text">{questions[currentQuestionIndex]?.name}</h5>
+                {/* <h5 id="question-text">{translatedQuestion}</h5> */}
                 <button 
                 onClick={nextQuestion}
                     className='text-white text-center bg-blue-700 p-2' >Next Question</button>
