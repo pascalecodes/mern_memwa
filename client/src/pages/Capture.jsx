@@ -269,6 +269,10 @@ function Capture() {
 
                         </div>
                     </div>
+                    <div className='text-center'>
+                        <h3 className='pb-3'>Not sure what to capture! Go to the interview room and record answers to questions about yourself and your life.</h3>
+                        <Link to={`/interview-room`} className='p-3 bg-slate-700 text-white rounded-lg uppercase  hover:opacity-95 disabled:80'>Interview Room</Link>
+                    </div>
                 </div>
 
                 <div className='mx-auto' id="upload-page-sec">
