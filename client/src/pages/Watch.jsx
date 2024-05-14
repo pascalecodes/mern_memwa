@@ -194,6 +194,6 @@ export default function Watch() {
         <Card type="sm"/> */}
       </Recommendation>
     </Container>
-  )
+  )  
 }
 

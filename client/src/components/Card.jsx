@@ -1,4 +1,4 @@
-import React from 'react'
+import {useEffect, useState} from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 
@@ -51,6 +51,8 @@ const Info = styled.div`
   color: ${({ theme }) => theme.textSoft};
 `;
 
+
+
 const Card = ({type}) => {
   return (
     <Link to="/video/test" style={{textDecoration:"none"}}> 
@@ -73,5 +75,13 @@ const Card = ({type}) => {
     </Link>
   );
 };
-
 export default Card
+
+
+
+
+
+
+
+  
+
