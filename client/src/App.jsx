@@ -34,9 +34,10 @@ export default function App() {
       <Route path="/create-post" element={<CreatePost />} />
       <Route path="/update-post/:postId" element={<UpdatePost />} />
       <Route path='/interview-room' element={<InterviewRoom />}/>
+      <Route path='/capture' element={<Capture />} />
       </Route>
 
-      <Route path='/capture' element={<Capture />} />
+      
       <Route path='/search' element={<Search />}/>
       <Route path='/watch' element={<Watch />}/>
 
