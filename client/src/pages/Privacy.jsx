@@ -46,7 +46,7 @@ export default function Privacy() {
         <li style={styles.listItem}>Physical security</li>
       </ul>
       <p>We also have a team of security experts who are constantly working to keep your data safe.</p>
-      <h2 className='text-2xl text-blue-700 mt-2'>What are your rights?</h2>
+      <h2 className='text-2xl text-blue-700 mt-2'>What are your Data rights?</h2>
       <p>You have the following rights with respect to your data:</p>
       <ul style={styles.list}>
         <li style={styles.listItem}>The right to access your data</li>
@@ -85,7 +85,7 @@ export default function Privacy() {
             <li style={styles.listItem}>Physical security</li>
         </ul>
         <p>We also have a team of security experts who are constantly working to keep your data safe.</p>
-        <h2 className='text-2xl text-blue-700 mt-2'>What Are Your Rights?</h2>
+        <h2 className='text-2xl text-blue-700 mt-2'>What Are Your Personal Information Rights?</h2>
         <p>You have the following rights with respect to your personal information:</p>
         <ul style={styles.list}>
             <li style={styles.listItem}>The right to access your personal information</li>
