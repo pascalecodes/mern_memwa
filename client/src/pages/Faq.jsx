@@ -84,7 +84,7 @@ export default function Faq() {
         <p className='mb-4 text-slate-700'>If you have any questions about this Policy, please contact us at<span> </span>  
         <Link 
               to={`mailto:info@memwa.app?subject=Question on Policies Memwa app`}
-              className='text-blue-500 underline hover:opacity-95'>
+              className='text-blue-500 hover:opacity-95'>
                 info@memwa.app
         </Link> 
         </p>
