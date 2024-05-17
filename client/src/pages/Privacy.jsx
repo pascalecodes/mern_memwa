@@ -18,7 +18,7 @@ export default function Privacy() {
     <div className='py-20 px-8 max-w-6xl mx-auto min-h-[20vh]'>
       <h1 className='text-5xl font-bold mb-4 text-blue-600 text-center' >Memwa Privacy Policy</h1>
       <div className="container px-4 py-5 my-5">
-        <h2 className='text-3xl text-blue-700'>Welcome to Memwa Privacy Policy Page!</h2>
+        <h2 className='text-2xl text-blue-700'>Welcome to Memwa Privacy Policy Page!</h2>
         <p>This Privacy Policy (the "Policy") describes how Memwa collects, uses, and discloses your personal information when you use the Memwa website and mobile application (the "Service").</p>
         <p>If you do not agree to this Policy, you may not access or use the Service.</p>
 
