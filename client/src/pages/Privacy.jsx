@@ -57,7 +57,7 @@ export default function Privacy() {
       <p>You can exercise your rights by contacting us at <span> </span>
        <Link 
               to={`mailto:info@memwa.app?subject=Question on Policies Memwa app`}
-              className='text-blue-500 underline hover:opacity-95'>
+              className='text-blue-500 hover:opacity-95'>
                 info@memwa.app
         </Link> 
       </p>
@@ -93,7 +93,12 @@ export default function Privacy() {
             <li style={styles.listItem}>The right to delete your personal information</li>
             <li style={styles.listItem}>The right to object to the processing of your personal information</li>
         </ul>
-        <p>You can exercise your rights by contacting us at <a href="mailto:info@memwa.app">info@memwa.app</a></p>
+        <p>You can exercise your rights by contacting us at <span> </span>
+        <Link 
+              to={`mailto:info@memwa.app?subject=Question on Policies Memwa app`}
+              className='text-blue-500 hover:opacity-95'>
+                info@memwa.app
+        </Link></p>
         <h2 className='text-2xl text-blue-700 mt-2'>How Do We Handle Children's Privacy?</h2>
         <p>Memwa is not directed to and should not be used by children under the age of 16.</p>
         <p>If we learn that we have collected personal information from a child under the age of 16, we will delete that information as quickly as possible.</p>
@@ -105,7 +110,7 @@ export default function Privacy() {
         <p className='mb-4 text-slate-700'>If you have any questions about this Policy, please contact us at<span> </span>  
         <Link 
               to={`mailto:info@memwa.app?subject=Question on Privacy Memwa app`}
-              className='text-blue-500 underline hover:opacity-95'>
+              className='text-blue-500 hover:opacity-95'>
                 info@memwa.app
         </Link> 
         </p>
