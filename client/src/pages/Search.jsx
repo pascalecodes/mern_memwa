@@ -1,7 +1,20 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import styled from 'styled-components'
 import PostItem from '../components/PostItem';
 import backgroundImage from '/img/map.png';
+
+const Container = styled.div`
+`;
+
+const containerStyle = {
+    backgroundImage: `url(${backgroundImage})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'contain',
+    backgroundPosition: "center",
+    width: "100%",
+    height: "100vh"
+};
 
 export default function Search() {
     const navigate = useNavigate();
@@ -101,21 +114,15 @@ export default function Search() {
 
     };
 
-    const containerStyle = {
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'contain',
-        backgroundPosition: "center",
-        width: "100%",
-        height: "100vh"
-    };
+  
 
     return (
+       <Container >
         <div className='flex flex-col p-2 px-3 max-w-6xl mx-auto'>
         <img className="mx-auto " src="/img/logo.svg"  alt="Memwa" width="sm-80" height="sm-80"  />
         <h1 className='text-blue-700 font-bold text-2xl lg:text-4xl mx-auto text-center'>Memwa FIND</h1> 
 
-    <div className='flex flex-col md:flex-row' style={containerStyle}>
+    <div className='flex flex-col md:flex-row' >
         <div className='p-7 border-b-2 md:border-r-2 md:min-h-screen' >
         <form onSubmit={handleSubmit} className='flex flex-col gap-8'>
             <div className='flex items-center gap-2'>
@@ -225,9 +232,11 @@ export default function Search() {
                     )}
             </div>
         </div>
+        
         )}
     </div>
     </div>
+    </Container>
     ); 
     
 }

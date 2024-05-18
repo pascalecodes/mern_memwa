@@ -230,7 +230,7 @@ function Capture() {
                 <h5 className='mx-auto text-center'>Record or upload a new moment.</h5>
             </div>
 
-            <main className='flex'>
+            <main className='flex flex-col sm:flex-row p-4'>
                 <div className='mx-auto' id="capture-page-sec">
                     <h3 className='text-blue-700 font-bold text-xl lg:text-2xl text-center'>RECORD
                     <FaCamera  className='mx-auto'/></h3>
@@ -269,13 +269,13 @@ function Capture() {
 
                         </div>
                     </div>
-                    <div className='text-center'>
-                        <h3 className='pb-3'>Not sure what to capture! Go to the interview room and record answers to questions about yourself and your life.</h3>
+                    <div className='text-center pb-8'>
+                        <h3 className='pb-4'>Not sure what to capture! Go to the interview room and record answers to questions about yourself and your life.</h3>
                         <Link to={`/interview-room`} className='p-3 bg-slate-700 text-white rounded-lg uppercase  hover:opacity-95 disabled:80'>Interview Room</Link>
                     </div>
                 </div>
 
-                <div className='mx-auto' id="upload-page-sec">
+                <div className='mx-auto ' id="upload-page-sec">
                     <h3 className='text-blue-700 font-bold text-xl lg:text-2xl text-center'>UPLOAD
                     <FaUpload className='mx-auto'/></h3>
                     <p className='text-blue-700 font-bold text-md lg:text-l text-center pb-2'>You can upload videos, pictures, audio files for your moment</p>
