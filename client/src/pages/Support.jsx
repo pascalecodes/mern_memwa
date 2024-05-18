@@ -18,7 +18,7 @@ export default function Support() {
     <div className='py-20 px-8 max-w-6xl mx-auto min-h-[20vh]'>
       <h1 className='text-5xl font-bold mb-4 text-blue-600 text-center' >Memwa Support</h1>
       <div className="container px-4 py-5 my-5">
-        <h2 className='text-2xl text-blue-700'>Welcome to the Memwa Support website!</h2>
+        <h2 className='text-2xl text-blue-700 mt-4'>Welcome to the Memwa Support website!</h2>
         <p>This website is here to help you with using Memwa or with problems you may encounter.</p>
         <p>You can find answers to frequently asked questions in our <span> </span> 
         <Link 
@@ -38,7 +38,7 @@ export default function Support() {
         </form>
         </div>
       
-      <h2 className='text-2xl text-blue-700 mt-2'>Tips for Creating a Great Post</h2>
+      <h2 className='text-2xl text-blue-700 pt-4 mt-4'>Tips for Creating a Great Post</h2>
       <p>Here are a few tips for creating a great post:</p>
       <ul style={styles.list}>
         <li style={styles.listItem}>Make sure your title is memorable and descriptive.</li>
