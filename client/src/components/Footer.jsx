@@ -101,9 +101,9 @@ export default function Footer() {
         <div className="col-md-5 offset-md-1 mb-3">
             <ul className='flex gap-4 sm:justify-center'>
            <Link to='https://twitter.com/' target="_blank"><li className='p-2' ><FaTwitter className='h-6 w-6' /></li> </Link>
-          <Link to='https://www.instagram.com/'><li className='p-2'><FaInstagram className='h-6 w-6'/></li></Link>
-          <Link to='https://www.tiktok.com/'><li className='p-2'><FaTiktok className='h-6 w-6'/></li></Link>
-          <Link to='https://www.facebook.com/'><li className='p-2'><FaFacebook className='h-6 w-6'/></li></Link>
+          <Link to='https://www.instagram.com/' target="_blank"><li className='p-2'><FaInstagram className='h-6 w-6'/></li></Link>
+          <Link to='https://www.tiktok.com/' target="_blank"><li className='p-2'><FaTiktok className='h-6 w-6'/></li></Link>
+          <Link to='https://www.facebook.com/' target="_blank"><li className='p-2'><FaFacebook className='h-6 w-6'/></li></Link>
        </ul>
        </div>
 
