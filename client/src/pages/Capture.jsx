@@ -150,7 +150,7 @@ function Capture() {
     
     const getCameraPermission = async () => {
         
-        setRecordedVideo(null);
+        // setRecordedVideo(null);
         if ("MediaRecorder" in window) {
             try {
                 const videoConstraints = {
@@ -193,6 +193,7 @@ function Capture() {
 
     const startRecording = async () => {
         setRecordingStatus("recording");
+        getCameraPermission()
         const media = new MediaRecorder(stream, { mimeType });
         mediaRecorder.current = media;
         mediaRecorder.current.start();
@@ -207,7 +208,7 @@ function Capture() {
     };
 
     const stopRecording = () => {
-        setPermission(false);
+        // setPermission(false);
         setRecordingStatus("inactive");
         mediaRecorder.current.stop();
         mediaRecorder.current.onstop = () => {
@@ -240,21 +241,21 @@ function Capture() {
                     <div>
                         <div className="video-controls">
                             {!permission ? (
-                                <button onClick={getCameraPermission} type="button">
+                                <button onClick={getCameraPermission} type="button" className='mx-auto text-center'>
                                     {!permission ? 'Enable Camera' : 'Camera Active' }
                                 </button>
                             ): null }
-                            <video ref={liveVideoFeed} autoPlay muted /> 
+                            <video ref={liveVideoFeed} autoPlay muted className='overla'/> 
                             
 
                             {permission && recordingStatus === "inactive" ? (
                                 <button onClick={startRecording}  type="button" className='p-3 bg-green-700 text-white rounded-lg uppercase  hover:opacity-95 disabled:80'>
-                                    Start Recording
+                                    Start
                                 </button>
                             ) : null}
                             {recordingStatus === "recording" ? (
                                 <button onClick={stopRecording} type="button" className='p-3 bg-red-700 text-white rounded-lg uppercase  hover:opacity-95 disabled:80'>
-                                     Stop Recording
+                                     Stop
                                 </button>
                             ) : null}
                             {recordedVideo ? (
