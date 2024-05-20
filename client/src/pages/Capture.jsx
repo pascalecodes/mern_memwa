@@ -11,6 +11,8 @@ import { FaCamera, FaUpload, } from 'react-icons/fa';
 const Container = styled.div`
 `;
 
+
+
 function Capture() {
     const {currentUser} = useSelector(state => state.user);
     const navigate = useNavigate();
@@ -35,13 +37,12 @@ function Capture() {
     const [permission, setPermission] = useState(false);
     const [stream, setStream] = useState(null);
     const mimeType = "video/webm";
-    // const mediaRecorder = useRef(null);
+    const mediaRecorder = useRef(null);
     const liveVideoFeed= useRef(null);
     //const [liveVideoFeed, setLiveVideoFeed]= useState(null);
     const [recordingStatus, setRecordingStatus] = useState("inactive");
     const [videoChunks, setVideoChunks] = useState([]);
     const [recordedVideo, setRecordedVideo] = useState(null);
-    const [mediaRecorder, setMediaRecorder] = useState(null);
 
     const handleMediaSubmit = (e) => {
         if (files.length > 0 && files.length + formData.mediaUrls.length < 7) {
@@ -147,156 +148,79 @@ function Capture() {
 
 
     
-    // const getCameraPermission = async () => {
+    const getCameraPermission = async () => {
         
-    //     setRecordedVideo(null);
-    //     if ("MediaRecorder" in window) {
-    //         try {
-    //             const videoConstraints = {
-    //                 audio: false,
-    //                 video: true,
-    //             };
-    //             const audioConstraints = { audio: true };
-    //             // create audio and video streams separately
-    //             const audioStream = await navigator.mediaDevices.getUserMedia(
-    //                 audioConstraints
-    //             );
-    //             const videoStream = await navigator.mediaDevices.getUserMedia(
-    //                 videoConstraints
-    //             );
-    //             setPermission(true);
-
-    //             //combine both audio and video streams
-    //             const combinedStream = new MediaStream([
-    //                 ...videoStream.getVideoTracks(),
-    //                 ...audioStream.getAudioTracks(),
-    //             ]);
-    //             setStream(combinedStream);
-
-    //             // Ensure liveVideoFeed is a valid video element before assigning srcObject
-    //             // if (liveVideoFeed.current) {
-    //             //     liveVideoFeed.current.srcObject = videoStream;
-    //             // } else {
-    //             //     console.error('liveVideoFeed element not yet available');
-    //             // }
-    //             //set videostream to live feed player
-    //             liveVideoFeed.current.srcObject = videoStream;
-                
-    //         } catch (err) {
-    //             alert(err.message);
-    //         }
-    //     } else {
-    //         alert("The MediaRecorder API is not supported in your browser.");
-    //     }
-    // };
-
-    // const startRecording = async () => {
-    //     if (!permission) {
-    //         await getCameraPermission();
-    //     }
-    //     setRecordingStatus("recording");
-    //     if (stream){
-    //     const media = new MediaRecorder(stream, { mimeType });
-    //     mediaRecorder.current = media;
-    //     mediaRecorder.current.start();
-    //     let localVideoChunks = [];
-    //     mediaRecorder.current.ondataavailable = (event) => {
-    //         if (typeof event.data === "undefined") return;
-    //         if (event.data.size === 0) return;
-    //         localVideoChunks.push(event.data);
-    //     };
-    //     setVideoChunks(localVideoChunks);
-    // } else {
-    //     alert("No camera permission granted.");
-    //   }
-    // };
-
-    // const stopRecording = () => {
-    //     if (mediaRecorder) {
-    //     setPermission(false);
-    //     setRecordingStatus("inactive");
-    //     mediaRecorder.current.stop();
-    //     mediaRecorder.current.onstop = () => {
-    //         const videoBlob = new Blob(videoChunks, { type: "video/webm" });
-    //         const videoUrl = URL.createObjectURL(videoBlob);
-    //         setRecordedVideo(videoUrl);
-    //         setVideoChunks([]);
-    //         liveVideoFeed.current.srcObject = null;
-    //     };
-    // }else {
-    //     alert("No camera permission granted.");
-    // }
-    // };
-
-
-    useEffect(() => {
-        const getCameraPermission = async () => {
-          setRecordedVideo(null);
-          if ("MediaRecorder" in window) {
+        setRecordedVideo(null);
+        if ("MediaRecorder" in window) {
             try {
-              const videoConstraints = {
-                audio: false,
-                video: true,
-              };
-              const audioConstraints = { audio: true };
-              const audioStream = await navigator.mediaDevices.getUserMedia(
-                audioConstraints
-              );
-              const videoStream = await navigator.mediaDevices.getUserMedia(
-                videoConstraints
-              );
-              setPermission(true);
-              const combinedStream = new MediaStream([
-                ...videoStream.getVideoTracks(),
-                ...audioStream.getAudioTracks(),
-              ]);
-              setStream(combinedStream);
-              liveVideoFeed.current.srcObject = videoStream;
+                const videoConstraints = {
+                    audio: false,
+                    video: true,
+                };
+                const audioConstraints = { audio: true };
+                // create audio and video streams separately
+                const audioStream = await navigator.mediaDevices.getUserMedia(
+                    audioConstraints
+                );
+                const videoStream = await navigator.mediaDevices.getUserMedia(
+                    videoConstraints
+                );
+                setPermission(true);
+
+                //combine both audio and video streams
+                const combinedStream = new MediaStream([
+                    ...videoStream.getVideoTracks(),
+                    ...audioStream.getAudioTracks(),
+                ]);
+                setStream(combinedStream);
+
+                // Ensure liveVideoFeed is a valid video element before assigning srcObject
+                // if (liveVideoFeed.current) {
+                //     liveVideoFeed.current.srcObject = videoStream;
+                // } else {
+                //     console.error('liveVideoFeed element not yet available');
+                // }
+                //set videostream to live feed player
+                liveVideoFeed.current.srcObject = videoStream;
+                
             } catch (err) {
-              alert(err.message);
+                alert(err.message);
             }
-          } else {
+        } else {
             alert("The MediaRecorder API is not supported in your browser.");
-          }
-        };
-    
-        if (!permission) {
-          getCameraPermission();
         }
-      }, [permission, liveVideoFeed]);
-    
-      const startRecording = () => {
-        if (!permission) {
-          getCameraPermission();
-        }
+    };
+
+    const startRecording = async () => {
         setRecordingStatus("recording");
-        if (stream) {
-          const mediaRecorder = new MediaRecorder(stream,  {mimeType});
-          setMediaRecorder(mediaRecorder);
-          mediaRecorder.start();
-          mediaRecorder.ondataavailable = (event) => {
-            if (event.data.size > 0) {
-              setVideoChunks((prevChunks) => [...prevChunks, event.data]);
-            }
-          };
-        } else {
-          alert("No camera permission granted.");
-        }
-      };
-    
-      const stopRecording = () => {
-        if (mediaRecorder) {
-          mediaRecorder.stop();
-          setRecordingStatus("inactive");
-          const videoBlob = new Blob(videoChunks, { type: 'video/webm' });
-          const videoUrl = URL.createObjectURL(videoBlob);
-          setRecordedVideo(videoUrl);
-          setVideoChunks([]);
-          liveVideoFeed.current.srcObject = null;
-        } else {
-          alert("No camera permission granted.");
-        }
-      };
+        const media = new MediaRecorder(stream, { mimeType });
+        mediaRecorder.current = media;
+        mediaRecorder.current.start();
+        let localVideoChunks = [];
+        mediaRecorder.current.ondataavailable = (event) => {
+            if (typeof event.data === "undefined") return;
+            if (event.data.size === 0) return;
+            localVideoChunks.push(event.data);
+        };
+        setVideoChunks(localVideoChunks);
+        
+    };
+
+    const stopRecording = () => {
+        setPermission(false);
+        setRecordingStatus("inactive");
+        mediaRecorder.current.stop();
+        mediaRecorder.current.onstop = () => {
+            const videoBlob = new Blob(videoChunks, { type: mimeType });
+            const videoUrl = URL.createObjectURL(videoBlob);
+            setRecordedVideo(videoUrl);
+            setVideoChunks([]);
+            liveVideoFeed.current.srcObject = null;
+        };
+    };
+
+
+   
 
     return (
         <Container>
@@ -315,38 +239,37 @@ function Capture() {
 
                     <div>
                         <div className="video-controls">
-                            {/* {!permission ? (
+                            {!permission ? (
                                 <button onClick={getCameraPermission} type="button">
-                                    Get Camera
+                                    {!permission ? 'Enable Camera' : 'Camera Active' }
                                 </button>
-                            ): null } */}
+                            ): null }
                             <video ref={liveVideoFeed} autoPlay muted /> 
                             
 
-                            {recordingStatus === "inactive" && (
-                                <button onClick={startRecording}  type="button">
+                            {permission && recordingStatus === "inactive" ? (
+                                <button onClick={startRecording}  type="button" className='p-3 bg-green-700 text-white rounded-lg uppercase  hover:opacity-95 disabled:80'>
                                     Start Recording
                                 </button>
-                            )}
-                            {recordingStatus === "recording" && (
-                                <button onClick={stopRecording} type="button">
+                            ) : null}
+                            {recordingStatus === "recording" ? (
+                                <button onClick={stopRecording} type="button" className='p-3 bg-red-700 text-white rounded-lg uppercase  hover:opacity-95 disabled:80'>
                                      Stop Recording
                                 </button>
-                            )}
-                            {recordedVideo && (
+                            ) : null}
+                            {recordedVideo ? (
                                 
                             <div className="video-player">
-                                <video src={recordedVideo} controls type="video/webm"></video>
-                                <a download href={recordedVideo}>
+                                <video src={recordedVideo} controls></video>
+                                <a download href={recordedVideo} style={{ fontStyle: 'italic', color: 'blue' }}>
                                     Download Recording
                                     </a>
                                 </div>
-                            ) }
-
+                            ) : null}
 
                         </div>
                     </div>
-                    <div className='text-center pb-8'>
+                    <div className='text-center pb-6'>
                         <h3 className='pb-4'>Not sure what to capture! Go to the interview room and record answers to questions about yourself and your life.</h3>
                         <Link to={`/interview-room`} className='p-3 bg-slate-700 text-white rounded-lg uppercase  hover:opacity-95 disabled:80'>Interview Room</Link>
                     </div>
