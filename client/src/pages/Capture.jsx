@@ -43,6 +43,7 @@ function Capture() {
     const [recordingStatus, setRecordingStatus] = useState("inactive");
     const [videoChunks, setVideoChunks] = useState([]);
     const [recordedVideo, setRecordedVideo] = useState(null);
+    const fileInputRef = useRef(null);
 
     const handleMediaSubmit = (e) => {
         if (files.length > 0 && files.length + formData.mediaUrls.length < 7) {
@@ -73,11 +74,12 @@ function Capture() {
             const fileName = new Date().getTime() + file.name;
             const storageRef = ref(storage, fileName);
             const uploadTask = uploadBytesResumable(storageRef, file);
+            console.log(fileName)
             uploadTask.on(
                 'state_changed', 
                 (snapshot) => {
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log(`Upload is ${progress}% done`);
+                console.log(`Upload is ${progress}% done`);               
             },
             (error) => {
                 reject(error);
@@ -145,8 +147,41 @@ function Capture() {
             setLoading(false);
         }
     };
-
-
+  
+      const handleUpload = async () => {
+        if (recordedVideo) {
+          try {
+            setUploading(true);
+            setMediaUploadError(false);
+    
+            // Fetch the file content from the Blob URL
+            const response = await fetch(recordedVideo);
+            const file = await response.blob();
+    
+            const fileType = 'video/webm'; // or any other supported format
+            const fileName = `recorded-video.webm`;
+            const fileToUpload = new File([file], fileName, {
+              type: fileType
+            });
+            console.log(recordedVideo, fileName, fileToUpload)
+    
+            const downloadURL = await storeMedia(fileToUpload);
+            // Update your form data with the downloadURL
+            setFormData((prevFormData) => ({
+              ...prevFormData,
+              mediaUrls: [...prevFormData.mediaUrls, downloadURL]
+            }));
+            setUploading(false);
+          } catch (err) {
+            setMediaUploadError('Image upload failed (2.5mb max per file)');
+            setUploading(false);
+            console.error(err);
+          }
+        } else {
+          // There's no recorded video, so do nothing
+        }
+      };
+    
     
     const getCameraPermission = async () => {
         
@@ -190,6 +225,7 @@ function Capture() {
             alert("The MediaRecorder API is not supported in your browser.");
         }
     };
+
 
     const startRecording = async () => {
         setRecordingStatus("recording");
@@ -262,9 +298,15 @@ function Capture() {
                                 
                             <div className="video-player">
                                 <video src={recordedVideo} controls></video>
-                                <a download href={recordedVideo} style={{ fontStyle: 'italic', color: 'blue' }}>
-                                    Download Recording
-                                    </a>
+                                <a download href={recordedVideo} style={{ fontStyle: 'italic', color: 'blue' }}>Download Recording</a>
+                            <button
+                                disabled={uploading}
+                                type="button"
+                                onClick={handleUpload}
+                                className="p-3 text-green-700 border border-green-700 rounded uppercase hover:shadow-lg disabled:opacity-80"
+                            >
+                                {uploading ? 'Uploading...' : 'Upload'}
+                            </button>
                                 </div>
                             ) : null}
 
