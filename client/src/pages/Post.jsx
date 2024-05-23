@@ -19,6 +19,8 @@ export default function Post() {
     const [contact, setContact] = useState(false);
     const params = useParams()
     const {currentUser} = useSelector((state) => state.user); 
+    const [author, setAuthor] = useState(null);
+  
     
 
     useEffect (() => {
@@ -27,6 +29,7 @@ export default function Post() {
                 setLoading(true);
                 const res = await fetch(`/api/post/get/${params.postId}`);
                 const data = await res.json();
+                setAuthor(true);
                 console.log(data)
               //  console.log(data.mediaUrls[0].includes('.webm' || 'video/mp4')? 'video/webm' : 'image/png')
             
@@ -45,6 +48,7 @@ export default function Post() {
             }
         };
         fetchPost();
+        
        
    
     }, [params.postId]);
@@ -163,7 +167,9 @@ export default function Post() {
               <span className='font-semibold text-black'>Caption - </span>
               {post.caption}
             </p>
-    
+         
+          
+            
             <p className='text-slate-800'>
               <span className='font-semibold text-black'>Description - </span>
               {post.description}
@@ -183,13 +189,21 @@ export default function Post() {
 
             
             {currentUser && post.userRef !== currentUser._id && !contact &&(
+              
                 <button
                     onClick = {() => setContact(true)}
                     className="bg-slate-700 text-white rounded-lg uppercase p-3 hover:opacity-95"
                 >Contact Author</button>
+                
             )}
             
             {contact && <Contact post={post} /> }
+            {author} 
+            <p className='text-slate-800' >
+              <span className='font-semibold text-black'>Author- </span>
+              {author.username}
+            </p>
+           
 
 
           </div>
