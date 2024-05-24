@@ -14,6 +14,7 @@ export default function Contact({post}) {
             const res = await fetch(`/api/user/${post.userRef}`);
             const data = await res.json();
             setAuthor(data);
+
            } catch (error) {
             console.log(error);
            }

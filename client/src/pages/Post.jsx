@@ -186,26 +186,17 @@ export default function Post() {
                     </li>
                 ))}
                 </ul>
-
-            
             {currentUser && post.userRef !== currentUser._id && !contact &&(
               
                 <button
                     onClick = {() => setContact(true)}
                     className="bg-slate-700 text-white rounded-lg uppercase p-3 hover:opacity-95"
-                >Contact Author</button>
+                >Contact Author </button>
+                
                 
             )}
             
             {contact && <Contact post={post} /> }
-            {author} 
-            <p className='text-slate-800' >
-              <span className='font-semibold text-black'>Author- </span>
-              {author.username}
-            </p>
-           
-
-
           </div>
         
 
