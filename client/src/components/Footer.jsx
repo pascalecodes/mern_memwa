@@ -1,5 +1,6 @@
 import { FaFacebook, FaInstagram, FaTiktok, FaTwitter } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import SubscriberForm from './SubscriberForm';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -140,23 +141,13 @@ export default function Footer() {
           <Link to='https://www.facebook.com/'><li className='p-2'><FaFacebook className='h-6 w-6'/></li></Link>
        </ul>
         </div> */}
-        <div>
+        <div className='pb-12'>
             <p level={5} className="font-bold text-blue-700">Subscribe to our newsletter</p>
-            <p className='text-left sm:justify-center flex'>Monthly highlight of new and exciting shared stories.</p>
-            <form>
-              <label htmlFor="newsletter1" className="visually-hidden">Email address</label>
-              {/* <input id="newsletter1" type="email" name="email" className="form-control" placeholder="Email address" /> */}
-              <input
-                type='text'
-                 className='p-3 w-full border bg-white-100 border-gray-300 rounded-md outline-none flex sm:justify-center'
-                    placeholder='Enter your email address'/>
-                <br />
-                {/* <button className="btn btn-primary" type="submit">Subscribe</button> */}
-              <p id="message"></p>
-          </form>
-          </div>
+            <p className='text-left sm:justify-center flex pb-2'>Monthly highlight of new and exciting shared stories.</p>
+            <SubscriberForm />    
+        </div>
 
-          <div className='text-center justify-center flex'>
+          <div className='text-center justify-center flex pt-6'>
              <p>
             Copyright &copy; 2022-{currentYear}{'  '} 
           
