@@ -24,8 +24,8 @@ const SubscriberForm = () => {
         setEmail('');
         setError(null);
       } else {
-        const error = await response.text();
-        setError(`Failed to subscribe: ${error}`);
+        const error = await response.json();
+        setError(`Failed to subscribe: ${error.message}`);
         console.error('Failed to save subscriber:', error);
       }
     } catch (err) {
