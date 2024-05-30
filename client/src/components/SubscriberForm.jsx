@@ -38,15 +38,16 @@ const SubscriberForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className= 'p-2' onSubmit={handleSubmit}>
       <input
         type="email"
         placeholder="Enter your email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
+        className='p-2 pr-8 rounded-sm' 
       />
-      <button type="submit" disabled={loading}>
+      <button className="bg-blue-700 p-2 rounded-sm  text-white text-center hover:opacity-75"type="submit" disabled={loading}>
         {loading ? 'Subscribing...' : 'Subscribe'}
       </button>
       {error && <div className="error text-red-500">{error}</div>}
