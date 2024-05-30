@@ -35,33 +35,6 @@ app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/post', postRouter);
 
-// Add a new subscriber to the collection
-// app.post('/api/subscribe', (req, res) => {
-//   const { email } = req.body;
-
-//   // Create a new Subscriber instance
-//   const subscriber = new Subscriber({ email });
-
-//   //**** fix user notification when */
-//   function displayMessage(message) {
-//   console.log(message);
-//   }
-
-//   // Save the subscriber to the database
-//   subscriber.save()
-//     .then(() => {
-//       displayMessage("Thank you for subscribing!");
-//       req.json({message: 'Successfully subscribed!' });
-//       //res.redirect('/newSuccess');
-//     })
-//     .catch((err) => {
-//       console.error('Failed to save subscriber:', err);
-//       displayMessage(`Failed to subscribe: ${err}`);
-//       res.status(400).json({ message: 'Error subscribing. Email already exists or invalid.' });
-//       res.sendStatus(500);
-//     });
-// });
-
 app.post('/api/subscribe', async (req, res) => {
   try {
     const { email } = req.body;
@@ -84,33 +57,6 @@ app.post('/api/subscribe', async (req, res) => {
     }
   }
 });
-
-// Subscribe endpoint
-// app.post('/api/subscribe', async (req, res) => {
-//     const { email } = req.body;
-  
-//     try {
-//       const subscriber = new Subscriber({ email });
-//       await subscriber.save();
-//       res.json({ message: 'Successfully subscribed!' });
-//     } catch (error) {
-//       console.error(error);
-//       res.status(400).json({ message: 'Error subscribing. Email already exists or invalid.' });
-//     }
-//   });
-  
-//   // Check subscription status endpoint
-//   app.get('/api/is-subscribed', async (req, res) => {
-//     const { email } = req.query;
-  
-//     try {
-//       const subscriber = await Subscriber.findOne({ email });
-//       res.json({ isSubscribed: !!subscriber }); // Convert to boolean
-//     } catch (error) {
-//       console.error(error);
-//       res.status(500).json({ message: 'Error checking subscription status.' });
-//     }
-//   });
 
 app.use(express.static(path.join(__dirname, '/client/dist')));
 
