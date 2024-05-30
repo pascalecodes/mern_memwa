@@ -84,7 +84,7 @@ export default function Footer() {
       <div>
         {/* <img src="/img/logo.svg"  alt="logo" className='h-7'/> */}
         <Link to='/'>
-          <span className=" text-blue-600 font-bold text-sm sm:text-xl " >MEMWA</span>
+          <span className=" text-blue-700 font-bold text-sm sm:text-xl " >MEMWA</span>
             <h1 className='font-bold text-sm sm:text-xl flex flex-wrap sm:justify-center pb-2'>
             <img src="/img/logo.svg"  alt="logo"/>
             </h1>
