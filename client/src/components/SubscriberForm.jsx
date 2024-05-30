@@ -10,7 +10,7 @@ const SubscriberForm = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const response = await fetch('/subscribe', {
+      const response = await fetch('/api/subscribe', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -34,6 +34,7 @@ const SubscriberForm = () => {
     } finally {
       setLoading(false);
     }
+    
   };
 
   return (
@@ -48,8 +49,8 @@ const SubscriberForm = () => {
       <button type="submit" disabled={loading}>
         {loading ? 'Subscribing...' : 'Subscribe'}
       </button>
-      {error && <div className="error">{error}</div>}
-      {message && <div className="success">{message}</div>}
+      {error && <div className="error text-red-500">{error}</div>}
+      {message && <div className="success text-green-500">{message}</div>}
     </form>
   );
 };
