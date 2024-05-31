@@ -1,10 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const SubscriberForm = () => {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [message, setMessage] = useState('');
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+
+
+  useEffect(() => {
+    if (showSuccessMessage) {
+      const timer = setTimeout(() => {
+        setShowSuccessMessage(false);
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [showSuccessMessage]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,6 +33,7 @@ const SubscriberForm = () => {
       if (response.ok) {
         const data = await response.json();
         setMessage(data.message);
+        setShowSuccessMessage(true);
         setEmail('');
         setError(null);
       } else {
@@ -37,6 +50,7 @@ const SubscriberForm = () => {
     
   };
 
+
   return (
     <form className= 'p-2' onSubmit={handleSubmit}>
       <input
@@ -51,7 +65,7 @@ const SubscriberForm = () => {
         {loading ? 'Subscribing...' : 'Subscribe'}
       </button>
       {error && <div className="error text-red-500">{error}</div>}
-      {message && <div className="success text-green-500">{message}</div>}
+      {showSuccessMessage  && <div className="success text-green-500">{message}</div>}
     </form>
   );
 };
