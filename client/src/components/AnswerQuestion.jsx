@@ -31,7 +31,10 @@ const AnswerQuestion = () => {
   return (
     <div>
         <button onClick={startRecording} disabled={isRecording}>
-        {isRecording ? 'Stop Recording' : 'Record Answer'}
+        {/* {isRecording ? 'Stop Recording' : 'Record Answer'} */} Start Recording
+      </button>
+      <button onClick={stopRecording} >
+        {/* {isRecording ? 'Stop Recording' : 'Record Answer'} */} Stop Recording
       </button>
 
       {recordedVideo && (
