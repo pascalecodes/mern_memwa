@@ -30,17 +30,17 @@ const AnswerQuestion = () => {
 
   return (
     <div>
-        <button onClick={startRecording} disabled={isRecording}>
+        <button className='text-white text-center bg-green-700 p-2 hover:underline gap-4' onClick={startRecording} disabled={isRecording}>
         {/* {isRecording ? 'Stop Recording' : 'Record Answer'} */} Start Recording
       </button>
-      <button onClick={stopRecording} >
+      <button className='text-white text-center bg-red-700 p-2 hover:underline gap-4' onClick={stopRecording} >
         {/* {isRecording ? 'Stop Recording' : 'Record Answer'} */} Stop Recording
       </button>
 
       {recordedVideo && (
         <div>
           <video src={URL.createObjectURL(recordedVideo)} controls />
-          <button onClick={() => setRecordedVideo(null)}>Re-record</button>
+          <button className='text-white text-center bg-red-700 p-2' onClick={() => setRecordedVideo(null)}>Re-record</button>
         </div>
       )}
       
