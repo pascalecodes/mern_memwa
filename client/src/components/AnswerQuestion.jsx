@@ -6,6 +6,7 @@ const AnswerQuestion = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [recordedVideo, setRecordedVideo] = useState(null);
   const mediaRecorderRef = useRef(null); // useRef hook to store MediaRecorder instance
+  const liveVideoFeed= useRef(null);
 
   const startRecording = async () => {
     setIsRecording(true);
@@ -29,11 +30,13 @@ const AnswerQuestion = () => {
   };
 
   return (
-    <div>
-        <button className='text-white text-center bg-green-700 p-2 hover:underline gap-4' onClick={startRecording} disabled={isRecording}>
+    
+    <div >
+        <video ref={liveVideoFeed} autoPlay muted className='overlay'/> 
+        <button className='text-white text-center bg-green-700 p-2 hover:opacity-80 mr-3' onClick={startRecording} disabled={isRecording}>
         {/* {isRecording ? 'Stop Recording' : 'Record Answer'} */} Start Recording
       </button>
-      <button className='text-white text-center bg-red-700 p-2 hover:underline gap-4' onClick={stopRecording} >
+      <button className='text-white text-center bg-red-700 p-2 hover:opacity-80 ml-3' onClick={stopRecording} >
         {/* {isRecording ? 'Stop Recording' : 'Record Answer'} */} Stop Recording
       </button>
 
