@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import AnswerQuestion from '../components/AnswerQuestion';
 // import translate from 'google-translate-api';
+
 
 const Container = styled.div`
 `;
@@ -83,7 +85,9 @@ export default function InterviewRoom() {
                 onClick={nextQuestion}
                     className='text-white text-center bg-blue-700 p-2' >Next Question</button>
             </div>
-
+            <div>
+              <AnswerQuestion />
+            </div>
       
             </div>
 
