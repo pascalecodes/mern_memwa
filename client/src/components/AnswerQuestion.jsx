@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react'
-
-  
+import UploadPost from '../components/UploadPost';
 
 const AnswerQuestion = () => {
   const [isRecording, setIsRecording] = useState(false);
@@ -52,8 +51,10 @@ const AnswerQuestion = () => {
         <div>
           <video src={URL.createObjectURL(recordedVideo)} controls type="video/webm"/>
           <button className='text-white text-center bg-red-700 p-2' onClick={() => setRecordedVideo(null)}>Re-record</button>
+          <UploadPost />
         </div>
       )}
+      
       
     </div>
   )
