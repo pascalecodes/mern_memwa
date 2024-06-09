@@ -52,10 +52,16 @@ const AnswerQuestion = () => {
         <div>
           <video src={URL.createObjectURL(recordedVideo)} controls type="video/webm"/>
           <button className='text-white text-center bg-red-700 p-2 mr-3' onClick={() => setRecordedVideo(null)}>Re-record</button>
-          <button className='text-white text-center bg-blue-700 p-2 ml-3' >Upload</button>
+          {/* <button className='text-white text-center bg-blue-700 p-2 ml-3' >Upload</button> */}
+          
         </div>
         
       )}
+      <>
+
+     
+      <UploadPost />
+      </>
 
       
     </div>
