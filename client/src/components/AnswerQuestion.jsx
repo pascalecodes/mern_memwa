@@ -8,6 +8,7 @@ const AnswerQuestion = () => {
   const mediaRecorderRef = useRef(null); // useRef hook to store MediaRecorder instance
   const liveVideoFeed= useRef(null);
   const [recordingStatus, setRecordingStatus] = useState('');
+  const [videoChunks, setVideoChunks] = useState([]);
 
   const startRecording = async () => {
     setIsRecording(true);
@@ -19,6 +20,7 @@ const AnswerQuestion = () => {
       mediaRecorder.ondataavailable = (e) => setRecordedVideo(e.data);
       mediaRecorderRef.current = mediaRecorder; // Store reference in useRef
       mediaRecorder.start();
+
       liveVideoFeed.current.srcObject = mediaStream;
     } catch (error) {
       console.error('Error capturing video:', error);
@@ -29,12 +31,17 @@ const AnswerQuestion = () => {
   const stopRecording = () => {
    
     if (mediaRecorderRef.current) {
+        
       const recordedBlob = new Blob(mediaRecorderRef.current.stop(), {type: 'video/webm'}); // Use reference to stop recording
     //   const recordedBlob = new Blob(mediaRecorderRef.current.chunks, { type: 'video/webm' });
  
     setRecordedVideo(recordedBlob);
     setIsRecording(false);
-    setRecordingStatus('');
+    setRecordingStatus('Recording Stopped');
+
+
+        
+    console.log(recordedBlob)
     }
   };
 
