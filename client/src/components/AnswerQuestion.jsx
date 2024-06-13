@@ -268,8 +268,8 @@ function AnswerQuestion() {
                     <div>
                         <div className="video-controls">
                             {!permission ? (
-                                <button onClick={getCameraPermission} type="button" className='mx-auto text-center'>
-                                    {!permission ? 'Enable Camera to Answer' : 'Camera Active' }
+                                <button onClick={getCameraPermission} type="button" className='mx-auto text-center  bg-slate-300'>
+                                    {!permission ? 'Activate Camera to Answer' : 'Camera Active' }
                                 </button>
                             ): null }
                             <video ref={liveVideoFeed} autoPlay muted className='overla'/> 
@@ -304,7 +304,8 @@ function AnswerQuestion() {
                 </div>
                 
                 {isUploadPageVisible && (
-                <div className='mx-auto ' id="upload-page-sec">
+                <div className='mx-auto' id="upload-page-sec">
+                    <p className='text-blue-700 font-bold text-md lg:text-l text-center pb-2'>Add information to your answer and uplaod to our servers.</p>
                     <div>
                         <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-4'>
                             <div className='flex flex-col gap-4 flex-1'>
