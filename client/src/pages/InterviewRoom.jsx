@@ -10,6 +10,7 @@ const Container = styled.div`
 export default function InterviewRoom() {
     const [questions, setQuestions] = useState([]);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+    const [questionId, setQuestionId] = useState(0);
     // const [translatedQuestion, setTranslatedQuestion] = useState('');
 
     const getQuestions = async () => {
@@ -54,7 +55,8 @@ export default function InterviewRoom() {
         // setTranslatedQuestion(translatedText);
       
         setCurrentQuestionIndex(randomQuestionIndex); // Update the currentQuestionIndex with the randomQuestionIndex
-        console.log(question)
+        setQuestionId(question._id)
+        console.log(question._id)
       };
 
       
@@ -82,10 +84,12 @@ export default function InterviewRoom() {
                 {/* <span className="text-info">{currentQuestionIndex + 1} of {questions.length} questions</span> */}
                 <h5 className='text-xl text-slate-700' id="question-text">{questions[currentQuestionIndex]?.name}</h5>
                 {/* <h5 id="question-text">{translatedQuestion}</h5> */}
+                
                 <button 
                 onClick={nextQuestion}
                     className='text-white text-center bg-blue-700 p-2' >Next Question</button>
             </div>
+            {/* <p>{questionId}</p> */}
             <div>
               <AnswerQuestion />
             </div>
