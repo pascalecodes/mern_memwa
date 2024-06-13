@@ -54,6 +54,7 @@ export default function InterviewRoom() {
         // setTranslatedQuestion(translatedText);
       
         setCurrentQuestionIndex(randomQuestionIndex); // Update the currentQuestionIndex with the randomQuestionIndex
+        console.log(question)
       };
 
       
