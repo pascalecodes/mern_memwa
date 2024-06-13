@@ -305,7 +305,7 @@ function AnswerQuestion() {
                 
                 {isUploadPageVisible && (
                 <div className='mx-auto' id="upload-page-sec">
-                    <p className='text-blue-700 font-bold text-md lg:text-l text-center pb-2'>Add information to your answer and uplaod to our servers.</p>
+                    <p className='text-blue-700 font-bold text-md lg:text-l text-center pb-2'>Add information to your answer and upload to our servers.</p>
                     <div>
                         <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-4'>
                             <div className='flex flex-col gap-4 flex-1'>
