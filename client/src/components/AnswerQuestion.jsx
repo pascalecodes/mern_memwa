@@ -13,7 +13,7 @@ const Container = styled.div`
 
 
 
-function AnswerQuestion() {
+function AnswerQuestion({ questionId}) {
     const {currentUser} = useSelector(state => state.user);
     const navigate = useNavigate();
     const [isUploadPageVisible, setIsUploadPageVisible] = useState(false);
@@ -45,6 +45,7 @@ function AnswerQuestion() {
     const [videoChunks, setVideoChunks] = useState([]);
     const [recordedVideo, setRecordedVideo] = useState(null);
     const fileInputRef = useRef(null);
+    const [uploadedQuestionIds, setUploadedQuestionIds] = useState([]);
 
     const handleMediaSubmit = (e) => {
         if (files.length > 0 && files.length + formData.mediaUrls.length < 7) {
@@ -258,7 +259,12 @@ function AnswerQuestion() {
         };
     };
 
-
+    const handleQuestionUpload = () => {
+        // Add the questionId to the uploadedQuestionIds array
+        setUploadedQuestionIds([...uploadedQuestionIds, questionId]);
+        console.log(uploadedQuestionIds, questionId)
+    };
+    // fix questions uploaded ***********
    
 
     return (
@@ -348,14 +354,25 @@ function AnswerQuestion() {
                                     ))
                                 }
 
-                                <button disabled={loading || uploading} className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:80'>{loading ? 'Saving...' : 'Upload Moment'}</button>
+                                <button disabled={loading || uploading} onClick={handleQuestionUpload} className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:80'>{loading ? 'Saving...' : 'Upload Moment'}</button>
+                       
                                 {error && <p className="text-red-700 text-sm">{error}</p>}
                             </div>
                         </form>
                         
                     </div>
+               
                 </div>
                  )}
+                       {/* Display the uploaded question IDs */}
+              <div>
+                <h3>Uploaded Questions:</h3>
+                <ul>
+                  {uploadedQuestionIds.map((id) => (
+                    <li key={id}>{id}</li>
+                  ))}
+                </ul>
+              </div>
 
             </main> 
         </Container>
