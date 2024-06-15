@@ -28,7 +28,7 @@ function AnswerQuestion({ questionId}) {
         cloudinaryId: '',
         likes: 0,
     });
-  
+
     const [uploading, setUploading] = useState(false);
     const [mediaUploadError, setMediaUploadError] = useState(false);
     const [error, setError] = useState(false);
@@ -46,6 +46,14 @@ function AnswerQuestion({ questionId}) {
     const [recordedVideo, setRecordedVideo] = useState(null);
     const fileInputRef = useRef(null);
     const [uploadedQuestionIds, setUploadedQuestionIds] = useState([]);
+
+    useEffect(() => {
+        // Load the uploaded question IDs from localStorage when the component mounts
+        const storedIds = localStorage.getItem(`uploadedQuestionIds_${currentUser.userId}`);
+        if (storedIds) {
+          setUploadedQuestionIds(JSON.parse(storedIds));
+        }
+      }, [currentUser.userId]);
 
     const handleMediaSubmit = (e) => {
         if (files.length > 0 && files.length + formData.mediaUrls.length < 7) {
@@ -162,7 +170,7 @@ function AnswerQuestion({ questionId}) {
             const file = await response.blob();
     
             const fileType = 'video/webm'; // or any other supported format
-            const fileName = `recorded-video.webm`;
+            const fileName = `-answer-${questionId}.webm` ;
             const fileToUpload = new File([file], fileName, {
               type: fileType
             });
@@ -263,6 +271,7 @@ function AnswerQuestion({ questionId}) {
         // Add the questionId to the uploadedQuestionIds array
         setUploadedQuestionIds([...uploadedQuestionIds, questionId]);
         console.log(uploadedQuestionIds, questionId)
+        localStorage.setItem(`uploadedQuestionIds_${currentUser.userId}`, JSON.stringify(uploadedQuestionIds));
     };
     // fix questions uploaded ***********
    
@@ -367,6 +376,7 @@ function AnswerQuestion({ questionId}) {
                        {/* Display the uploaded question IDs */}
               <div>
                 <h3>Uploaded Questions:</h3>
+                <p>{uploadedQuestionIds}</p>
                 <ul>
                   {uploadedQuestionIds.map((id) => (
                     <li key={id}>{id}</li>
