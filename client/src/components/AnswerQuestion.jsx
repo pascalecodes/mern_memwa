@@ -46,6 +46,7 @@ function AnswerQuestion({ questionId}) {
     const [recordedVideo, setRecordedVideo] = useState(null);
     const fileInputRef = useRef(null);
     const [uploadedQuestionIds, setUploadedQuestionIds] = useState([]);
+    const [answerCount, setAnswerCount] = useState(0);
 
     useEffect(() => {
         // Load the uploaded question IDs from localStorage when the component mounts
@@ -269,8 +270,9 @@ function AnswerQuestion({ questionId}) {
 
     const handleQuestionUpload = () => {
         // Add the questionId to the uploadedQuestionIds array
+        setAnswerCount(answerCount + 1);
         setUploadedQuestionIds([...uploadedQuestionIds, questionId]);
-        console.log(uploadedQuestionIds, questionId)
+        console.log(uploadedQuestionIds, questionId, answerCount)
         localStorage.setItem(`uploadedQuestionIds_${currentUser.userId}`, JSON.stringify(uploadedQuestionIds));
     };
     // fix questions uploaded ***********
@@ -376,7 +378,7 @@ function AnswerQuestion({ questionId}) {
                        {/* Display the uploaded question IDs */}
               <div>
                 <h3>Uploaded Questions:</h3>
-                <p>{uploadedQuestionIds}</p>
+                <p>{answerCount}</p>
                 <ul>
                   {uploadedQuestionIds.map((id) => (
                     <li key={id}>{id}</li>
