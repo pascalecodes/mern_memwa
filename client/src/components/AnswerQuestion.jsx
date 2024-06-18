@@ -6,7 +6,7 @@ import {useSelector} from 'react-redux'
 import { useNavigate } from "react-router-dom";
 
 import { Link } from 'react-router-dom';
-import { FaCamera, FaUpload, } from 'react-icons/fa';
+import { FaCamera, FaUpload, FaCog } from 'react-icons/fa';
 
 const Container = styled.div`
 `;
@@ -283,10 +283,10 @@ function AnswerQuestion({ questionId}) {
             <main className='flex flex-col sm:flex-row p-4'>
                 <div className='mx-auto' id="capture-page-sec">
                     <div>
-                        <div className="video-controls">
+                        <div className=" p-3 video-controls">
                             {!permission ? (
                                 <button onClick={getCameraPermission} type="button" className='mx-auto text-center  bg-slate-300'>
-                                    {!permission ? 'Activate Camera to Answer' : 'Camera Active' }
+                                    {!permission ?  ( <> <FaCog  className='mx-auto'/> Activate Camera </>) : ('Camera Active') }
                                 </button>
                             ): null }
                             <video ref={liveVideoFeed} autoPlay muted className='overla'/> 
@@ -376,7 +376,7 @@ function AnswerQuestion({ questionId}) {
                 </div>
                  )}
                        {/* Display the uploaded question IDs */}
-              <div>
+              {/* <div>
                 <h3>Uploaded Questions:</h3>
                 <p>{answerCount}</p>
                 <ul>
@@ -384,7 +384,7 @@ function AnswerQuestion({ questionId}) {
                     <li key={id}>{id}</li>
                   ))}
                 </ul>
-              </div>
+              </div> */}
 
             </main> 
         </Container>
