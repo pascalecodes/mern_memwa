@@ -285,7 +285,7 @@ function AnswerQuestion({ questionId}) {
                     <div>
                         <div className=" p-3 video-controls">
                             {!permission ? (
-                                <button onClick={getCameraPermission} type="button" className='mx-auto text-center  bg-slate-300'>
+                                <button onClick={getCameraPermission} type="button" className='mx-auto text-center  bg-slate-300 rounded-lg p-1'>
                                     {!permission ?  ( <> <FaCog  className='mx-auto'/> Activate Camera </>) : ('Camera Active') }
                                 </button>
                             ): null }

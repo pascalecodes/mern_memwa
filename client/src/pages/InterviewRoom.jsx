@@ -84,7 +84,7 @@ export default function InterviewRoom() {
                 {/* <span className="text-info">{currentQuestionIndex + 1} of {questions.length} questions</span> */}
                 <h5 className='text-xl text-slate-700' id="question-text">{questions[currentQuestionIndex]?.name}</h5>
                 {/* <h5 id="question-text">{translatedQuestion}</h5> */}
-                <h5>{questions[currentQuestionIndex]?._id}</h5>
+                {/* <h5>{questions[currentQuestionIndex]?._id}</h5> */}
                 <button 
                 onClick={nextQuestion}
                     className='text-white text-center bg-blue-700 p-2' >Next Question</button>
