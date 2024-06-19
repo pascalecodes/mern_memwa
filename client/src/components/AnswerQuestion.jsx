@@ -204,22 +204,30 @@ function AnswerQuestion({ questionId}) {
                     audio: false,
                     video: true,
                 };
-                const audioConstraints = { audio: true };
-                // create audio and video streams separately
-                const audioStream = await navigator.mediaDevices.getUserMedia(
-                    audioConstraints
-                );
-                const videoStream = await navigator.mediaDevices.getUserMedia(
-                    videoConstraints
-                );
+                // const audioConstraints = { audio: true };
+                // // create audio and video streams separately
+                // const audioStream = await navigator.mediaDevices.getUserMedia(
+                //     audioConstraints
+                // );
+                // const videoStream = await navigator.mediaDevices.getUserMedia(
+                //     videoConstraints
+                // );
+                const mediaStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
                 setPermission(true);
 
                 //combine both audio and video streams
-                const combinedStream = new MediaStream([
-                    ...videoStream.getVideoTracks(),
-                    ...audioStream.getAudioTracks(),
-                ]);
-                setStream(combinedStream);
+                // const combinedStream = new MediaStream([
+                //     ...videoStream.getVideoTracks(),
+                //     ...audioStream.getAudioTracks(),
+                // ]);
+                // setStream(combinedStream);
+
+                //combine  streams
+                // const combinedStream = new MediaStream([
+                //     ...videoStream.getVideoTracks(),
+                //     ...audioStream.getAudioTracks(),
+                // ]);
+                setStream(mediaStream);
 
                 // Ensure liveVideoFeed is a valid video element before assigning srcObject
                 // if (liveVideoFeed.current) {
@@ -228,7 +236,8 @@ function AnswerQuestion({ questionId}) {
                 //     console.error('liveVideoFeed element not yet available');
                 // }
                 //set videostream to live feed player
-                liveVideoFeed.current.srcObject = videoStream;
+                //liveVideoFeed.current.srcObject = videoStream;
+                liveVideoFeed.current.srcObject = mediaStream;
                 
             } catch (err) {
                 alert(err.message);
@@ -285,15 +294,17 @@ function AnswerQuestion({ questionId}) {
                     <div>
                         <div className=" p-3 video-controls">
                             {!permission ? (
-                                <button onClick={getCameraPermission} type="button" className='mx-auto text-center  bg-slate-300 rounded-lg p-1'>
-                                    {!permission ?  ( <> <FaCog  className='mx-auto'/> Activate Camera </>) : ('Camera Active') }
+                                <button onClick={getCameraPermission} type="button" className='mx-auto text-center  bg-slate-300 rounded-lg'>
+                                    {!permission ?  ( <> <FaCamera  className='mx-auto'/> Enable to Answer</>) : ('Camera Active') }
                                 </button>
                             ): null }
                             <video ref={liveVideoFeed} autoPlay muted className='overla'/> 
                             {permission && recordingStatus === "inactive" ? (
+                                
                                 <button onClick={startRecording}  type="button" className='p-3 bg-green-700 text-white rounded-lg uppercase  hover:opacity-95 disabled:80'>
                                     Start
                                 </button>
+                                
                             ) : null}
                             {recordingStatus === "recording" ? (
                                 <button onClick={stopRecording} type="button" className='p-3 bg-red-700 text-white rounded-lg uppercase  hover:opacity-95 disabled:80'>
@@ -305,11 +316,14 @@ function AnswerQuestion({ questionId}) {
                             <div className="video-player">
                                 <video src={recordedVideo} controls></video>
                                 <a download href={recordedVideo} style={{ fontStyle: 'italic', color: 'blue' }}>Download Recording</a>
+                            
+                            <button className='mx-auto text-red-700 p-3  border border-red-700 rounded uppercase hover:shadow-lg disabled:opacity-80' onClick={() => setRecordedVideo(null)}>Re-record</button>
+                                
                             <button
                                 disabled={uploading}
                                 type="button"
                                 onClick={handleUpload}
-                                className="p-3 text-green-700 border border-green-700 rounded uppercase hover:shadow-lg disabled:opacity-80"
+                                className="mx-auto p-3 text-green-700 border border-green-700 rounded uppercase hover:shadow-lg disabled:opacity-80"
                             >
                                 {uploading ? 'Uploading...' : 'Upload'}
                             </button>
