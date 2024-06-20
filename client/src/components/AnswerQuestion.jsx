@@ -313,20 +313,33 @@ function AnswerQuestion({ questionId}) {
                             ) : null}
                             {recordedVideo ? (
                                 
-                            <div className="video-player">
+                            <div className="video-player mt-2">
                                 <video src={recordedVideo} controls></video>
-                                <a download href={recordedVideo} style={{ fontStyle: 'italic', color: 'blue' }}>Download Recording</a>
+                                {/* <a download href={recordedVideo} style={{ fontStyle: 'italic', color: 'blue' }}>Download Recording</a> */}
+                            <div className='flex items-center justify-center mt-3'>
+                            <button className=' text-slate-700 p-3 mr-3 border border-slate-700 rounded uppercase hover:shadow-lg disabled:opacity-80' 
+                            style={{ display: 'inline-block' }}
+                            onClick={() => {
+                                if (recordedVideo) {
+                                  window.location.href = recordedVideo;
+                                }
+                              }}
+                            >Download</button> 
                             
-                            <button className='mx-auto text-red-700 p-3  border border-red-700 rounded uppercase hover:shadow-lg disabled:opacity-80' onClick={() => setRecordedVideo(null)}>Re-record</button>
-                                
+
+                            <button className=' text-red-700 p-3 mr-3 border border-red-700 rounded uppercase hover:shadow-lg disabled:opacity-80' 
+                            style={{ display: 'inline-block' }}
+                            onClick={() => setRecordedVideo(null)}>Re-record</button> 
                             <button
                                 disabled={uploading}
                                 type="button"
+                                style={{ display: 'inline-block' }}
                                 onClick={handleUpload}
-                                className="mx-auto p-3 text-green-700 border border-green-700 rounded uppercase hover:shadow-lg disabled:opacity-80"
+                                className=" p-3 text-green-700 border border-green-700 rounded uppercase hover:shadow-lg disabled:opacity-80"
                             >
                                 {uploading ? 'Uploading...' : 'Upload'}
                             </button>
+                            </div>
                                 </div>
                             ) : null}
 
