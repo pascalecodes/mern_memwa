@@ -317,7 +317,7 @@ function AnswerQuestion({ questionId}) {
                                 <video src={recordedVideo} controls></video>
                                 {/* <a download href={recordedVideo} style={{ fontStyle: 'italic', color: 'blue' }}>Download Recording</a> */}
                             <div className='flex items-center justify-center mt-3'>
-                            <button className=' text-slate-700 p-3 mr-3 border border-slate-700 rounded uppercase hover:shadow-lg disabled:opacity-80' 
+                            <button className=' text-slate-700 px-3 py-2 mr-3 border border-slate-700 rounded uppercase hover:shadow-lg disabled:opacity-80 text-sm sm:text-base md:text-lg sm:px-3 sm:py-3 whitespace-nowrap' 
                             style={{ display: 'inline-block' }}
                             onClick={() => {
                                 if (recordedVideo) {
@@ -327,7 +327,7 @@ function AnswerQuestion({ questionId}) {
                             >Download</button> 
                             
 
-                            <button className=' text-red-700 p-3 mr-3 border border-red-700 rounded uppercase hover:shadow-lg disabled:opacity-80' 
+                            <button className=' text-red-700 px-3 py-2 mr-3 border border-red-700 rounded uppercase hover:shadow-lg disabled:opacity-80  text-sm sm:text-base md:text-lg  sm:px-3 sm:py-3 whitespace-nowrap'
                             style={{ display: 'inline-block' }}
                             onClick={() => setRecordedVideo(null)}>Re-record</button> 
                             <button
@@ -335,7 +335,7 @@ function AnswerQuestion({ questionId}) {
                                 type="button"
                                 style={{ display: 'inline-block' }}
                                 onClick={handleUpload}
-                                className=" p-3 text-green-700 border border-green-700 rounded uppercase hover:shadow-lg disabled:opacity-80"
+                                className=" px-3 py-2 text-green-700 border border-green-700 rounded uppercase hover:shadow-lg disabled:opacity-80 text-sm sm:text-base md:text-lg sm:px-3 sm:py-3 whitespace-nowrap"
                             >
                                 {uploading ? 'Uploading...' : 'Upload'}
                             </button>
@@ -345,11 +345,11 @@ function AnswerQuestion({ questionId}) {
 
                         </div>
                     </div>
-                </div>
+               
                 
                 {isUploadPageVisible && (
                 <div className='mx-auto' id="upload-page-sec">
-                    <p className='text-blue-700 font-bold text-md lg:text-l text-center pb-2'>Add information to your answer and upload to our servers.</p>
+                    <p className='text-blue-700 font-bold text-md lg:text-l text-center pb-2'>Answer file added to entry complete your answer entry by adding additional information and upload to our servers.</p>
                     <div>
                         <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-4'>
                             <div className='flex flex-col gap-4 flex-1'>
@@ -378,7 +378,7 @@ function AnswerQuestion({ questionId}) {
                                 </p>
                                 <div className='flex gap-4'>
                                 <input onChange={(e) => setFiles(e.target.files)} className='p-3 border border-gray-300 rounded w-full' type="file" id='media' accept='image/*, video/*, audio/*' multiple />
-                                <button disabled={uploading} type="button"  onClick={handleMediaSubmit} className='p-3 text-green-700 border border-green-700 rounded uppercase hover:shadow-lg disabled:opacity-80'>
+                                <button disabled={uploading} type="button"  onClick={handleMediaSubmit} className='px-3 py-2  text-green-700 border border-green-700 rounded uppercase hover:shadow-lg disabled:opacity-80 text-sm sm:text-base md:text-lg  sm:px-3 sm:py-3 whitespace-nowrap'>
                                     {uploading ? 'Uploading...' : 'Upload'}
                                     </button>
                                 </div>
@@ -412,7 +412,7 @@ function AnswerQuestion({ questionId}) {
                   ))}
                 </ul>
               </div> */}
-
+ </div>
             </main> 
         </Container>
     );
