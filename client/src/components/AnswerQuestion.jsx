@@ -295,7 +295,7 @@ function AnswerQuestion({ questionId}) {
                         <div className=" p-3 video-controls">
                             {!permission ? (
                                 <button onClick={getCameraPermission} type="button" className='mx-auto text-center  bg-slate-300 rounded-lg'>
-                                    {!permission ?  ( <> <FaCamera  className='mx-auto'/> Enable to Answer</>) : ('Camera Active') }
+                                    {!permission ?  ( <> <FaCog className='mx-auto'/> Enable to Answer</>) : ('Camera Active') }
                                 </button>
                             ): null }
                             <video ref={liveVideoFeed} autoPlay muted className='overla'/> 
