@@ -6,7 +6,8 @@ import {useSelector} from 'react-redux'
 import { useNavigate } from "react-router-dom";
 
 import { Link } from 'react-router-dom';
-import { FaCamera, FaUpload, } from 'react-icons/fa';
+import { FaCamera, FaUpload, FaCog} from 'react-icons/fa';
+
 
 const Container = styled.div`
 `;
@@ -275,10 +276,10 @@ function Capture() {
                 
 
                     <div>
-                        <div className="video-controls">
+                        <div className="video-controls text-center">
                             {!permission ? (
                                 <button onClick={getCameraPermission} type="button" className='mx-auto text-center'>
-                                    {!permission ? 'Enable Camera' : 'Camera Active' }
+                                    {!permission ? (<><FaCog  className='mx-auto'/>Enable Camera</>) : 'Camera Active' }
                                 </button>
                             ): null }
                             <video ref={liveVideoFeed} autoPlay muted className='overla'/> 
