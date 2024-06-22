@@ -278,8 +278,8 @@ function Capture() {
                     <div>
                         <div className="video-controls text-center">
                             {!permission ? (
-                                <button onClick={getCameraPermission} type="button" className='mx-auto text-center'>
-                                    {!permission ? (<><FaCog  className='mx-auto'/>Enable Camera</>) : 'Camera Active' }
+                                <button onClick={getCameraPermission} type="button" className='mx-auto text-center italic text-blue-700 underline '>
+                                    {!permission ? (<><FaCog  className='mx-auto '/>Enable Camera</>) : 'Camera Active' }
                                 </button>
                             ): null }
                             <video ref={liveVideoFeed} autoPlay muted className='overla'/> 
