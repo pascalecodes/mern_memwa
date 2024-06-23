@@ -292,10 +292,10 @@ function AnswerQuestion({ questionId}) {
             <main className='flex flex-col sm:flex-row p-4'>
                 <div className='mx-auto' id="capture-page-sec">
                     <div>
-                        <div className=" p-3 video-controls">
+                        <div className=" p-2 video-controls">
                             {!permission ? (
-                                <button onClick={getCameraPermission} type="button" className='mx-auto text-center  bg-slate-300 rounded-lg'>
-                                    {!permission ?  ( <> <FaCog className='mx-auto'/> Enable to Answer</>) : ('Camera Active') }
+                                <button onClick={getCameraPermission} type="button" className='mx-auto text-center  rounded-lg  italic text-slate-700 underline'>
+                                    {!permission ?  ( <> <FaCog className='mx-auto'/> Enable Camera</>) : ('Camera Active') }
                                 </button>
                             ): null }
                             <video ref={liveVideoFeed} autoPlay muted className='overla'/> 
