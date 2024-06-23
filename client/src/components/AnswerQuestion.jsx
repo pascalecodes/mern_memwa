@@ -300,11 +300,9 @@ function AnswerQuestion({ questionId}) {
                             ): null }
                             <video ref={liveVideoFeed} autoPlay muted className='overla'/> 
                             {permission && recordingStatus === "inactive" ? (
-                                
                                 <button onClick={startRecording}  type="button" className='p-3 bg-green-700 text-white rounded-lg uppercase  hover:opacity-95 disabled:80'>
                                     Start
-                                </button>
-                                
+                                </button> 
                             ) : null}
                             {recordingStatus === "recording" ? (
                                 <button onClick={stopRecording} type="button" className='p-3 bg-red-700 text-white rounded-lg uppercase  hover:opacity-95 disabled:80'>
