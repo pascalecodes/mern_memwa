@@ -278,11 +278,11 @@ function Capture() {
                     <div>
                         <div className="video-controls text-center">
                             {!permission ? (
-                                <button onClick={getCameraPermission} type="button" className='mx-auto text-center italic text-blue-700 underline '>
+                                <button onClick={getCameraPermission} type="button" className='mx-auto text-center italic text-slate-700 underline '>
                                     {!permission ? (<><FaCog  className='mx-auto '/>Enable Camera</>) : 'Camera Active' }
                                 </button>
                             ): null }
-                            <video ref={liveVideoFeed} autoPlay muted className='overla'/> 
+                            <video ref={liveVideoFeed} autoPlay muted className='overla mx-auto'/> 
                             
 
                             {permission && recordingStatus === "inactive" ? (
@@ -297,7 +297,7 @@ function Capture() {
                             ) : null}
                             {recordedVideo ? (
                                 
-                            <div className="video-player">
+                            <div className="video-player mx-auto">
                                 <video src={recordedVideo} controls></video>
                                 <a download href={recordedVideo} style={{ fontStyle: 'italic', color: 'blue' }}>Download Recording</a>
                             <button
