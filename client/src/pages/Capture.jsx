@@ -283,8 +283,6 @@ function Capture() {
                                 </button>
                             ): null }
                             <video ref={liveVideoFeed} autoPlay muted className='overla mx-auto'/> 
-                            
-
                             {permission && recordingStatus === "inactive" ? (
                                 <button onClick={startRecording}  type="button" className='p-3 bg-green-700 text-white rounded-lg uppercase  hover:opacity-95 disabled:80'>
                                     Start
@@ -299,15 +297,21 @@ function Capture() {
                                 
                             <div className="video-player mx-auto">
                                 <video src={recordedVideo} controls></video>
-                                <a download href={recordedVideo} style={{ fontStyle: 'italic', color: 'blue' }}>Download Recording</a>
+                               
+                            <div className='flex items-center justify-center mt-3'>
+                            <a download href={recordedVideo} 
+                              className='text-slate-700 px-3 py-2 mr-3 border border-slate-700 rounded uppercase hover:shadow-lg disabled:opacity-80 text-sm sm:text-base md:text-lg sm:px-3 sm:py-3 whitespace-nowrap'> Download</a>
+                        
                             <button
                                 disabled={uploading}
                                 type="button"
+                                style={{ display: 'inline-block' }}
                                 onClick={handleUpload}
-                                className="p-3 text-green-700 border border-green-700 rounded uppercase hover:shadow-lg disabled:opacity-80"
+                                className=" px-3 py-2 text-green-700 border border-green-700 rounded uppercase hover:shadow-lg disabled:opacity-80 text-sm sm:text-base md:text-lg sm:px-3 sm:py-3 whitespace-nowrap"
                             >
                                 {uploading ? 'Uploading...' : 'Upload'}
                             </button>
+                            </div>
                                 </div>
                             ) : null}
 
