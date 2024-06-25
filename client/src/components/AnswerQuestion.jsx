@@ -315,16 +315,9 @@ function AnswerQuestion({ questionId}) {
                                 <video src={recordedVideo} controls></video>
                                 {/* <a download href={recordedVideo} style={{ fontStyle: 'italic', color: 'blue' }}>Download Recording</a> */}
                             <div className='flex items-center justify-center mt-3'>
-                            <button className=' text-slate-700 px-3 py-2 mr-3 border border-slate-700 rounded uppercase hover:shadow-lg disabled:opacity-80 text-sm sm:text-base md:text-lg sm:px-3 sm:py-3 whitespace-nowrap' 
-                            style={{ display: 'inline-block' }}
-                            onClick={() => {
-                                if (recordedVideo) {
-                                  window.location.href = recordedVideo;
-                                }
-                              }}
-                            >Download</button> 
+                            <a download href={recordedVideo} 
+                              className='text-slate-700 px-3 py-2 mr-3 border border-slate-700 rounded uppercase hover:shadow-lg disabled:opacity-80 text-sm sm:text-base md:text-lg sm:px-3 sm:py-3 whitespace-nowrap'> Download</a>
                             
-
                             <button className=' text-red-700 px-3 py-2 mr-3 border border-red-700 rounded uppercase hover:shadow-lg disabled:opacity-80  text-sm sm:text-base md:text-lg  sm:px-3 sm:py-3 whitespace-nowrap'
                             style={{ display: 'inline-block' }}
                             onClick={() => setRecordedVideo(null)}>Re-record</button> 
