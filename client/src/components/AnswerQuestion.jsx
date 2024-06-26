@@ -13,7 +13,7 @@ const Container = styled.div`
 
 
 
-function AnswerQuestion({ questionId}) {
+function AnswerQuestion({ questionId, questionName, questionTag}) {
     const {currentUser} = useSelector(state => state.user);
     const navigate = useNavigate();
     const [isUploadPageVisible, setIsUploadPageVisible] = useState(false);
@@ -181,7 +181,9 @@ function AnswerQuestion({ questionId}) {
             // Update your form data with the downloadURL
             setFormData((prevFormData) => ({
               ...prevFormData,
-              mediaUrls: [...prevFormData.mediaUrls, downloadURL]
+              mediaUrls: [...prevFormData.mediaUrls, downloadURL],
+              description: `response for question: ${questionName}`,
+              tags: questionTag
             }));
             setUploading(false);
           } catch (err) {
