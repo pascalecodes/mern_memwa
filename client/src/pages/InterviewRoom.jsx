@@ -55,8 +55,8 @@ export default function InterviewRoom() {
         // setTranslatedQuestion(translatedText);
       
         setCurrentQuestionIndex(randomQuestionIndex); // Update the currentQuestionIndex with the randomQuestionIndex
-        setQuestionId(question.id)
-        console.log(question.id)
+        setQuestionId(question._id)
+        console.log(question._id)
       };
 
       
@@ -91,6 +91,8 @@ export default function InterviewRoom() {
                 <div>
               <AnswerQuestion 
                questionId={questions[currentQuestionIndex]?._id}
+               questionName={questions[currentQuestionIndex]?.name}
+               questionTag={questions[currentQuestionIndex]?.tag}
               />
               </div>
             </div>
