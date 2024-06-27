@@ -379,7 +379,7 @@ function AnswerQuestion({ questionId, questionName, questionTag}) {
                                 {
                                     formData.mediaUrls.length > 0 && formData.mediaUrls.map((url, index) => (
                                         <div key={url} className="flex justify-between p-3 border items-center"> 
-                                            <img src={url} alt='Posting image' className="w-20 h-20 object-contain rounded-lg" />
+                                            <img src={url} alt={`Post Image`} className="w-20 h-20 object-contain rounded-lg" />
                                             <button type='button' onClick={() => handleRemoveMedia(index)} className="p-3 text-red-700 rounded-lg uppercase hover:opacity-75">Delete</button>
                                         </div>   
                                     ))
