@@ -259,9 +259,6 @@ function Capture() {
         };
     };
 
-
-   
-
     return (
         <Container>
             <div className='flex flex-col p-2 px-3  mx-auto'>
