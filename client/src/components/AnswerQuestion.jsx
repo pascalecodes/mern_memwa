@@ -6,7 +6,7 @@ import {useSelector} from 'react-redux'
 import { useNavigate } from "react-router-dom";
 
 import { Link } from 'react-router-dom';
-import { FaCamera, FaUpload, FaCog } from 'react-icons/fa';
+import { FaCog } from 'react-icons/fa';
 
 const Container = styled.div`
 `;
@@ -182,7 +182,7 @@ function AnswerQuestion({ questionId, questionName, questionTag}) {
             setFormData((prevFormData) => ({
               ...prevFormData,
               mediaUrls: [...prevFormData.mediaUrls, downloadURL],
-              description: `response for question: ${questionName}`,
+              description: `response for: ${questionName}`,
               tags: questionTag
             }));
             setUploading(false);
@@ -206,39 +206,11 @@ function AnswerQuestion({ questionId, questionName, questionTag}) {
                     audio: false,
                     video: true,
                 };
-                // const audioConstraints = { audio: true };
-                // // create audio and video streams separately
-                // const audioStream = await navigator.mediaDevices.getUserMedia(
-                //     audioConstraints
-                // );
-                // const videoStream = await navigator.mediaDevices.getUserMedia(
-                //     videoConstraints
-                // );
                 const mediaStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
                 setPermission(true);
-
-                //combine both audio and video streams
-                // const combinedStream = new MediaStream([
-                //     ...videoStream.getVideoTracks(),
-                //     ...audioStream.getAudioTracks(),
-                // ]);
-                // setStream(combinedStream);
-
-                //combine  streams
-                // const combinedStream = new MediaStream([
-                //     ...videoStream.getVideoTracks(),
-                //     ...audioStream.getAudioTracks(),
-                // ]);
                 setStream(mediaStream);
 
-                // Ensure liveVideoFeed is a valid video element before assigning srcObject
-                // if (liveVideoFeed.current) {
-                //     liveVideoFeed.current.srcObject = videoStream;
-                // } else {
-                //     console.error('liveVideoFeed element not yet available');
-                // }
-                //set videostream to live feed player
-                //liveVideoFeed.current.srcObject = videoStream;
+            
                 liveVideoFeed.current.srcObject = mediaStream;
                 
             } catch (err) {
