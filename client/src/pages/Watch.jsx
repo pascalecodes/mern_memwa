@@ -116,6 +116,7 @@ export default function Watch() {
         const res = await fetch(`/api/post/get?order=desc&limit=4`);
         const data = await res.json();
         setPosts(data);
+        console.log(`post=${data}`)
       } catch (error) {
         console.log(error);
       }
@@ -123,7 +124,10 @@ export default function Watch() {
     fetchPosts();
   }, []);
 
+  const { currentVideo, relatedVideos } = posts;
+  console.log(currentVideo)
 
+  //work on getting post to watch page
 
   return (
     <Container>
@@ -132,7 +136,8 @@ export default function Watch() {
           <iframe 
             width="100%" 
             height="720" 
-            src="https://www.youtube.com/embed/_A20kVsaqIk?si=GvLxnWd3On6YpPI-" 
+             src="https://www.youtube.com/embed/_A20kVsaqIk?si=GvLxnWd3On6YpPI-" 
+            //src={currentVideo[0].url}
             title="YouTube video player" 
             frameborder="0" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
