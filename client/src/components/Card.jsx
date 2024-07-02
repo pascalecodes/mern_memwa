@@ -96,7 +96,7 @@ const Card = ({type}) => {
         src="https://static-00.iconduck.com/assets.00/profile-default-icon-2048x2045-u3j7s5nj.png"/>
         <Texts>
           <Title>{post.title}</Title>
-          <ChannelName>MemTube</ChannelName>
+          <ChannelName>{post.caption}</ChannelName>
           <Info>660,908 views • 3 days ago</Info>
         </Texts>
       </Details>
