@@ -57,6 +57,10 @@ const Hr = styled.hr`
 
 const Recommendation = styled.div`
   flex: 2;
+
+  height: 1000px; // Set the desired height for the recommendation section
+  overflow-y: scroll; // Enable vertical scrolling
+  padding-right: 10px; // Add some padding to the right for the scrollbar
 `;
 const Channel = styled.div`
   display: flex;
@@ -131,7 +135,7 @@ export default function Watch() {
     return <div>Loading...</div>;
   }
 
-  const { mediaUrls, title } = posts[0];
+  const { mediaUrls, title , caption, tags} = posts[0];
 
   //work on getting post to watch page
 
@@ -152,6 +156,7 @@ export default function Watch() {
          </iframe>
         </VideoWrapper>
         <Title>{title}</Title>
+        <ChannelName>{caption}</ChannelName>
         <Details>
           <Info>5,938,514 views • Feb 22, 2024</Info>
           <Buttons>
