@@ -12,6 +12,8 @@ import ReactPlayer from 'react-player';
 const Container = styled.div`
 display: flex;
 gap: 24px;
+padding-top: 30px;
+padding-bottom: 30px;
 `;
 
 const Content = styled.div`
