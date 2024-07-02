@@ -127,6 +127,12 @@ export default function Watch() {
   const { currentVideo, relatedVideos } = posts;
   console.log(currentVideo)
 
+  if (posts.length === 0) {
+    return <div>Loading...</div>;
+  }
+
+  const { mediaUrls, title } = posts[0];
+
   //work on getting post to watch page
 
   return (
@@ -136,8 +142,8 @@ export default function Watch() {
           <iframe 
             width="100%" 
             height="720" 
-            src="https://www.youtube.com/embed/_A20kVsaqIk?si=GvLxnWd3On6YpPI-" 
-            //src={posts[0].mediaUrls}
+            //src="https://www.youtube.com/embed/_A20kVsaqIk?si=GvLxnWd3On6YpPI-" 
+            src={mediaUrls}
             title="YouTube video player" 
             frameborder="0" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -145,7 +151,7 @@ export default function Watch() {
             allowfullscreen>
          </iframe>
         </VideoWrapper>
-        <Title>Test Video</Title>
+        <Title>{title}</Title>
         <Details>
           <Info>5,938,514 views • Feb 22, 2024</Info>
           <Buttons>
