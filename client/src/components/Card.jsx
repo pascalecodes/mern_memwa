@@ -54,25 +54,56 @@ const Info = styled.div`
 
 
 const Card = ({type}) => {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const res = await fetch(`/api/post/get?order=desc&limit=4`);
+        const data = await res.json();
+        setPosts(data);
+        // console.log(`post=${posts.name}`)
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchPosts();
+  }, []);
+
+  // const { currentVideo, relatedVideos } = posts;
+  // console.log(currentVideo)
+  if (posts.length === 0) {
+    return <div>Loading...</div>;
+  }
+
+  // const { mediaUrls, title } = posts[1];
+
   return (
-    <Link to="/video/test" style={{textDecoration:"none"}}> 
+    //<Link to="/video/test" style={{textDecoration:"none"}}> 
+    <>
+      {posts.map((post, index) => (
+        <Link key={index} to={post.mediaUrls} style={{ textDecoration: 'none' }}>
+     {/* <Link to={mediaUrls} style={{textDecoration:"none"}}>  */}
     <Container type={type}>
        <Image
           type={type}
           src="https://content.wepik.com/statics/9411920/preview-page0.jpg"
         />
+      
       <Details type={type}>
         <ChannelImage 
         type={type}
         src="https://static-00.iconduck.com/assets.00/profile-default-icon-2048x2045-u3j7s5nj.png"/>
         <Texts>
-          <Title>Test Video</Title>
+          <Title>{post.title}</Title>
           <ChannelName>MemTube</ChannelName>
           <Info>660,908 views • 3 days ago</Info>
         </Texts>
       </Details>
     </Container>
     </Link>
+  ))}
+    </>
   );
 };
 export default Card
