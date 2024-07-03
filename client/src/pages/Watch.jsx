@@ -9,11 +9,13 @@ import Card from "../components/Card";
 // import Comments from '../components/Comments';
 import ReactPlayer from 'react-player';
 
+
 const Container = styled.div`
 display: flex;
 gap: 24px;
 padding-top: 30px;
 padding-bottom: 30px;
+padding-left: 24px;
 `;
 
 const Content = styled.div`
@@ -142,6 +144,12 @@ export default function Watch() {
   //work on getting post to watch page
 
   return (
+    <div>
+       <div className='flex flex-col p-2 px-3  mx-auto'>
+                <img className="mx-auto " src="/img/logo.svg"  alt="Memwa" width="sm-80" height="sm-80"  />
+                <h1 className='text-blue-700 font-bold text-2xl lg:text-4xl mx-auto text-center'>Memwa WATCH</h1> 
+                <h5 className='mx-auto text-center'>Watch stories from everywhere</h5>
+            </div>
     <Container>
       <Content>
         <VideoWrapper>
@@ -152,7 +160,7 @@ export default function Watch() {
             src={mediaUrls}
             title="YouTube video player" 
             frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
             referrerpolicy="strict-origin-when-cross-origin" 
             allowfullscreen>
          </iframe>
@@ -212,6 +220,7 @@ export default function Watch() {
         <Card type="sm"/> */}
       </Recommendation>
     </Container>
+    </div>
   )  
 }
 
