@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import AnswerQuestion from '../components/AnswerQuestion';
 // import translate from 'google-translate-api';
 
-
 const Container = styled.div`
 `;
 
@@ -59,10 +58,6 @@ export default function InterviewRoom() {
         //console.log(question.id)
       };
 
-      
-
-
-
   return (
     <Container>
         <div className='flex flex-col p-2 px-3 max-w-6xl mx-auto'>
@@ -98,17 +93,13 @@ export default function InterviewRoom() {
             </div>
             {/* <p>{questionId}</p> */}
             
-
             </div>
             
-
             {/* <div>
       <span className="text-info">{currentQuestionIndex + 1} of {questions.length} questions</span>
       <h5 id="question-text">{questions[currentQuestionIndex]?.name}</h5>
       <button onClick={nextQuestion}>Next Question</button>
     </div> */}
-
-    
     </Container>
   )
 }

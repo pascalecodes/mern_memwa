@@ -172,7 +172,6 @@ function Capture() {
             setFormData((prevFormData) => ({
               ...prevFormData,
               mediaUrls: [...prevFormData.mediaUrls, downloadURL],
-              thumbnailUrl
             }));
             setUploading(false);
           } catch (err) {
