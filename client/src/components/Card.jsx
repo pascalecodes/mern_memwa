@@ -62,7 +62,7 @@ const Card = ({type}) => {
         const res = await fetch(`/api/post/get?order=desc&limit=4`);
         const data = await res.json();
         setPosts(data);
-        // console.log(`post=${posts.name}`)
+        console.log(posts)
       } catch (error) {
         console.log(error);
       }

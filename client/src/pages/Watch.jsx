@@ -124,7 +124,7 @@ export default function Watch() {
         const res = await fetch(`/api/post/get?order=desc&limit=4`);
         const data = await res.json();
         setPosts(data);
-        console.log(`post=${posts[0]}`)
+        console.log(posts)
       } catch (error) {
         console.log(error);
       }
@@ -132,14 +132,15 @@ export default function Watch() {
     fetchPosts();
   }, []);
 
-  const { currentVideo, relatedVideos } = posts;
-  console.log(currentVideo)
+  // const { currentVideo, relatedVideos } = posts;
+  // console.log(currentVideo)
 
   if (posts.length === 0) {
     return <div>Loading...</div>;
   }
 
   const { mediaUrls, title , caption, tags} = posts[0];
+  console.log(`media: ${mediaUrls}}`)
 
   //work on getting post to watch page
 
