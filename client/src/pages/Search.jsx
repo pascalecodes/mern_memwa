@@ -114,8 +114,6 @@ export default function Search() {
 
     };
 
-  
-
     return (
        <Container >
         <div className='flex flex-col p-2 px-3 max-w-6xl mx-auto'>
