@@ -55,7 +55,7 @@ export default function Home() {
         <h1 className='text-slate-700 font-bold text-3xl lg:text-6xl'> The best way to preserve your <span className='text-slate-400'>stories</span>, your <span className='text-slate-400'>history</span>, your <span className='text-slate-400'>legacy</span>
         </h1>
         <div className='text-gray-400 text-xs sm:text-sm'>
-        Memwa is a digital platform to record, watch and search for user stories. Memwa allows users to preserve and share their personal stories, memories, and experiences in a secure and public or private space. It aims to provide a seamless and user-friendly experience for capturing, organizing, and sharing meaningful moments.
+        Memwa is a digital platform to record, watch and search for user stories. Memwa allows users to preserve and share their personal stories, memories, and experiences in a secure public or private space. It aims to provide a seamless and user-friendly experience for capturing, organizing, and sharing meaningful moments.
         <br />
         Record, watch and search for stories. Search for other user stories based on name, title, location, historical events or profession. Share stories and discover new stories from around the world!
         </div>
@@ -66,7 +66,7 @@ export default function Home() {
       </div>
       <div className='mx-auto'>
       <h1 className='text-blue-700 font-bold text-2xl lg:text-4xl mx-auto text-center'><Link to={'/capture'}>Memwa CAPTURE</Link></h1>
-      <h2 className='text-gray-400 text-xs sm:text-sm text-center mx-auto'>Record or upload moments to Memwa. Add videos, pictures or other media. Don't have any yet, got to the Interview Room respond to cureated questions to capture your story.</h2>
+      <h2 className='text-gray-400 text-xs sm:text-sm text-center mx-auto'>Record or upload moments to Memwa. Add videos, pictures or other media. Don't have any yet, go to the Interview Room and respond to curated questions to capture your story.</h2>
       
       <div className="max-w-6xl mx-auto p-3 flex justify-center gap-8 my-10 items-center"> 
         <Link className='text-2xl font-semibold text-slate-600 hover:underline flex flex-wrap gap-2' to={`/capture`}>
