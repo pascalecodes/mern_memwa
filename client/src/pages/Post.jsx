@@ -53,15 +53,6 @@ export default function Post() {
    
     }, [params.postId]);
 
-
-    // const getVideoType = async (url) => {
-    //   const response = await fetch(url);
-    //   const contentType = response.headers.get('Content-type');
-    //   return contentType ? contentType.split('/')[1] : 'video/mp4'; // Default to mp4 if unknown
-    // };
-
-    
-
   return (
     
     <main>
@@ -138,7 +129,6 @@ export default function Post() {
             ))}
           </Swiper>
 
-
           {/* testing end */}
 
           <div className='fixed top-[13%] right-[3%] z-10 border rounded-full w-12 h-12 flex justify-center items-center bg-slate-100 cursor-pointer'>
@@ -191,15 +181,12 @@ export default function Post() {
                 <button
                     onClick = {() => setContact(true)}
                     className="bg-slate-700 text-white rounded-lg uppercase p-3 hover:opacity-95"
-                >Contact Author </button>
-                
+                >Contact Author </button>    
                 
             )}
             
             {contact && <Contact post={post} /> }
           </div>
-        
-
         </div>
         )}
     </main>

@@ -20,7 +20,6 @@ export default function PostItem({post}) {
     }, [post.userRef])
 
     let imageSrc
- 
     if (post.mediaUrls && post.mediaUrls.length > 0) {
       imageSrc = post.mediaUrls[0];
       if (imageSrc.includes('.jpg') || imageSrc.includes('.jpeg') || imageSrc.includes('.png')) {
