@@ -18,11 +18,28 @@ export default function PostItem({post}) {
         fetchAuthor();
 
     }, [post.userRef])
+
+    let imageSrc
+ 
+    if (post.mediaUrls && post.mediaUrls.length > 0) {
+      imageSrc = post.mediaUrls[0];
+      if (imageSrc.includes('.jpg') || imageSrc.includes('.jpeg') || imageSrc.includes('.png')) {
+        // Do nothing, use the original image URL
+      } else if (imageSrc.includes('.webm') || imageSrc.includes('.mp4')) {
+        imageSrc = "https://i.pinimg.com/originals/4e/08/f5/4e08f596f8fc6eb3c1eee8295b40bae4.jpg";
+      } else {
+        imageSrc = "https://i.pinimg.com/originals/4e/08/f5/4e08f596f8fc6eb3c1eee8295b40bae4.jpg";
+      }
+    } else {
+      imageSrc = "https://i.pinimg.com/originals/4e/08/f5/4e08f596f8fc6eb3c1eee8295b40bae4.jpg";
+    }
+
   return (
     <div className="bg-white shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full sm:w-[330px]">
       <Link to={`/post/${post._id}`}>
+
         <img 
-        src={post.mediaUrls[0] || "https://i.pinimg.com/originals/4e/08/f5/4e08f596f8fc6eb3c1eee8295b40bae4.jpg"} 
+        src={imageSrc} 
         alt='post cover' 
         className='h-[320px] sm:h-[220px] w-full object-cover hover:scale-105 transition-scale duration-300'/>
         <div className="p-3 flex flex-col gap-2 w-full">
