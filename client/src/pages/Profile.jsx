@@ -137,6 +137,23 @@ export default function Profile() {
     }
 
   };
+  //post.mediaUrls[0]
+
+  let imageSrc
+  if (userPosts.mediaUrls && userPosts.mediaUrls.length > 0) {
+    imageSrc = userPosts.mediaUrls[0];
+    if (imageSrc.includes('.jpg') || imageSrc.includes('.jpeg') || imageSrc.includes('.png')) {
+      // Do nothing, use the original image URL
+    } else if (imageSrc.includes('.webm') || imageSrc.includes('.mp4')) {
+      imageSrc = "https://i.pinimg.com/originals/4e/08/f5/4e08f596f8fc6eb3c1eee8295b40bae4.jpg";
+    } else {
+      imageSrc = "https://i.pinimg.com/originals/4e/08/f5/4e08f596f8fc6eb3c1eee8295b40bae4.jpg";
+    }
+  } else {
+    imageSrc = "https://i.pinimg.com/originals/4e/08/f5/4e08f596f8fc6eb3c1eee8295b40bae4.jpg";
+  }
+  
+  
 
   return (
     <div className="p-3 max-w-lg mx-auto">
