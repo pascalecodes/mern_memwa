@@ -137,23 +137,7 @@ export default function Profile() {
     }
 
   };
-  //post.mediaUrls[0]
 
-  let imageSrc
-  if (userPosts.mediaUrls && userPosts.mediaUrls.length > 0) {
-    imageSrc = userPosts.mediaUrls[0];
-    if (imageSrc.includes('.jpg') || imageSrc.includes('.jpeg') || imageSrc.includes('.png')) {
-      // Do nothing, use the original image URL
-    } else if (imageSrc.includes('.webm') || imageSrc.includes('.mp4')) {
-      imageSrc = "https://i.pinimg.com/originals/4e/08/f5/4e08f596f8fc6eb3c1eee8295b40bae4.jpg";
-    } else {
-      imageSrc = "https://i.pinimg.com/originals/4e/08/f5/4e08f596f8fc6eb3c1eee8295b40bae4.jpg";
-    }
-  } else {
-    imageSrc = "https://i.pinimg.com/originals/4e/08/f5/4e08f596f8fc6eb3c1eee8295b40bae4.jpg";
-  }
-  
-  
 
   return (
     <div className="p-3 max-w-lg mx-auto">
@@ -201,11 +185,23 @@ export default function Profile() {
       <h1 className="text-center text-2xl font-semibold">Your Posts</h1>
        {userPosts.map((post) => (
       <div key ={post._id} className="border rounded-lg p-3 flex justify-between items-center gap-4">
-        <Link to={`/post/${post._id}`}> <img
-                  src={post.mediaUrls[0]}
+        <Link to={`/post/${post._id}`}> 
+        {post.mediaUrls && post.mediaUrls.length > 0 ? (
+        <img
+                  src={post.mediaUrls[0].includes('.jpg') || post.mediaUrls[0].includes('.jpeg') || post.mediaUrls[0].includes('.png')
+                    ? post.mediaUrls[0]
+                    : 'https://i.pinimg.com/originals/4e/08/f5/4e08f596f8fc6eb3c1eee8295b40bae4.jpg'}
+                 
                   alt='post cover'
                   className='h-16 w-16 object-contain'
                 />
+              ) : (
+                <img
+                  src="https://i.pinimg.com/originals/4e/08/f5/4e08f596f8fc6eb3c1eee8295b40bae4.jpg"
+                  alt="post cover"
+                  className="h-16 w-16 object-contain"
+                />
+              )}
         </Link>
         <Link to={`/post/${post._id}`} className="text-slate-700 font-semibold  hover:underline truncate flex-1" >
         <p >{post.title}</p>
