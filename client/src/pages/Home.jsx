@@ -52,9 +52,9 @@ export default function Home() {
       <div className='flex flex-col gap-6 p-2 px-3 max-w-6xl mx-auto'>
       <Link className="text-decoration-none" to={"/"}><img className="mx-auto mb-4" src="/img/logo.svg"  alt="Memwa" width="100" height="100" />
       </Link> 
-        <h1 className='text-slate-700 font-bold text-3xl lg:text-6xl'> The best way to preserve your <span className='text-slate-400'>stories</span>, your <span className='text-slate-400'>history</span>, your <span className='text-slate-400'>legacy</span>
+        <h1 className='text-slate-700 font-bold text-3xl lg:text-6xl'> The best way to preserve your <span className='text-blue-700'>stories</span>, your <span className='text-blue-700'>history</span>, your <span className='text-blue-700'>legacy</span>
         </h1>
-        <div className='text-gray-400 text-xs sm:text-sm'>
+        <div className='text-slate-400 text-xs sm:text-sm'>
         Memwa is a digital platform to record, watch and search for user stories. Memwa allows users to preserve and share their personal stories, memories, and experiences in a secure public or private space. It aims to provide a seamless and user-friendly experience for capturing, organizing, and sharing meaningful moments.
         <br />
         Record, watch and search for stories. Search for other user stories based on name, title, location, historical events or profession. Share stories and discover new stories from around the world!
@@ -92,7 +92,7 @@ export default function Home() {
           posts.map((post) => (
             <SwiperSlide key={post._id}>
               <Link to={`/post/${post._id}`}>
-              <p className='text-2xl font-semibold mx-auto'>
+              <p className='text-2xl font-semibold mx-auto pl-10 text-blue-700'>
               {post.title}</p></Link>
               {post.mediaUrls[0].includes('.webm' || 'video/mp4') ? (
                 <div className="h-[550px]">
