@@ -13,7 +13,7 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   SwiperCore.use([Navigation]);
   const navigate = useNavigate();
-  console.log(posts)
+  //console.log(posts)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -165,7 +165,6 @@ export default function Home() {
                 {/* <FaSearch /> */}
                 </Link>
                 
-               
               </div>
             </div>
           )
