@@ -83,7 +83,7 @@ export default function Home() {
       </div>
       
       {/* Swiper */}
-      <div className=' mx-auto'> 
+      <div className=' mx-auto text-center'> 
       <h1 className='text-blue-700 font-bold text-2xl lg:text-4xl mx-auto text-center'><Link to={'/watch'}>Memwa WATCH</Link></h1>
       <h2 className='text-gray-400 text-l text-center mx-auto'>Watch stories from everywhere!</h2>
       <Swiper navigation>
@@ -92,7 +92,7 @@ export default function Home() {
           posts.map((post) => (
             <SwiperSlide key={post._id}>
               <Link to={`/post/${post._id}`}>
-              <p className='text-2xl font-semibold mx-auto pl-10 text-blue-700'>
+              <p className='text-2xl font-semibold mx-auto pl-10 text-blue-700 text-left'>
               {post.title}</p></Link>
               {post.mediaUrls[0].includes('.webm' || 'video/mp4') ? (
                 <div className="h-[550px]">
@@ -118,6 +118,9 @@ export default function Home() {
             </SwiperSlide>
           ))}
       </Swiper>
+      <Link className='text-xl text-blue-800 hover:underline' to={`/watch`}>
+        Watch more moments 
+      </Link>
       </div>
       
       {/* Find */}
@@ -161,7 +164,7 @@ export default function Home() {
                   <p className='text-gray-400 text-l text-center mx-auto p-3'>Search for people, stories, events from around the world. New stories are being added everyday.
                   Browse through <b><span style={{ color: '#3563E9' }}>2,100</span></b> stories from <b><span style={{ color: '#3563E9' }}>68</span></b> countries</p>
                 <Link className='text-xl text-blue-800 hover:underline' to={`/search?order=desc`}>
-                Show more Moments 
+                Search more moments 
                 {/* <FaSearch /> */}
                 </Link>
                 
