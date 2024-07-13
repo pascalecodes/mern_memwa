@@ -164,7 +164,7 @@ export default function Home() {
                   <p className='text-gray-400 text-l text-center mx-auto p-3'>Search for people, stories, events from around the world. New stories are being added everyday.
                   Browse through <b><span style={{ color: '#3563E9' }}>2,100</span></b> stories from <b><span style={{ color: '#3563E9' }}>68</span></b> countries</p>
                 <Link className='text-xl text-blue-800 hover:underline' to={`/search?order=desc`}>
-                Search more moments 
+                Find more moments 
                 {/* <FaSearch /> */}
                 </Link>
                 
