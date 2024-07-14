@@ -12,8 +12,6 @@ const containerStyle = {
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'contain',
     backgroundPosition: "center",
-    width: "100%",
-    height: "100vh"
 };
 
 export default function Search() {
@@ -115,7 +113,7 @@ export default function Search() {
     };
 
     return (
-       <Container >
+       <Container style={containerStyle}>
         <div className='flex flex-col p-2 px-3 max-w-6xl mx-auto'>
         <img className="mx-auto " src="/img/logo.svg"  alt="Memwa" width="sm-80" height="sm-80"  />
         <h1 className='text-blue-700 font-bold text-2xl lg:text-4xl mx-auto text-center'>Memwa FIND</h1> 
