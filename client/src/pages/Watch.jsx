@@ -144,6 +144,13 @@ export default function Watch() {
 
   //work on getting post to watch page
 
+  // const VideoPlayer() ={
+  //   const [videoUrl, setVideoUrl] = useState('');
+  
+  //   const handleAddVideoUrl = (url) => {
+  //     setVideoUrl(url);
+  //   };
+
   return (
     <div>
        <div className='flex flex-col p-2 px-3  mx-auto'>
