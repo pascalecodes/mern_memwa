@@ -223,12 +223,11 @@ export default function Search() {
                         <button
                             onClick={onShowMoreClick}
                             className='text-green-700 hover:underline p-7 text-center w-full'>
-                                Show more
+                            Show more
                             </button>
                     )}
             </div>
-        </div>
-        
+        </div>  
         )}
     </div>
     </div>
