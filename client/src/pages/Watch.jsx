@@ -6,6 +6,7 @@ import ThumbDownOffAltOutlinedIcon from "@mui/icons-material/ThumbDownOffAltOutl
 import ReplyOutlinedIcon from "@mui/icons-material/ReplyOutlined";
 import AddTaskOutlinedIcon from "@mui/icons-material/AddTaskOutlined";
 import Card from "../components/Card";
+//import { useDispatch, useSelector } from "react-redux";
 // import Comments from '../components/Comments';
 import ReactPlayer from 'react-player';
 
@@ -117,6 +118,11 @@ const Subscribe = styled.button`
 
 export default function Watch() {
   const [posts, setPosts] = useState([]);
+  // const { currentUser } = useSelector((state) => state.user);
+  // const { currentVideo } = useSelector((state) => state.video);
+  // const dispatch = useDispatch();
+
+  // const path = useLocation().pathname.split("/")[2];
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -167,10 +173,10 @@ export default function Watch() {
             //src="https://www.youtube.com/embed/_A20kVsaqIk?si=GvLxnWd3On6YpPI-" 
             src={mediaUrls}
             title="YouTube video player" 
-            frameborder="0" 
-            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-            referrerpolicy="strict-origin-when-cross-origin" 
-            allowfullscreen>
+            frameBorder="0" 
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" 
+            referrerPolicy="strict-origin-when-cross-origin" 
+            allowFullScreen>
          </iframe>
         </VideoWrapper>
         <Title>{title}</Title>
