@@ -151,11 +151,11 @@ export default function Watch() {
   //work on getting post to watch page
 
   // const VideoPlayer() ={
-  //   const [videoUrl, setVideoUrl] = useState('');
+    // const [videoUrl, setVideoUrl] = useState('');
   
-  //   const handleAddVideoUrl = (url) => {
-  //     setVideoUrl(url);
-  //   };
+    // const handleAddVideoUrl = (videoUrl) => {
+    //   setVideoUrl(videoUrl);
+    // };
 
   return (
     <div>
@@ -219,7 +219,7 @@ export default function Watch() {
         {/* <Comments/> */}
       </Content>
       <Recommendation>
-      <Card type="sm"/>
+      <Card onClick={mediaUrls} type="sm"/>
         <Card type="sm"/>
         <Card type="sm"/>
         <Card type="sm"/>
