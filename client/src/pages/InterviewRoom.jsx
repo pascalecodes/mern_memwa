@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import AnswerQuestion from '../components/AnswerQuestion';
-// import translate from 'google-translate-api';
+//import translate from 'google-translate-api';
 
 const Container = styled.div`
 `;
@@ -10,7 +10,7 @@ export default function InterviewRoom() {
     const [questions, setQuestions] = useState([]);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [questionId, setQuestionId] = useState(0);
-    // const [translatedQuestion, setTranslatedQuestion] = useState('');
+    const [translatedQuestion, setTranslatedQuestion] = useState('');
 
     const getQuestions = async () => {
         const url = 'https://memwaquestionsapp.onrender.com/questions'
@@ -20,15 +20,15 @@ export default function InterviewRoom() {
         setQuestions(data); // Update the questions state with the retrieved data
       };
 
-    //   const translateText = async (text, targetLang) => {
-    //     try {
-    //       const result = await translate(text, { to: targetLang });
-    //       return result.text;
-    //     } catch (error) {
-    //       console.error('Error translating text:', error);
-    //       return '';
-    //     }
-    //   };
+      const translateText = async (text, targetLang) => {
+        try {
+          const result = await translate(text, { to: targetLang });
+          return result.text;
+        } catch (error) {
+          console.error('Error translating text:', error);
+          return '';
+        }
+      };
 
       useEffect(() => {
         const fetchQuestions = async () => {
