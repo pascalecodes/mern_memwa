@@ -11,6 +11,9 @@ export default function InterviewRoom() {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [questionId, setQuestionId] = useState(0);
     const [translatedQuestion, setTranslatedQuestion] = useState('');
+    const [text, setText] = useState('');
+    const [targetLanguage, setTargetLanguage] = useState('es');
+    const [translatedText, setTranslatedText] = useState('');
 
     const getQuestions = async () => {
         const url = 'https://memwaquestionsapp.onrender.com/questions'
@@ -20,15 +23,15 @@ export default function InterviewRoom() {
         setQuestions(data); // Update the questions state with the retrieved data
       };
 
-      const translateText = async (text, targetLang) => {
-        try {
-          const result = await translate(text, { to: targetLang });
-          return result.text;
-        } catch (error) {
-          console.error('Error translating text:', error);
-          return '';
-        }
-      };
+      // const translateText = async (text, targetLang) => {
+      //   try {
+      //     const result = await translate(text, { to: targetLang });
+      //     return result.text;
+      //   } catch (error) {
+      //     console.error('Error translating text:', error);
+      //     return '';
+      //   }
+      // };
 
       useEffect(() => {
         const fetchQuestions = async () => {
@@ -56,7 +59,38 @@ export default function InterviewRoom() {
         setCurrentQuestionIndex(randomQuestionIndex); // Update the currentQuestionIndex with the randomQuestionIndex
         setQuestionId(question.id)
         //console.log(question.id)
+
+
+        useEffect(() => {
+          const fetchText = async () => {
+            try {
+              const response = await fetch('/api/text');
+              const data = await response.json();
+              setText(data.text);
+              translateText(data.text, targetLanguage);
+            } catch (error) {
+              console.error('Error fetching text:', error);
+            }
+          };
+          fetchText();
+        }, [targetLanguage]);
+      
+        const translateText = async (textToTranslate, language) => {
+          try {
+            const response = await fetch(`/api/translate?text=${textToTranslate}&target=${language}`);
+            const data = await response.json();
+            setTranslatedText(data.text);
+          } catch (error) {
+            console.error('Error translating text:', error);
+          }
+        };
+      
+        const handleLanguageChange = (event) => {
+          setTargetLanguage(event.target.value);
+        };
+
       };
+
 
   return (
     <Container>
@@ -67,19 +101,29 @@ export default function InterviewRoom() {
         </div>
 
         <div className="px-4  py-5 mx-auto text-center">
-            <h1>Chat</h1>
+            {/* <h1>Chat</h1>
             <select id="language-select">
                 <option value="en-US">English (US)</option>
                 <option value="es-ES">Spanish (Spain)</option>
                 <option value="fr-FR">French (France)</option>
                 <option value="ht-HT">Haitian Creole (Haiti)</option>
-            </select>
+            </select> */}
+
+            <p>Original text (English): {text}</p>
+            <label htmlFor="language-select">Select a language:</label>
+            {/* <select id="language-select" value={targetLanguage} onChange={handleLanguageChange}>
+              <option value="es">Spanish</option>
+              <option value="fr">French</option>
+              <option value="de">German</option>
+            </select> */}
+            <p>Translated text ({targetLanguage}): {translatedText}</p>
 
             <div className='p-3'>
                 {/* <span className="text-info">{currentQuestionIndex + 1} of {questions.length} questions</span> */}
                 <h5 className='text-xl text-slate-700' id="question-text">{questions[currentQuestionIndex]?.name}</h5>
                 {/* <h5 id="question-text">{translatedQuestion}</h5> */}
                 {/* <h5>{questions[currentQuestionIndex]?._id}</h5> */}
+                <p>Translated text ({targetLanguage}): {translatedText}</p>
                 <button 
                 onClick={nextQuestion}
                     className='text-white text-center bg-blue-700 p-2' >Next Question</button>
