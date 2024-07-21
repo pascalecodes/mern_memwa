@@ -12,7 +12,7 @@ export default function InterviewRoom() {
     const [questionId, setQuestionId] = useState(0);
     const [translatedQuestion, setTranslatedQuestion] = useState('');
     const [text, setText] = useState('');
-    const [targetLanguage, setTargetLanguage] = useState('es');
+    const [targetLanguage, setTargetLanguage] = useState('en-US');
     const [translatedText, setTranslatedText] = useState('');
 
     const getQuestions = async () => {
@@ -37,13 +37,31 @@ export default function InterviewRoom() {
         const fetchQuestions = async () => {
           try {
             await getQuestions(); // Wait for the questions to be fetched and set in the state
+            setText(text);
+            translateText(text, targetLanguage);
+            console.log(text)
           } catch (error) {
             console.error('Error fetching questions:', error);
           }
         };
       
         fetchQuestions();
-      }, []);
+      }, [targetLanguage]);
+
+      const translateText = async (textToTranslate, language) => {
+        try {
+          //const response = await fetch(`/api/translate?text=${textToTranslate}&target=${language}`);
+          const response = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${language}&dt=t&q=${encodeURIComponent(textToTranslate)}`);
+          const data = await response.json();
+          setTranslatedText(data.text);
+        } catch (error) {
+          console.error('Error translating text:', error);
+        }
+      };
+    
+      const handleLanguageChange = (event) => {
+        setTargetLanguage(event.target.value);
+      };
 
       const nextQuestion = () => {
         if (currentQuestionIndex >= questions.length) {
@@ -101,7 +119,8 @@ export default function InterviewRoom() {
         </div>
 
         <div className="px-4  py-5 mx-auto text-center">
-            {/* <h1>Chat</h1>
+            {/* <h1>Chat</h1> */}
+            {/* <label className="text-blue-700" htmlFor="language-select" value={targetLanguage} onChange={handleLanguageChange}>Select a language: </label>
             <select id="language-select">
                 <option value="en-US">English (US)</option>
                 <option value="es-ES">Spanish (Spain)</option>
@@ -109,21 +128,33 @@ export default function InterviewRoom() {
                 <option value="ht-HT">Haitian Creole (Haiti)</option>
             </select> */}
 
-            <p>Original text (English): {text}</p>
-            <label htmlFor="language-select">Select a language:</label>
-            {/* <select id="language-select" value={targetLanguage} onChange={handleLanguageChange}>
+        
+            <label className="text-blue-700" htmlFor="language-select">Select a language:</label>
+            <select id="language-select" value={targetLanguage} onChange={handleLanguageChange}>
+              <option value="en-US">English (US)</option>
+              <option value="es-ES">Spanish (Spain)</option>
+              <option value="fr-FR">French (France)</option>
+              <option value="ht-HT">Haitian Creole (Haiti)</option>
+            </select>
+      
+            
+            {/* <label htmlFor="language-select">Select a language:</label>
+            <select id="language-select" value={targetLanguage} onChange={handleLanguageChange}>
               <option value="es">Spanish</option>
               <option value="fr">French</option>
               <option value="de">German</option>
             </select> */}
-            <p>Translated text ({targetLanguage}): {translatedText}</p>
+           
 
             <div className='p-3'>
                 {/* <span className="text-info">{currentQuestionIndex + 1} of {questions.length} questions</span> */}
+                <p>Original text (English): {text}</p>
                 <h5 className='text-xl text-slate-700' id="question-text">{questions[currentQuestionIndex]?.name}</h5>
                 {/* <h5 id="question-text">{translatedQuestion}</h5> */}
                 {/* <h5>{questions[currentQuestionIndex]?._id}</h5> */}
                 <p>Translated text ({targetLanguage}): {translatedText}</p>
+              
+
                 <button 
                 onClick={nextQuestion}
                     className='text-white text-center bg-blue-700 p-2' >Next Question</button>
