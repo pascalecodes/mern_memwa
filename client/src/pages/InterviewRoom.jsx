@@ -37,9 +37,9 @@ export default function InterviewRoom() {
         const fetchQuestions = async () => {
           try {
             await getQuestions(); // Wait for the questions to be fetched and set in the state
-            setText(text);
-            translateText(text, targetLanguage);
-            console.log(text)
+            // setText(questions);
+            // translateText(questions, targetLanguage);
+            // console.log(questions)
           } catch (error) {
             console.error('Error fetching questions:', error);
           }
@@ -79,33 +79,33 @@ export default function InterviewRoom() {
         //console.log(question.id)
 
 
-        useEffect(() => {
-          const fetchText = async () => {
-            try {
-              const response = await fetch('/api/text');
-              const data = await response.json();
-              setText(data.text);
-              translateText(data.text, targetLanguage);
-            } catch (error) {
-              console.error('Error fetching text:', error);
-            }
-          };
-          fetchText();
-        }, [targetLanguage]);
+        // useEffect(() => {
+        //   const fetchText = async () => {
+        //     try {
+        //       const response = await fetch('/api/text');
+        //       const data = await response.json();
+        //       setText(data.text);
+        //       translateText(data.text, targetLanguage);
+        //     } catch (error) {
+        //       console.error('Error fetching text:', error);
+        //     }
+        //   };
+        //   fetchText();
+        // }, [targetLanguage]);
       
-        const translateText = async (textToTranslate, language) => {
-          try {
-            const response = await fetch(`/api/translate?text=${textToTranslate}&target=${language}`);
-            const data = await response.json();
-            setTranslatedText(data.text);
-          } catch (error) {
-            console.error('Error translating text:', error);
-          }
-        };
+        // const translateText = async (textToTranslate, language) => {
+        //   try {
+        //     const response = await fetch(`/api/translate?text=${textToTranslate}&target=${language}`);
+        //     const data = await response.json();
+        //     setTranslatedText(data.text);
+        //   } catch (error) {
+        //     console.error('Error translating text:', error);
+        //   }
+        // };
       
-        const handleLanguageChange = (event) => {
-          setTargetLanguage(event.target.value);
-        };
+        // const handleLanguageChange = (event) => {
+        //   setTargetLanguage(event.target.value);
+        // };
 
       };
 
