@@ -53,7 +53,8 @@ export default function InterviewRoom() {
           //const response = await fetch(`/api/translate?text=${textToTranslate}&target=${language}`);
           const response = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${language}&dt=t&q=${encodeURIComponent(textToTranslate)}`);
           const data = await response.json();
-          setTranslatedText(data.text);
+          setTranslatedText(data);
+          console.log(response)
         } catch (error) {
           console.error('Error translating text:', error);
         }
@@ -71,7 +72,7 @@ export default function InterviewRoom() {
         const randomQuestionIndex = Math.floor(Math.random() * questions.length);
         const question = questions[randomQuestionIndex];
 
-        // const translatedText = translateText(question.name, 'en'); // Translate the question to English
+        //const translatedText = translateText(question.name, 'es'); // Translate the question to English
         // setTranslatedQuestion(translatedText);
       
         setCurrentQuestionIndex(randomQuestionIndex); // Update the currentQuestionIndex with the randomQuestionIndex
