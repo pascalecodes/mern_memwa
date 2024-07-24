@@ -39,17 +39,21 @@ export default function InterviewRoom() {
             await getQuestions(); // Wait for the questions to be fetched and set in the state
             // setText(questions);
             // translateText(questions, targetLanguage);
-            // console.log(questions)
+            //console.log(questions)
+            //console.log(questions[currentQuestionIndex]?.name)
+           
           } catch (error) {
             console.error('Error fetching questions:', error);
           }
         };
       
         fetchQuestions();
+    
       }, [targetLanguage]);
 
       const translateText = async (textToTranslate, language) => {
         try {
+          //setText(questions[currentQuestionIndex]?.name)
           //const response = await fetch(`/api/translate?text=${textToTranslate}&target=${language}`);
           const response = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${language}&dt=t&q=${encodeURIComponent(textToTranslate)}`);
           const data = await response.json();
