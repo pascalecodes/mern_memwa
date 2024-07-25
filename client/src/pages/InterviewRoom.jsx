@@ -53,6 +53,8 @@ export default function InterviewRoom() {
 
       const translateText = async (textToTranslate, language) => {
         try {
+          const text= questions[currentQuestionIndex]?.name
+          
           //setText(questions[currentQuestionIndex]?.name)
           //const response = await fetch(`/api/translate?text=${textToTranslate}&target=${language}`);
           const response = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${language}&dt=t&q=${encodeURIComponent(textToTranslate)}`);
