@@ -49,7 +49,7 @@ export default function InterviewRoom() {
       
         fetchQuestions();
     
-      }, [targetLanguage]);
+      }, []);
 
       const translateText = async (textToTranslate, language) => {
         try {
@@ -59,8 +59,8 @@ export default function InterviewRoom() {
           //const response = await fetch(`/api/translate?text=${textToTranslate}&target=${language}`);
           const response = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${language}&dt=t&q=${encodeURIComponent(textToTranslate)}`);
           const data = await response.json();
-          setTranslatedText(data);
-          console.log(response)
+          setTranslatedText(data[0][0][0]);
+          console.log('try', data[0][0][0])
         } catch (error) {
           console.error('Error translating text:', error);
         }
@@ -68,6 +68,8 @@ export default function InterviewRoom() {
     
       const handleLanguageChange = (event) => {
         setTargetLanguage(event.target.value);
+        translateText(questions[currentQuestionIndex]?.name, event.target.value);
+        console.log('test',questions[currentQuestionIndex]?.name, event.target.value)
       };
 
       const nextQuestion = () => {
@@ -153,13 +155,15 @@ export default function InterviewRoom() {
             </select> */}
            
 
-            <div className='p-3'>
+            <div className='p-4'>
                 {/* <span className="text-info">{currentQuestionIndex + 1} of {questions.length} questions</span> */}
-                <p>Original text (English): {text}</p>
+                <p>Original text (English):</p>
                 <h5 className='text-xl text-slate-700' id="question-text">{questions[currentQuestionIndex]?.name}</h5>
                 {/* <h5 id="question-text">{translatedQuestion}</h5> */}
                 {/* <h5>{questions[currentQuestionIndex]?._id}</h5> */}
-                <p>Translated text ({targetLanguage}): {translatedText}</p>
+                {/* <p>Translated text ({targetLanguage}): {translatedText}</p> */}
+                <p className='pt-4'>Translated text (English):</p>
+                <h5 className='text-xl text-blue-700' id="question-text">{translatedText}</h5>
               
 
                 <button 
