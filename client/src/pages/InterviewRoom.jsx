@@ -157,14 +157,14 @@ export default function InterviewRoom() {
                 {/* <h5>{questions[currentQuestionIndex]?._id}</h5> */}
                 {/* <p>Translated text ({targetLanguage}): {translatedText}</p> */}
 
-                <label className="text-blue-700" htmlFor="language-select">Translate to :</label>
-                  <select id="language-select" value={targetLanguage} onChange={handleLanguageChange}>
+                <label className="text-slate-700" htmlFor="language-select">Translate to :</label>
+                  <select className='text-blue-700' id="language-select" value={targetLanguage} onChange={handleLanguageChange}>
                     <option value="en-US">English (US)</option>
                     <option value="es-ES">Spanish (Spain)</option>
                     <option value="fr-FR">French (France)</option>
                     <option value="ht-HT">Haitian Creole (Haiti)</option>
                   </select>
-                <p className='pt-4'>Translated Question (English):</p>
+                {/* <p className='pt-4'>Translated Question (English):</p> */}
                 <h5 className='text-xl text-blue-700' id="question-text">{translatedText}</h5>
               
 
