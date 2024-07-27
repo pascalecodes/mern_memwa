@@ -10,8 +10,8 @@ export default function InterviewRoom() {
     const [questions, setQuestions] = useState([]);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [questionId, setQuestionId] = useState(0);
-    const [translatedQuestion, setTranslatedQuestion] = useState('');
-    const [text, setText] = useState('');
+    //const [translatedQuestion, setTranslatedQuestion] = useState('');
+    //const [text, setText] = useState('');
     const [targetLanguage, setTargetLanguage] = useState('en-US');
     const [translatedText, setTranslatedText] = useState('');
 
@@ -69,7 +69,7 @@ export default function InterviewRoom() {
       const handleLanguageChange = (event) => {
         setTargetLanguage(event.target.value);
         translateText(questions[currentQuestionIndex]?.name, event.target.value);
-        console.log('test',questions[currentQuestionIndex]?.name, event.target.value)
+        console.log('test',questions[currentQuestionIndex]?.name, event.target.value )
       };
 
       const nextQuestion = () => {
@@ -138,13 +138,7 @@ export default function InterviewRoom() {
             </select> */}
 
         
-            <label className="text-blue-700" htmlFor="language-select">Select a language:</label>
-            <select id="language-select" value={targetLanguage} onChange={handleLanguageChange}>
-              <option value="en-US">English (US)</option>
-              <option value="es-ES">Spanish (Spain)</option>
-              <option value="fr-FR">French (France)</option>
-              <option value="ht-HT">Haitian Creole (Haiti)</option>
-            </select>
+            
       
             
             {/* <label htmlFor="language-select">Select a language:</label>
@@ -157,12 +151,20 @@ export default function InterviewRoom() {
 
             <div className='p-4'>
                 {/* <span className="text-info">{currentQuestionIndex + 1} of {questions.length} questions</span> */}
-                <p>Original text (English):</p>
-                <h5 className='text-xl text-slate-700' id="question-text">{questions[currentQuestionIndex]?.name}</h5>
+                <p>Question (English):</p>
+                <h5 className='text-xl text-slate-700 pb-4' id="question-text">{questions[currentQuestionIndex]?.name}</h5>
                 {/* <h5 id="question-text">{translatedQuestion}</h5> */}
                 {/* <h5>{questions[currentQuestionIndex]?._id}</h5> */}
                 {/* <p>Translated text ({targetLanguage}): {translatedText}</p> */}
-                <p className='pt-4'>Translated text (English):</p>
+
+                <label className="text-blue-700" htmlFor="language-select">Translate to :</label>
+                  <select id="language-select" value={targetLanguage} onChange={handleLanguageChange}>
+                    <option value="en-US">English (US)</option>
+                    <option value="es-ES">Spanish (Spain)</option>
+                    <option value="fr-FR">French (France)</option>
+                    <option value="ht-HT">Haitian Creole (Haiti)</option>
+                  </select>
+                <p className='pt-4'>Translated Question (English):</p>
                 <h5 className='text-xl text-blue-700' id="question-text">{translatedText}</h5>
               
 
