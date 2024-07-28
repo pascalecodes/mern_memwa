@@ -60,6 +60,7 @@ export default function InterviewRoom() {
           const response = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${language}&dt=t&q=${encodeURIComponent(textToTranslate)}`);
           const data = await response.json();
           setTranslatedText(data[0][0][0]);
+          //setTranslatedText(data.data.translations[0].translatedText); --> not working
           console.log('try', data[0][0][0])
         } catch (error) {
           console.error('Error translating text:', error);
@@ -69,6 +70,7 @@ export default function InterviewRoom() {
       const handleLanguageChange = (event) => {
         setTargetLanguage(event.target.value);
         translateText(questions[currentQuestionIndex]?.name, event.target.value);
+        // setCurrentQuestionIndex(event)
         console.log('test',questions[currentQuestionIndex]?.name, event.target.value )
       };
 
@@ -76,17 +78,17 @@ export default function InterviewRoom() {
         if (currentQuestionIndex >= questions.length) {
           setCurrentQuestionIndex(0);
         }
-      
+        translateText(questions[currentQuestionIndex]?.name, targetLanguage);
         const randomQuestionIndex = Math.floor(Math.random() * questions.length);
         const question = questions[randomQuestionIndex];
 
         //const translatedText = translateText(question.name, 'es'); // Translate the question to English
         // setTranslatedQuestion(translatedText);
-      
         setCurrentQuestionIndex(randomQuestionIndex); // Update the currentQuestionIndex with the randomQuestionIndex
+        
         setQuestionId(question.id)
         //console.log(question.id)
-
+       
 
         // useEffect(() => {
         //   const fetchText = async () => {
