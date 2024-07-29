@@ -46,7 +46,7 @@ export default function InterviewRoom() {
           const data = await response.json();
           setTranslatedText(data[0][0][0]);
           //setTranslatedText(data.data.translations[0].translatedText); --> not working
-          console.log('try', data[0][0][0])
+          //console.log('try', data[0][0][0])
         } catch (error) {
           console.error('Error translating text:', error);
         }
@@ -59,7 +59,7 @@ export default function InterviewRoom() {
       const handleLanguageChange = (event) => {
         setTargetLanguage(event.target.value);
         translateText(questions[currentQuestionIndex]?.name, event.target.value);
-        console.log('test',questions[currentQuestionIndex]?.name, event.target.value )
+        //console.log('test',questions[currentQuestionIndex]?.name, event.target.value )
       };
 
       const nextQuestion = () => {
