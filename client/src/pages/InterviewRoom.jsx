@@ -53,7 +53,7 @@ export default function InterviewRoom() {
 
       const translateText = async (textToTranslate, language) => {
         try {
-          const text= questions[currentQuestionIndex]?.name
+          //const text= questions[currentQuestionIndex]?.name
           
           //setText(questions[currentQuestionIndex]?.name)
           //const response = await fetch(`/api/translate?text=${textToTranslate}&target=${language}`);
@@ -66,6 +66,10 @@ export default function InterviewRoom() {
           console.error('Error translating text:', error);
         }
       };
+
+      useEffect(() => {
+        translateText(questions[currentQuestionIndex]?.name, targetLanguage);
+      }, [currentQuestionIndex, questions, targetLanguage]);
     
       const handleLanguageChange = (event) => {
         setTargetLanguage(event.target.value);
@@ -78,7 +82,7 @@ export default function InterviewRoom() {
         if (currentQuestionIndex >= questions.length) {
           setCurrentQuestionIndex(0);
         }
-        translateText(questions[currentQuestionIndex]?.name, targetLanguage);
+        //translateText(questions[currentQuestionIndex]?.name, targetLanguage);
         const randomQuestionIndex = Math.floor(Math.random() * questions.length);
         const question = questions[randomQuestionIndex];
 
@@ -154,7 +158,7 @@ export default function InterviewRoom() {
             <div className='p-4'>
                 {/* <span className="text-info">{currentQuestionIndex + 1} of {questions.length} questions</span> */}
                 <p>Question (English):</p>
-                <h5 className='text-xl text-slate-700 pb-4' id="question-text">{questions[currentQuestionIndex]?.name}</h5>
+                <h5 className='text-xl text-slate-700 pb-4' id="question-text" onChange={handleLanguageChange}>{questions[currentQuestionIndex]?.name}</h5>
                 {/* <h5 id="question-text">{translatedQuestion}</h5> */}
                 {/* <h5>{questions[currentQuestionIndex]?._id}</h5> */}
                 {/* <p>Translated text ({targetLanguage}): {translatedText}</p> */}
@@ -171,7 +175,7 @@ export default function InterviewRoom() {
               
 
                 <button 
-                onClick={nextQuestion}
+                onClick={nextQuestion} onChange={handleLanguageChange}
                     className='text-white text-center bg-blue-700 p-2' >Next Question</button>
                 <div>
               <AnswerQuestion 
