@@ -86,26 +86,6 @@ export default function InterviewRoom() {
 
         <div className="px-4  py-5 mx-auto text-center">
             {/* <h1>Chat</h1> */}
-            {/* <label className="text-blue-700" htmlFor="language-select" value={targetLanguage} onChange={handleLanguageChange}>Select a language: </label>
-            <select id="language-select">
-                <option value="en-US">English (US)</option>
-                <option value="es-ES">Spanish (Spain)</option>
-                <option value="fr-FR">French (France)</option>
-                <option value="ht-HT">Haitian Creole (Haiti)</option>
-            </select> */}
-
-        
-            
-      
-            
-            {/* <label htmlFor="language-select">Select a language:</label>
-            <select id="language-select" value={targetLanguage} onChange={handleLanguageChange}>
-              <option value="es">Spanish</option>
-              <option value="fr">French</option>
-              <option value="de">German</option>
-            </select> */}
-           
-
             <div className='p-4'>
                 {/* <span className="text-info">{currentQuestionIndex + 1} of {questions.length} questions</span> */}
                 <p>Question (English):</p>
@@ -124,7 +104,6 @@ export default function InterviewRoom() {
                 {/* <p className='pt-4'>Translated Question (English):</p> */}
                 <h5 className='text-xl text-blue-700' id="question-text">{translatedText}</h5>
               
-
                 <button 
                 onClick={nextQuestion} onChange={handleLanguageChange}
                     className='text-white text-center bg-blue-700 p-2' >Next Question</button>
