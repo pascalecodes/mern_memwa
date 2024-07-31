@@ -62,13 +62,18 @@ const Card = ({type}) => {
         const res = await fetch(`/api/post/get?order=desc&limit=4`);
         const data = await res.json();
         setPosts(data);
-        // console.log(`post=${posts.name}`)
+        console.log(`post=${posts.name}`)
       } catch (error) {
         console.log(error);
       }
     }
     fetchPosts();
   }, []);
+
+  const showVid = async () => {
+    const video = posts.title
+    console.log(`play video: ${video}`)
+  }
 
   // const { currentVideo, relatedVideos } = posts;
   // console.log(currentVideo)
@@ -95,7 +100,7 @@ const Card = ({type}) => {
         type={type}
         src="https://static-00.iconduck.com/assets.00/profile-default-icon-2048x2045-u3j7s5nj.png"/>
         <Texts>
-          <Title>{post.title}</Title>
+          <Title onClick={showVid}>{post.title}</Title>
           <ChannelName>{post.caption}</ChannelName>
           <Info>660,908 views • 3 days ago</Info>
         </Texts>
