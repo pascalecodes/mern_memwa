@@ -220,11 +220,6 @@ export default function Watch() {
         <Card type="sm"/>
         <Card type="sm"/>
         <Card type="sm"/>
-        {/* <Card type="sm"/>
-        <Card type="sm"/>
-        <Card type="sm"/>
-        <Card type="sm"/>
-        <Card type="sm"/> */}
       </Recommendation>
     </Container>
     </div>
