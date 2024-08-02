@@ -61,8 +61,9 @@ const Card = ({type}) => {
       try {
         const res = await fetch(`/api/post/get?order=desc&limit=4`);
         const data = await res.json();
+        //console.log(data)
         setPosts(data);
-        console.log(`post=${posts.name}`)
+        //console.log(`post=${posts}`)
       } catch (error) {
         console.log(error);
       }
@@ -71,7 +72,7 @@ const Card = ({type}) => {
   }, []);
 
   const showVid = async () => {
-    const video = posts.title
+    const video = data
     console.log(`play video: ${video}`)
   }
 
