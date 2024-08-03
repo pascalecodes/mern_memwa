@@ -71,10 +71,14 @@ const Card = ({type}) => {
     fetchPosts();
   }, []);
 
-  const showVid = async () => {
-    const video = data
-    console.log(`play video: ${video}`)
+  const showVid = async (i) => {
+    const video = posts[i].mediaUrls[0]
+    return video
+    //console.log(video)
+    //console.log(`play video: ${video}`)
   }
+
+  const videoUrl= showVid()
 
   // const { currentVideo, relatedVideos } = posts;
   // console.log(currentVideo)
@@ -101,7 +105,7 @@ const Card = ({type}) => {
         type={type}
         src="https://static-00.iconduck.com/assets.00/profile-default-icon-2048x2045-u3j7s5nj.png"/>
         <Texts>
-          <Title onClick={showVid}>{post.title}</Title>
+          <Title onClick={() => showVid(index)}>{post.title}</Title>
           <ChannelName>{post.caption}</ChannelName>
           <Info>660,908 views • 3 days ago</Info>
         </Texts>
