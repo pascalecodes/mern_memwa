@@ -73,8 +73,8 @@ const Card = ({type}) => {
 
   const showVid = async (i) => {
     const video = posts[i].mediaUrls[0]
+    console.log(video)
     return video
-    //console.log(video)
     //console.log(`play video: ${video}`)
   }
 
