@@ -12,8 +12,6 @@ import { FaCamera, FaUpload, FaCog} from 'react-icons/fa';
 const Container = styled.div`
 `;
 
-
-
 function Capture() {
     const {currentUser} = useSelector(state => state.user);
     const navigate = useNavigate();
