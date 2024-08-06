@@ -72,13 +72,14 @@ const Card = ({type}) => {
   }, []);
 
   const showVid = async (i) => {
+    //const video= "this is placeholder"
     const video = posts[i].mediaUrls[0]
     console.log(video)
     return video
     //console.log(`play video: ${video}`)
   }
 
-  const videoUrl= showVid()
+  //const videoUrl= video
 
   // const { currentVideo, relatedVideos } = posts;
   // console.log(currentVideo)
