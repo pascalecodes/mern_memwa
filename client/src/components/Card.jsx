@@ -59,7 +59,7 @@ const Card = ({type}) => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await fetch(`/api/post/get?order=desc&limit=4`);
+        const res = await fetch(`/api/post/get?order=desc`);
         const data = await res.json();
         //console.log(data)
         setPosts(data);
@@ -87,6 +87,15 @@ const Card = ({type}) => {
     return <div>Loading...</div>;
   }
 
+  const calculateDaysSinceCreation = (createdAt) => {
+    const postDate = new Date(createdAt);
+    const currentDate = new Date();
+    const timeDiff = Math.abs(currentDate.getTime() - postDate.getTime());
+    const daysSinceCreation = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    return daysSinceCreation;
+  };
+
+
   // const { mediaUrls, title } = posts[1];
 
   return (
@@ -108,7 +117,8 @@ const Card = ({type}) => {
         <Texts>
           <Title onClick={() => showVid(index)}>{post.title}</Title>
           <ChannelName>{post.caption}</ChannelName>
-          <Info>660,908 views • 3 days ago</Info>
+          <p className='text-blue-700'>{post.tags}</p>
+          <Info>660,908 views • {calculateDaysSinceCreation(post.createdAt)} days ago</Info>
         </Texts>
       </Details>
     </Container>
