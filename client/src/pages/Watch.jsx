@@ -145,7 +145,7 @@ export default function Watch() {
     return <div>Loading...</div>;
   }
 
-  const { mediaUrls, title , caption, tags} = posts[0];
+  const { mediaUrls, title , caption, tags } = posts[0];
   //console.log(`media: ${mediaUrls}}`)
 
   //work on getting post to watch page
@@ -174,6 +174,7 @@ export default function Watch() {
         </VideoWrapper>
         <Title>{title}</Title>
         <ChannelName>{caption}</ChannelName>
+        <p>{tags}</p>
         <Details>
           <Info>5,938,514 views • Feb 22, 2024</Info>
           <Buttons>
@@ -213,13 +214,13 @@ export default function Watch() {
       </Content>
       <Recommendation>
       <Card type="sm"/>
+        {/* <Card type="sm"/>
         <Card type="sm"/>
         <Card type="sm"/>
         <Card type="sm"/>
         <Card type="sm"/>
         <Card type="sm"/>
-        <Card type="sm"/>
-        <Card type="sm"/>
+        <Card type="sm"/> */}
       </Recommendation>
     </Container>
     </div>
