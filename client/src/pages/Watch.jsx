@@ -145,8 +145,16 @@ export default function Watch() {
     return <div>Loading...</div>;
   }
 
-  const { mediaUrls, title , caption, tags } = posts[0];
+  const { mediaUrls, title , caption, tags, createdAt } = posts[0];
   //console.log(`media: ${mediaUrls}}`)
+
+  const calculateDaysSinceCreation = (createdAt) => {
+    const postDate = new Date(createdAt);
+    const currentDate = new Date();
+    const timeDiff = Math.abs(currentDate.getTime() - postDate.getTime());
+    const daysSinceCreation = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    return daysSinceCreation;
+  };
 
   //work on getting post to watch page
 
@@ -177,6 +185,7 @@ export default function Watch() {
         <p>{tags}</p>
         <Details>
           <Info>5,938,514 views • Feb 22, 2024</Info>
+          {/* <p>{createdAt}</p> --->>>> fix the date format to month day and year */}
           <Buttons>
             <Button>
               <ThumbUpOutlinedIcon /> 123
