@@ -156,6 +156,16 @@ export default function Watch() {
     return daysSinceCreation;
   };
 
+  const formatDate = (date) => {
+    const options = { month: 'long', day: 'numeric', year: 'numeric' };
+    //return date.toLocaleDateString('en-US', options);
+    return date
+  };
+
+  const formatCreatedDate = (createdAt) => {
+    const postDate = new Date(createdAt);
+    return postDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  };
   //work on getting post to watch page
 
   return (
@@ -184,8 +194,7 @@ export default function Watch() {
         <ChannelName>{caption}</ChannelName>
         <p>{tags}</p>
         <Details>
-          <Info>5,938,514 views • Feb 22, 2024</Info>
-          {/* <p>{createdAt}</p> --->>>> fix the date format to month day and year */}
+          <Info>5,938,514 views • {formatCreatedDate(createdAt)}</Info>
           <Buttons>
             <Button>
               <ThumbUpOutlinedIcon /> 123
