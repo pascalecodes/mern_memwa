@@ -50,6 +50,11 @@ export default function Post() {
         fetchPost();
     }, [params.postId]);
 
+    const formatCreatedDate = (createdAt) => {
+      const postDate = new Date(createdAt);
+      return postDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    };
+
   return (
     
     <main>
@@ -142,7 +147,7 @@ export default function Post() {
           </div>
           {copied && (<p className='fixed top-[23%] right-[5%] z-10 rounded-md bg-slate-100 p-2'>Link Copied!</p>)}
 
-          <div className='flex flex-col max-w-4xl mx-auto p-3 my-7 gap-4'>
+          <div className='flex flex-col max-w-4xl mx-auto p-3 my-7 '>
             <p className='text-2xl font-semibold'>
               {post.title} 
             </p>
@@ -151,12 +156,14 @@ export default function Post() {
               {post.location}
             </p> */}
             <p className='text-slate-800'>
+              <span className='font-semibold text-black'>Posted - </span>
+              {formatCreatedDate(post.createdAt)}
+            </p>
+
+            <p className='text-slate-800'>
               <span className='font-semibold text-black'>Caption - </span>
               {post.caption}
             </p>
-         
-          
-            
             <p className='text-slate-800'>
               <span className='font-semibold text-black'>Description - </span>
               {post.description}
