@@ -168,6 +168,7 @@ export default function Post() {
               <span className='font-semibold text-black'>Description - </span>
               {post.description}
             </p>
+            {/* <p>Author: {author}</p>  Need to add author */}
             <ul className='text-blue-500 font-semibold text-sm flex flex-wrap items-center gap-4 sm:gap-6'>
                 {post.tags.map((tag, index) => (
                     <li key={index} className='flex items-center gap-1 whitespace-nowrap'>
@@ -180,10 +181,8 @@ export default function Post() {
                 <button
                     onClick = {() => setContact(true)}
                     className="bg-slate-700 text-white rounded-lg uppercase p-3 hover:opacity-95"
-                >Contact Author </button>    
-                
+                >Contact Author </button>      
             )}
-            
             {contact && <Contact post={post} /> }
           </div>
         </div>
