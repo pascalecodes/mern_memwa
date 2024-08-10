@@ -169,6 +169,7 @@ export default function Post() {
               {post.description}
             </p>
             {/* <p>Author: {author}</p>  Need to add author */}
+            <p>Author: </p>
             <ul className='text-blue-500 font-semibold text-sm flex flex-wrap items-center gap-4 sm:gap-6'>
                 {post.tags.map((tag, index) => (
                     <li key={index} className='flex items-center gap-1 whitespace-nowrap'>
