@@ -20,6 +20,7 @@ export default function Post() {
     const params = useParams()
     const {currentUser} = useSelector((state) => state.user); 
     const [author, setAuthor] = useState(null);
+    const [users, setUsers] = useState([]);
   
     
 
@@ -53,6 +54,22 @@ export default function Post() {
     const formatCreatedDate = (createdAt) => {
       const postDate = new Date(createdAt);
       return postDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    };
+
+    useEffect(() => {
+      // Fetch user data from your database or API and store it in the state
+      const fetchUsers = async () => {
+        const response = await fetch('/api/users');
+        const userData = await response.json();
+        setUsers(userData);
+      };
+      fetchUsers();
+    }, []);
+
+    const getAuthorName = (userRef) => {
+      const user = users.find((u) => u.id === userRef);
+      // console.log(user)
+      return user ? user.username : 'Unknown';
     };
 
   return (
@@ -169,7 +186,7 @@ export default function Post() {
               {post.description}
             </p>
             {/* <p>Author: {author}</p>  Need to add author */}
-            <p>Author: </p>
+            <p>Author: {getAuthorName(post.userRef)}</p>
             {post.userRef} 
             {/* <p>{post.username}</p> */}
             <ul className='text-blue-500 font-semibold text-sm flex flex-wrap items-center gap-4 sm:gap-6'>
