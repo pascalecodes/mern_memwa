@@ -67,7 +67,8 @@ export default function Post() {
     }, []);
 
     const getAuthorName = (userRef) => {
-      const user = users.find((u) => u.id === userRef);
+      // const user = users.find((u) => u.id === userRef);
+      const user = users
       // console.log(user)
       return user ? user.username : 'Unknown';
     };
@@ -186,7 +187,7 @@ export default function Post() {
               {post.description}
             </p>
             {/* <p>Author: {author}</p>  Need to add author */}
-            <p>Author: {getAuthorName(post.userRef)}</p>
+            {/* <p>Author: {getAuthorName(post.userRef)}</p> */}
             {post.userRef} 
             {/* <p>{post.username}</p> */}
             <ul className='text-blue-500 font-semibold text-sm flex flex-wrap items-center gap-4 sm:gap-6'>
