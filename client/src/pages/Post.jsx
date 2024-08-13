@@ -59,16 +59,15 @@ export default function Post() {
     useEffect(() => {
       // Fetch user data from your database or API and store it in the state
       const fetchUsers = async () => {
-        const response = await fetch('/api/users');
+        const response = await fetch(`/api/user/${post.userRef}`);
         const userData = await response.json();
         setUsers(userData);
       };
       fetchUsers();
-    }, []);
+    }, [post.userRef]);
 
     const getAuthorName = (userRef) => {
-      // const user = users.find((u) => u.id === userRef);
-      const user = users
+      const user = users.find((u) => u.id === userRef);
       // console.log(user)
       return user ? user.username : 'Unknown';
     };
