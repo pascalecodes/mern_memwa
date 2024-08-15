@@ -59,21 +59,21 @@ export default function Post() {
     useEffect(() => {
       // Fetch user data from your database or API and store it in the state
       const fetchUsers = async () => {
-        const response = await fetch(`/api/user/${post}`);
+        const response = await fetch(`/api/user/${post.userRef}`);
         const userData = await response.json();
-        console.log(users)
         setUsers(userData);
+        console.log(users)
       };
       fetchUsers();
     }, []);
 
     const getAuthorName = (userRef) => {
-      //const user = users.find((u) => u.id === userRef);
-      //  console.log(user)
-      // return user ? user.username : 'Unknown';
+      const user = users.find((u) => u.id === userRef);
+       console.log(users)
+      return user ? user.username : 'Unknown';
     };
 
-    //need to create a function that gets the post.userRef and uses that to fetch the user api/user and output the username from that
+     //need to create a function that gets the post.userRef and uses that to fetch the user api/user and output the username
 
   return (
     
@@ -191,7 +191,7 @@ export default function Post() {
             {/* <p>Author: {author}</p>  Need to add author */}
             {/* <p>Author: {getAuthorName(post.userRef)}</p> */}
             {post.userRef} 
-            {users}
+            
             {/* <p>{post.username}</p> */}
             <ul className='text-blue-500 font-semibold text-sm flex flex-wrap items-center gap-4 sm:gap-6'>
                 {post.tags.map((tag, index) => (
