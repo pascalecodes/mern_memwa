@@ -62,13 +62,18 @@ export default function Post() {
         const response = await fetch(`/api/user/${userId}`);
         const userData = await response.json();
         setUsers(userData.username);
-        console.log('the', userData.username)
+        // setUsers((prevUsers) => ({
+        //   ...prevUsers,
+        //   [userId]: userData.username,
+        // }));
+        console.log('the', userId)
       };
       fetchUsers(post.userRef);
     }, [users]);
   //   users.forEach((post) => {
   //     if (!users[post.userRef]) {
   //       fetchUsers(post.userRef);
+  //       console.log('the', users)
   //     }
   //   });
   // }, [users]);
