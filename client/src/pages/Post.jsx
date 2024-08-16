@@ -58,20 +58,27 @@ export default function Post() {
 
     useEffect(() => {
       // Fetch user data from your database or API and store it in the state
-      const fetchUsers = async () => {
-        const response = await fetch(`/api/user/${post.userRef}`);
+      const fetchUsers = async (userId) => {
+        const response = await fetch(`/api/user/${userId}`);
         const userData = await response.json();
-        setUsers(userData);
-        console.log(users)
+        setUsers(userData.username);
+        console.log('the', userData.username)
       };
-      fetchUsers();
-    }, []);
+      fetchUsers(post.userRef);
+    }, [users]);
+  //   users.forEach((post) => {
+  //     if (!users[post.userRef]) {
+  //       fetchUsers(post.userRef);
+  //     }
+  //   });
+  // }, [users]);
 
-    const getAuthorName = (userRef) => {
-      const user = users.find((u) => u.id === userRef);
-       console.log(users)
-      return user ? user.username : 'Unknown';
-    };
+    // const getAuthorName = (userRef) => {
+    //   //const user = users.find((u) => u.id === userRef);
+    //   // const user = fetchUsers(userRef)
+    //    console.log(users.username)
+    //   return users ? users.username : 'Unknown';
+    // };
 
      //need to create a function that gets the post.userRef and uses that to fetch the user api/user and output the username
 
@@ -190,7 +197,12 @@ export default function Post() {
             </p>
             {/* <p>Author: {author}</p>  Need to add author */}
             {/* <p>Author: {getAuthorName(post.userRef)}</p> */}
-            {post.userRef} 
+            {/* {post.userRef} */}
+            {/* <p>Author: {users || 'Loading...'}</p> */}
+            <p className='text-slate-800'>
+              <span className='font-semibold text-black'>Author - </span>
+              {users}
+            </p>
             
             {/* <p>{post.username}</p> */}
             <ul className='text-blue-500 font-semibold text-sm flex flex-wrap items-center gap-4 sm:gap-6'>
