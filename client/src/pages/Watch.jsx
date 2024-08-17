@@ -213,7 +213,7 @@ export default function Watch() {
         <Hr />
         <Channel>
           <ChannelInfo>
-            <Image src="https://static-00.iconduck.com/assets.00/profile-default-icon-2048x2045-u3j7s5nj.png" />
+            <Image src="http://static-00.iconduck.com/assets.00/profile-default-icon-2048x2045-u3j7s5nj.png" />
             <ChannelDetail>
               <ChannelName>MemTube</ChannelName>
               <ChannelCounter>200K subscribers</ChannelCounter>
