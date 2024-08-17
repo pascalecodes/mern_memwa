@@ -31,10 +31,8 @@ export default function Post() {
                 const res = await fetch(`/api/post/get/${params.postId}`);
                 const data = await res.json();
                 setAuthor(true);
-                console.log(data)
+                //console.log(data)
               //  console.log(data.mediaUrls[0].includes('.webm' || 'video/mp4')? 'video/webm' : 'image/png')
-            
-               
                 if (data.success === false) {
                     setError(true);
                     setLoading(false);
@@ -78,41 +76,6 @@ export default function Post() {
       }
    ;
   }, [post, users]);
-
-  //++++++delete below
-    // useEffect(() => {
-    //   // Fetch user data from your database or API and store it in the state
-    //   const fetchUsers = async (userId) => {
-    //     const response = await fetch(`/api/user/${userId}`);
-    //     const userData = await response.json();
-    //     setUsers(userData.username);
-    //     // setUsers((prevUsers) => ({
-    //     //   ...prevUsers,
-    //     //   [userId]: userData.username,
-    //     // }));
-    //     console.log('the', userId, userRef)
-    //   };
-    //   //fetchUsers(post.userRef);
-    //   if (post) {
-    //     fetchUsers(post.userRef);
-    //   }
-    // }, [post, users]);
-  //   users.forEach((post) => {
-  //     if (!users[post.userRef]) {
-  //       fetchUsers(post.userRef);
-  //       console.log('the', users)
-  //     }
-  //   });
-  // }, [users]);
-
-    // const getAuthorName = (userRef) => {
-    //   //const user = users.find((u) => u.id === userRef);
-    //   // const user = fetchUsers(userRef)
-    //    console.log(users.username)
-    //   return users ? users.username : 'Unknown';
-    // };
-//+++++delete above
-   
 
   return (
     
