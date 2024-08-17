@@ -56,6 +56,8 @@ export default function Post() {
       return postDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
     };
 
+      //need to create a function that gets the post.userRef and uses that to fetch the user api/user and output the username --> Done
+
     useEffect(() => {
       // Fetch user data from your database or API and store it in the state
       const fetchUser = async (userId) => {
@@ -77,6 +79,7 @@ export default function Post() {
    ;
   }, [post, users]);
 
+  //++++++delete below
     // useEffect(() => {
     //   // Fetch user data from your database or API and store it in the state
     //   const fetchUsers = async (userId) => {
@@ -108,8 +111,8 @@ export default function Post() {
     //    console.log(users.username)
     //   return users ? users.username : 'Unknown';
     // };
-
-     //need to create a function that gets the post.userRef and uses that to fetch the user api/user and output the username
+//+++++delete above
+   
 
   return (
     
