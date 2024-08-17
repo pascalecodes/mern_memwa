@@ -58,18 +58,42 @@ export default function Post() {
 
     useEffect(() => {
       // Fetch user data from your database or API and store it in the state
-      const fetchUsers = async (userId) => {
-        const response = await fetch(`/api/user/${userId}`);
-        const userData = await response.json();
-        setUsers(userData.username);
-        // setUsers((prevUsers) => ({
-        //   ...prevUsers,
-        //   [userId]: userData.username,
-        // }));
-        console.log('the', userId)
+      const fetchUser = async (userId) => {
+        try {
+          const response = await fetch(`/api/user/${userId}`);
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          const userData = await response.json();
+          setUsers(userData.username);
+        } catch (error) {
+          console.error('Error fetching user:', error);
+        }
       };
-      fetchUsers(post.userRef);
-    }, [users]);
+       // Fetch usernames for all posts if they aren't already fetched
+      if (post) {
+        fetchUser(post.userRef);
+      }
+   ;
+  }, [post, users]);
+
+    // useEffect(() => {
+    //   // Fetch user data from your database or API and store it in the state
+    //   const fetchUsers = async (userId) => {
+    //     const response = await fetch(`/api/user/${userId}`);
+    //     const userData = await response.json();
+    //     setUsers(userData.username);
+    //     // setUsers((prevUsers) => ({
+    //     //   ...prevUsers,
+    //     //   [userId]: userData.username,
+    //     // }));
+    //     console.log('the', userId, userRef)
+    //   };
+    //   //fetchUsers(post.userRef);
+    //   if (post) {
+    //     fetchUsers(post.userRef);
+    //   }
+    // }, [post, users]);
   //   users.forEach((post) => {
   //     if (!users[post.userRef]) {
   //       fetchUsers(post.userRef);
