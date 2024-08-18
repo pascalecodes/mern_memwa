@@ -191,6 +191,7 @@ export default function Watch() {
          </iframe>
         </VideoWrapper>
         <Title>{title}</Title>
+        {/* add real author from post and post info */}
         <ChannelName>{caption}</ChannelName>
         <p>{tags}</p>
         <Details>
