@@ -118,6 +118,7 @@ const Subscribe = styled.button`
 
 export default function Watch() {
   const [posts, setPosts] = useState([]);
+  const [users, setUsers] = useState([]);
   // const { currentUser } = useSelector((state) => state.user);
   // const { currentVideo } = useSelector((state) => state.video);
   // const dispatch = useDispatch();
@@ -130,13 +131,15 @@ export default function Watch() {
         const res = await fetch(`/api/post/get?order=desc&limit=4`);
         const data = await res.json();
         setPosts(data);
-        //console.log(posts)
+        setUsers(data.username);
+        console.log(users)
       } catch (error) {
         console.log(error);
       }
     }
+  
     fetchPosts();
-  }, []);
+  }, [users]);
 
   // const { currentVideo, relatedVideos } = posts;
   // console.log(currentVideo)
@@ -145,7 +148,7 @@ export default function Watch() {
     return <div>Loading...</div>;
   }
 
-  const { mediaUrls, title , caption, tags, createdAt } = posts[0];
+  const { mediaUrls, title , caption, tags, createdAt, userRef, user } = posts[0];
   //console.log(`media: ${mediaUrls}}`)
 
   const calculateDaysSinceCreation = (createdAt) => {
@@ -166,6 +169,8 @@ export default function Watch() {
     const postDate = new Date(createdAt);
     return postDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
   };
+
+
   //work on getting post to watch page
 
   return (
@@ -216,7 +221,7 @@ export default function Watch() {
           <ChannelInfo>
             <Image src="https://w7.pngwing.com/pngs/205/731/png-transparent-default-avatar-thumbnail.png" />
             <ChannelDetail>
-              <ChannelName>MemTube</ChannelName>
+              <ChannelName>MemTube {user}</ChannelName>
               <ChannelCounter>200K subscribers</ChannelCounter>
               <Description>
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit.
