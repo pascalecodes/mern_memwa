@@ -30,6 +30,7 @@ font-weight: 400;
 margin-top: 20px;
 margin-bottom: 10px;
 color: ${({ theme }) => theme.text};
+text-transform: capitalize;
 `;
 
 const Details = styled.div`
@@ -91,6 +92,7 @@ const ChannelDetail = styled.div`
 
 const ChannelName = styled.span`
   font-weight: 500;
+  text-transform: capitalize;
 `;
 
 const ChannelCounter = styled.span`
@@ -128,11 +130,16 @@ export default function Watch() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await fetch(`/api/post/get?order=desc&limit=4`);
+        //const res = await fetch(`/api/post/get?order=desc&limit=4`);
+        const res = await fetch(`/api/post/get?order=desc&limit=1`);
         const data = await res.json();
         setPosts(data);
-        setUsers(data.username);
-        console.log(users)
+        const userId= data[0].userRef
+        const response =  await fetch(`/api/user/${userId}`);
+        const userData = await response.json();
+        const author = userData.username
+        setUsers(author);
+        //console.log(author)
       } catch (error) {
         console.log(error);
       }
@@ -221,7 +228,7 @@ export default function Watch() {
           <ChannelInfo>
             <Image src="https://w7.pngwing.com/pngs/205/731/png-transparent-default-avatar-thumbnail.png" />
             <ChannelDetail>
-              <ChannelName>MemTube {user}</ChannelName>
+              <ChannelName>{users}</ChannelName>
               <ChannelCounter>200K subscribers</ChannelCounter>
               <Description>
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit.
