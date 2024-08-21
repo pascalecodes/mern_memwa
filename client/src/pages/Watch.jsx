@@ -121,6 +121,8 @@ const Subscribe = styled.button`
 export default function Watch() {
   const [posts, setPosts] = useState([]);
   const [users, setUsers] = useState([]);
+  const [src, setSrc] = useState(); // State for src
+ 
   // const { currentUser } = useSelector((state) => state.user);
   // const { currentVideo } = useSelector((state) => state.video);
   // const dispatch = useDispatch();
@@ -155,8 +157,23 @@ export default function Watch() {
     return <div>Loading...</div>;
   }
 
-  const { mediaUrls, title , caption, tags, createdAt, userRef, user } = posts[0];
+  //const { mediaUrls, title , caption, tags, createdAt, userRef, user } = posts[0];
   //console.log(`media: ${mediaUrls}}`)
+  // const videoLink = ({video}) => {
+    
+    //showVid ()
+  // if (video){
+  //  const mediaUrls = video
+  //  return mediaUrls
+  // } else {
+  //   const { mediaUrls, title , caption, tags, createdAt, userRef, user } = posts[0];
+  //   return mediaUrls
+  // }
+//}
+const { mediaUrls, title , caption, tags, createdAt, userRef, user, video } = posts[0];
+const handleCardClick = (video) => {
+  setSrc(video); // Update src to video URL from the card
+};
 
   const calculateDaysSinceCreation = (createdAt) => {
     const postDate = new Date(createdAt);
@@ -194,7 +211,7 @@ export default function Watch() {
             width="100%" 
             height="720" 
             //src="https://www.youtube.com/embed/_A20kVsaqIk?si=GvLxnWd3On6YpPI-" 
-            src={mediaUrls}
+            src={src || mediaUrls }
             title="YouTube video player" 
             frameBorder="0" 
             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" 
