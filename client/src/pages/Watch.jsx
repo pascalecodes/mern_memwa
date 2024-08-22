@@ -121,7 +121,7 @@ const Subscribe = styled.button`
 export default function Watch() {
   const [posts, setPosts] = useState([]);
   const [users, setUsers] = useState([]);
-  const [src, setSrc] = useState(); // State for src
+  const [src, setSrc] = useState(''); // State for src
  
   // const { currentUser } = useSelector((state) => state.user);
   // const { currentVideo } = useSelector((state) => state.video);
@@ -170,9 +170,11 @@ export default function Watch() {
   //   return mediaUrls
   // }
 //}
-const { mediaUrls, title , caption, tags, createdAt, userRef, user, video } = posts[0];
+const { mediaUrls, title , caption, tags, createdAt, userRef, user } = posts[0];
 const handleCardClick = (video) => {
   setSrc(video); // Update src to video URL from the card
+  console.log('this', src)
+  return src
 };
 
   const calculateDaysSinceCreation = (createdAt) => {
@@ -211,7 +213,7 @@ const handleCardClick = (video) => {
             width="100%" 
             height="720" 
             //src="https://www.youtube.com/embed/_A20kVsaqIk?si=GvLxnWd3On6YpPI-" 
-            src={src || mediaUrls }
+            src={src || mediaUrls}
             title="YouTube video player" 
             frameBorder="0" 
             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" 
@@ -220,6 +222,7 @@ const handleCardClick = (video) => {
          </iframe>
         </VideoWrapper>
         <Title>{title}</Title>
+        
         {/* add real author from post and post info */}
         <ChannelName>{caption}</ChannelName>
         <p>{tags}</p>
@@ -261,7 +264,7 @@ const handleCardClick = (video) => {
         {/* <Comments/> */}
       </Content>
       <Recommendation>
-      <Card type="sm"/>
+      <Card onClickCard={handleCardClick} type="sm"/>
         {/* <Card type="sm"/>
         <Card type="sm"/>
         <Card type="sm"/>
