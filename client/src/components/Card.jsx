@@ -78,7 +78,7 @@ const Card = ({type}) => {
     //console.log(video)
     setSrc(video); // Update src to video URL from the card
     console.log(src)
-    return video
+    return src
     //console.log(`play video: ${video}`)
   }
 
