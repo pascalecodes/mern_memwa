@@ -148,7 +148,7 @@ export default function Watch() {
     }
   
     fetchPosts();
-  }, [users]);
+  }, [posts, users]);
 
   // const { currentVideo, relatedVideos } = posts;
   // console.log(currentVideo)
@@ -171,10 +171,10 @@ export default function Watch() {
   // }
 //}
 const { mediaUrls, title , caption, tags, createdAt, userRef, user } = posts[0];
-const handleCardClick = (posts) => {
-  const video = posts.mediaUrls
+const handleCardClick = () => {
+  const video = posts[0].mediaUrls[0]
   setSrc(video); // Update src to video URL from the card
-  console.log('this', video)
+  console.log('this', src)
   return src
 };
 
@@ -266,7 +266,7 @@ const handleCardClick = (posts) => {
         {/* <Comments/> */}
       </Content>
       <Recommendation>
-      <Card onClickCard={handleCardClick} type="sm"/>
+      <Card type="sm"/>
         {/* <Card type="sm"/>
         <Card type="sm"/>
         <Card type="sm"/>
