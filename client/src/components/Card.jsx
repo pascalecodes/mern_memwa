@@ -64,26 +64,25 @@ const Card = ({type}) => {
         const data = await res.json();
         //console.log(data)
         setPosts(data);
-        //console.log(`post=${posts}`)
+        //console.log(posts)
       } catch (error) {
         console.log(error);
       }
     }
     fetchPosts();
-  }, []);
+  }, [posts]);
 
   const showVid = async (i) => {
     //const video= "this is placeholder"
     const video = posts[i].mediaUrls[0]
     //console.log(video)
     setSrc(video); // Update src to video URL from the card
-    console.log(src)
-    return src
+    console.log(video)
+    return src, video
     //console.log(`play video: ${video}`)
   }
 
   //const videoUrl= video
-
   // const { currentVideo, relatedVideos } = posts;
   // console.log(currentVideo)
   if (posts.length === 0) {
@@ -97,7 +96,6 @@ const Card = ({type}) => {
     const daysSinceCreation = Math.ceil(timeDiff / (1000 * 3600 * 24));
     return daysSinceCreation;
   };
-
 
   // const { mediaUrls, title } = posts[1];
 

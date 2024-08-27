@@ -148,7 +148,7 @@ export default function Watch() {
     }
   
     fetchPosts();
-  }, [posts, users]);
+  }, [users]);
 
   // const { currentVideo, relatedVideos } = posts;
   // console.log(currentVideo)
