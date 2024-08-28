@@ -196,8 +196,7 @@ const handleCardClick = () => {
     const postDate = new Date(createdAt);
     return postDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
   };
-
-
+  
   //work on getting post to watch page
 
   return (
