@@ -172,10 +172,10 @@ export default function Watch() {
 //}
 const { mediaUrls, title , caption, tags, createdAt, userRef, user } = posts[0];
 const handleCardClick = () => {
-  const video = posts[0].mediaUrls[0]
+  const video = mediaUrls[0]
   setSrc(video); // Update src to video URL from the card
   console.log('this', src)
-  return src
+  //return src
 };
 
   const calculateDaysSinceCreation = (createdAt) => {
@@ -196,7 +196,7 @@ const handleCardClick = () => {
     const postDate = new Date(createdAt);
     return postDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
   };
-  
+
   //work on getting post to watch page
 
   return (
@@ -213,7 +213,7 @@ const handleCardClick = () => {
             width="100%" 
             height="720" 
             //src="https://www.youtube.com/embed/_A20kVsaqIk?si=GvLxnWd3On6YpPI-" 
-            src={mediaUrls}
+            src={src}
             title="YouTube video player" 
             frameBorder="0" 
             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" 
@@ -265,7 +265,7 @@ const handleCardClick = () => {
         {/* <Comments/> */}
       </Content>
       <Recommendation>
-      <Card type="sm"/>
+      <Card onClick={handleCardClick}  type="sm"/>
         {/* <Card type="sm"/>
         <Card type="sm"/>
         <Card type="sm"/>
