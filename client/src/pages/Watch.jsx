@@ -213,7 +213,7 @@ const handleCardClick = () => {
             width="100%" 
             height="720" 
             //src="https://www.youtube.com/embed/_A20kVsaqIk?si=GvLxnWd3On6YpPI-" 
-            src={src}
+            src={src || mediaUrls}
             title="YouTube video player" 
             frameBorder="0" 
             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" 
