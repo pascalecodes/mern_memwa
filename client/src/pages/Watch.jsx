@@ -266,13 +266,7 @@ const handleCardClick = () => {
       </Content>
       <Recommendation>
       <Card onClick={handleCardClick}  type="sm"/>
-        {/* <Card type="sm"/>
-        <Card type="sm"/>
-        <Card type="sm"/>
-        <Card type="sm"/>
-        <Card type="sm"/>
-        <Card type="sm"/>
-        <Card type="sm"/> */}
+
       </Recommendation>
     </Container>
     </div>
