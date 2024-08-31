@@ -172,7 +172,7 @@ export default function Watch() {
 //}
 const { mediaUrls, title , caption, tags, createdAt, userRef, user } = posts[0];
 const handleCardClick = () => {
-  const video = mediaUrls[0]
+  const video = posts[0].mediaUrls[0]
   setSrc(video); // Update src to video URL from the card
   console.log('this', src)
   //return src
@@ -249,7 +249,7 @@ const handleCardClick = () => {
             <Image src="https://w7.pngwing.com/pngs/205/731/png-transparent-default-avatar-thumbnail.png" />
             <ChannelDetail>
               <ChannelName onClick={handleCardClick} >{users}</ChannelName>
-              <p></p>
+              <p>{src}</p>
               <ChannelCounter>200K subscribers</ChannelCounter>
               <Description>
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -266,7 +266,13 @@ const handleCardClick = () => {
       </Content>
       <Recommendation>
       <Card onClick={handleCardClick}  type="sm"/>
-
+        {/* <Card type="sm"/>
+        <Card type="sm"/>
+        <Card type="sm"/>
+        <Card type="sm"/>
+        <Card type="sm"/>
+        <Card type="sm"/>
+        <Card type="sm"/> */}
       </Recommendation>
     </Container>
     </div>
