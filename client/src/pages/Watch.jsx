@@ -170,9 +170,9 @@ export default function Watch() {
   //   return mediaUrls
   // }
 //}
-const { mediaUrls, title , caption, tags, createdAt, userRef, user } = posts[0];
-const handleCardClick = (i) => {
-  const video = posts[0].mediaUrls[0]
+let { mediaUrls, title , caption, tags, createdAt, userRef, user } = posts[0];
+const handleCardClick = (Card) => {
+  const video = Card.mediaUrls[0]
   setSrc(video); // Update src to video URL from the card
   console.log('this', src)
   //return src
@@ -266,7 +266,7 @@ const handleCardClick = (i) => {
       </Content>
       <Recommendation>
       
-      <Card onClick={handleCardClick}  type="sm"/>
+      <Card onClick={() => handleCardClick(posts)}type="sm"/>
         {/* <Card type="sm"/>
         <Card type="sm"/>
         <Card type="sm"/>
