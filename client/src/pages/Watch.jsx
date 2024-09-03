@@ -172,9 +172,9 @@ export default function Watch() {
 //}
 let { mediaUrls, title , caption, tags, createdAt, userRef, user } = posts[0];
 const handleCardClick = (Card) => {
-  const video = Card.mediaUrls[0]
+  const video = src
   setSrc(video); // Update src to video URL from the card
-  console.log('this', src)
+  console.log('this', video)
   //return src
 };
 
