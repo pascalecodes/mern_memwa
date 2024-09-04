@@ -74,8 +74,8 @@ const Card = ({type}) => {
 
   const showVid = async (i) => {
     //const video= "this is placeholder"
-    const video = posts[i].mediaUrls[0]
-    //console.log(video)
+    //const video = posts[i].mediaUrls[0]
+    const video = posts[i]
     setSrc(video); // Update src to video URL from the card
     console.log(video)
     return video
