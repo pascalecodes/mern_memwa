@@ -171,8 +171,8 @@ export default function Watch() {
   // }
 //}
 let { mediaUrls, title , caption, tags, createdAt, userRef, user } = posts[0];
-const handleCardClick = (Card) => {
-  const video = src
+const handleCardClick = (i) => {
+  const video = posts[0].mediaUrls[0] // this is hardcoded I want to replace the hard coding with dynamic when the card is clicked
   setSrc(video); // Update src to video URL from the card
   console.log('this', video)
   //return src
