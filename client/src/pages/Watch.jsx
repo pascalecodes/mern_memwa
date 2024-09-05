@@ -250,7 +250,7 @@ const handleCardClick = (i) => {
             <Image src="https://w7.pngwing.com/pngs/205/731/png-transparent-default-avatar-thumbnail.png" />
             <ChannelDetail>
               <ChannelName onClick={handleCardClick} >{users}</ChannelName>
-              <p></p>
+              <p>{posts.mediaUrls}</p>
               <ChannelCounter>200K subscribers</ChannelCounter>
               <Description>
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -267,7 +267,7 @@ const handleCardClick = (i) => {
       </Content>
       <Recommendation>
       
-      <Card onClick={() => handleCardClick(posts)}type="sm"/>
+      <Card onClick={() => handleCardClick(posts)}type="sm"/> {src}
         {/* <Card type="sm"/>
         <Card type="sm"/>
         <Card type="sm"/>
