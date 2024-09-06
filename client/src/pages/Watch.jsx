@@ -179,19 +179,19 @@ const handleCardClick = (i) => {
   //return src
 };
 
-  const calculateDaysSinceCreation = (createdAt) => {
-    const postDate = new Date(createdAt);
-    const currentDate = new Date();
-    const timeDiff = Math.abs(currentDate.getTime() - postDate.getTime());
-    const daysSinceCreation = Math.ceil(timeDiff / (1000 * 3600 * 24));
-    return daysSinceCreation;
-  };
+  // const calculateDaysSinceCreation = (createdAt) => {
+  //   const postDate = new Date(createdAt);
+  //   const currentDate = new Date();
+  //   const timeDiff = Math.abs(currentDate.getTime() - postDate.getTime());
+  //   const daysSinceCreation = Math.ceil(timeDiff / (1000 * 3600 * 24));
+  //   return daysSinceCreation;
+  // };
 
-  const formatDate = (date) => {
-    const options = { month: 'long', day: 'numeric', year: 'numeric' };
-    //return date.toLocaleDateString('en-US', options);
-    return date
-  };
+  // const formatDate = (date) => {
+  //   const options = { month: 'long', day: 'numeric', year: 'numeric' };
+  //   //return date.toLocaleDateString('en-US', options);
+  //   return date
+  // };
 
   const formatCreatedDate = (createdAt) => {
     const postDate = new Date(createdAt);
