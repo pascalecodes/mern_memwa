@@ -56,7 +56,7 @@ export default function Header () {
     
       <Link to='/profile'>
         {currentUser ? (
-         <img className='rounded-full h-7 w-7 object-cover' src={currentUser.avatar} alt='profile' />
+        <li className='sm:inline text-slate-700 hover:underline'> <img className='rounded-full h-10 w-10 object-cover' src={currentUser.avatar} alt='profile'/>Profile</li>
         ) : ( <li className='sm:inline text-slate-700 hover:underline'>Sign In</li>)} 
         </Link>
       {/* <Link to='/sign-up'><li className='hidden sm:inline text-slate-700 hover:underline'>Sign Up</li></Link> */}
