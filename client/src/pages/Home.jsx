@@ -49,14 +49,15 @@ export default function Home() {
   return (
     <div>
       {/* Top */}
-      <div className='flex flex-col gap-6 p-2 px-3 max-w-6xl mx-auto'>
+      {/* <div className='flex flex-col gap-6 p-2 px-3 max-w-6xl mx-auto'> */}
+      <div className=' mx-auto text-center gap-6 p-2 px-3 mb-8'>
       <Link className="text-decoration-none" to={"/"}><img className="mx-auto mb-4" src="/img/logo.svg"  alt="Memwa" width="100" height="100" />
       </Link> 
         <h1 className='text-slate-700 font-bold text-3xl lg:text-6xl'> The best way to preserve your <span className='text-blue-700'>stories</span>, your <span className='text-blue-700'>history</span>, your <span className='text-blue-700'>legacy</span>
         </h1>
-        <div className='text-slate-400 text-l mx-auto '>
+        <div className='text-slate-400 text-l mx-auto m-4'>
         Memwa is a digital platform to record, watch and search for user stories. Memwa allows users to preserve and share their personal stories, memories, and experiences in a secure public or private space. It aims to provide a seamless and user-friendly experience for capturing, organizing, and sharing meaningful moments.
-        <br />
+        <br/>
         Record, watch and search for stories. Search for other user stories based on name, title, location, historical events or profession. Share stories and discover new stories from around the world!
         </div>
         <Link to={'/capture'} className='text-xs sm:text-sm text-blue-800 font-bold hover:underline'>
