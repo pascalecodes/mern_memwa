@@ -142,6 +142,7 @@ export default function Profile() {
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
+      
       <form onSubmit={handleSubmit} className="flex flex-col gap-4"> 
         <input onChange={(e)=> setFile(e.target.files[0])} type='file' ref={fileRef} hidden accept='image/*'/> 
         <img onClick={()=>fileRef.current.click()} 
@@ -157,6 +158,7 @@ export default function Profile() {
           } 
     
         </p> 
+        <p className='text-blue-700 text-center'>Edit and Change your profile picture, information, password  or moments you have </p>
         <input type='text' placeholder="Username" defaultValue= {currentUser.username} id='username' className="border p-3 rounded-lg" onChange={handleChange}/>
         <input type='email' placeholder="Email" defaultValue={currentUser.email} id='email' className="border p-3 rounded-lg" onChange={handleChange}/>
         <input type='password' placeholder="Password" onChange={handleChange} id='password' className="border p-3 rounded-lg"/>
