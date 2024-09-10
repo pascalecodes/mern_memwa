@@ -117,6 +117,7 @@ export default function Search() {
         <div className='flex flex-col p-2 px-3 max-w-6xl mx-auto'>
         <img className="mx-auto " src="/img/logo.svg"  alt="Memwa" width="sm-80" height="sm-80"  />
         <h1 className='text-blue-700 font-bold text-2xl lg:text-4xl mx-auto text-center'>Memwa FIND</h1> 
+        <h5 className='mx-auto text-center'>Browse and Discover new stories</h5>
 
     <div className='flex flex-col md:flex-row' >
         <div className='p-7 border-b-2 md:border-r-2 md:min-h-screen' >
