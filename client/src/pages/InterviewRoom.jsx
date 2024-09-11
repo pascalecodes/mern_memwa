@@ -61,6 +61,7 @@ export default function InterviewRoom() {
         translateText(questions[currentQuestionIndex]?.name, event.target.value);
         //console.log('test',questions[currentQuestionIndex]?.name, event.target.value )
       };
+      
 
       const nextQuestion = () => {
         if (currentQuestionIndex >= questions.length) {
@@ -74,6 +75,26 @@ export default function InterviewRoom() {
         //console.log(question.id)
 
       };
+
+      async function readQuestion() {
+        // Get the question text
+        // let questionText = document.getElementById("question-text").textContent;
+        // const selectedLanguage = document.getElementById("language-select").value;
+    
+        // const translatedText = await translateText(questionText, selectedLanguage);
+       
+        
+        // Create a SpeechSynthesisUtterance object
+        const utterance = new SpeechSynthesisUtterance();
+        utterance.text = translatedText;
+        utterance.lang = targetLanguage;
+        speechSynthesis.rate = 0.5
+        speechSynthesis.pitch = 1.3; // slightly higher pitch
+    
+        // Speak the question using the Web Speech API
+        speechSynthesis.speak(utterance);
+        //document.querySelector('#translated').innerHTML = `<h5 id="translated-text" >${translatedText}</h5>`;
+    }
 
 
   return (
@@ -107,6 +128,9 @@ export default function InterviewRoom() {
                 <button 
                 onClick={nextQuestion} onChange={handleLanguageChange}
                     className='text-white text-center bg-blue-700 p-2' >Next Question</button>
+                    <button 
+                onClick={readQuestion}
+                    className='text-white text-center bg-green-700 p-2 m-2' >Read</button>
                 <div>
               <AnswerQuestion 
                questionId={questions[currentQuestionIndex]?.id}
