@@ -315,7 +315,7 @@ function Capture() {
                     </div>
                     <div className='text-center pb-6'>
                         <h3 className='pb-4'>Not sure what to capture! Go to the interview room and record answers to questions about yourself and your life.</h3>
-                        <Link to={`/interview-room`} className='p-3 bg-blue-700 text-white rounded-lg uppercase  hover:opacity-95 disabled:80'>Interview Room</Link>
+                        <Link to={`/interview-room`} className='p-3 bg-blue-700 text-white rounded-lg uppercase  hover:opacity-85 disabled:80'>Interview Room</Link>
                     </div>
                 </div>
 
@@ -366,7 +366,7 @@ function Capture() {
                                     ))
                                 }
 
-                                <button disabled={loading || uploading} className='p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:80'>{loading ? 'Saving...' : 'Upload Moment'}</button>
+                                <button disabled={loading || uploading} className='p-3 bg-blue-700 text-white rounded-lg uppercase hover:opacity-85 disabled:80'>{loading ? 'Saving...' : 'Upload Moment'}</button>
                                 {error && <p className="text-red-700 text-sm">{error}</p>}
                             </div>
                         </form>
