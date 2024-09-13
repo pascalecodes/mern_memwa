@@ -141,7 +141,9 @@ export default function Profile() {
 
   return (
     <div className="p-3 max-w-lg mx-auto">
-      <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1>
+      <img className="mx-auto " src="/img/logo.svg"  alt="Memwa" width="sm-80" height="sm-80"  />
+      <h1 className='text-blue-700 font-bold text-2xl lg:text-4xl mx-auto text-center'>Profile</h1> 
+      {/* <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1> */}
       
       <form onSubmit={handleSubmit} className="flex flex-col gap-4"> 
         <input onChange={(e)=> setFile(e.target.files[0])} type='file' ref={fileRef} hidden accept='image/*'/> 
