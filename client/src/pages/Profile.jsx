@@ -141,7 +141,6 @@ export default function Profile() {
 
   return (
     <div className="p-3 max-w-lg mx-auto">
-      <img className="mx-auto " src="/img/logo.svg"  alt="Memwa" width="sm-80" height="sm-80"  />
       <h1 className='text-blue-700 font-bold text-2xl lg:text-4xl mx-auto text-center'>Profile</h1> 
       {/* <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1> */}
       
@@ -186,7 +185,7 @@ export default function Profile() {
       
       {userPosts && userPosts.length > 0 && (
      <div className="flex flex-col gap-4">
-      <h1 className="text-center text-2xl font-semibold">Your Posts</h1>
+      <h1 className="text-blue-700 text-center text-2xl font-semibold">Your Posts</h1>
        {userPosts.map((post) => (
       <div key ={post._id} className="border rounded-lg p-3 flex justify-between items-center gap-4">
         <Link to={`/post/${post._id}`}> 
