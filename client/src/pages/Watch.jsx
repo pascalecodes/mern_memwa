@@ -122,6 +122,7 @@ export default function Watch() {
   const [posts, setPosts] = useState([]);
   const [users, setUsers] = useState([]);
   const [src, setSrc] = useState(''); // State for src
+  //const { currentVideo } = useSelector((state) => state.video);
  
   // const { currentUser } = useSelector((state) => state.user);
   // const { currentVideo } = useSelector((state) => state.video);
