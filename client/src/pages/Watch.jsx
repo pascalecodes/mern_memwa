@@ -123,6 +123,7 @@ export default function Watch() {
   const [users, setUsers] = useState([]);
   const [src, setSrc] = useState(''); // State for src
   //const { currentVideo } = useSelector((state) => state.video);
+  const { currentVideo } = useState('');
  
   // const { currentUser } = useSelector((state) => state.user);
   // const { currentVideo } = useSelector((state) => state.video);
