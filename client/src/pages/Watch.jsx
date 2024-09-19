@@ -123,7 +123,7 @@ export default function Watch() {
   const [users, setUsers] = useState([]);
   const [src, setSrc] = useState(''); // State for src
   //const { currentVideo } = useSelector((state) => state.video);
-  const { currentVideo } = useState('');
+  const [currentVideo, setVideo ] = useState('');
  
   // const { currentUser } = useSelector((state) => state.user);
   // const { currentVideo } = useSelector((state) => state.video);
@@ -142,6 +142,7 @@ export default function Watch() {
         const response =  await fetch(`/api/user/${userId}`);
         const userData = await response.json();
         const author = userData.username
+        setVideo(mediaUrls) // get video
         setUsers(author);
         //console.log(author)
       } catch (error) {
