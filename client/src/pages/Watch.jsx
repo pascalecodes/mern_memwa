@@ -142,7 +142,7 @@ export default function Watch() {
         const response =  await fetch(`/api/user/${userId}`);
         const userData = await response.json();
         const author = userData.username
-        setVideo(mediaUrls) // get video
+        //setVideo(mediaUrls) // get video
         setUsers(author);
         //console.log(author)
       } catch (error) {
