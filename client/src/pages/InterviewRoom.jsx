@@ -139,15 +139,9 @@ export default function InterviewRoom() {
               />
               </div>
             </div>
-            {/* <p>{questionId}</p> */}
             
             </div>
-            
-            {/* <div>
-      <span className="text-info">{currentQuestionIndex + 1} of {questions.length} questions</span>
-      <h5 id="question-text">{questions[currentQuestionIndex]?.name}</h5>
-      <button onClick={nextQuestion}>Next Question</button>
-    </div> */}
+
     </Container>
   )
 }
