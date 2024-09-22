@@ -366,7 +366,7 @@ function Capture() {
                                     ))
                                 }
 
-                                <button disabled={loading || uploading} className='p-3 bg-blue-700 text-white rounded-lg uppercase hover:opacity-85 disabled:80'>{loading ? 'Saving...' : 'Upload Moment'}</button>
+                                <button disabled={loading || uploading} className='p-3 bg-green-700 text-white rounded-lg uppercase hover:opacity-85 disabled:80'>{loading ? 'Saving...' : 'Upload Moment'}</button>
                                 {error && <p className="text-red-700 text-sm">{error}</p>}
                             </div>
                         </form>
