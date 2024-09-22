@@ -83,7 +83,6 @@ export default function InterviewRoom() {
     
         // const translatedText = await translateText(questionText, selectedLanguage);
        
-        
         // Create a SpeechSynthesisUtterance object
         const utterance = new SpeechSynthesisUtterance();
         utterance.text = translatedText;
