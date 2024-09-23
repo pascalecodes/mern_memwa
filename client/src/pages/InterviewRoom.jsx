@@ -87,9 +87,9 @@ export default function InterviewRoom() {
         const utterance = new SpeechSynthesisUtterance();
         utterance.text = translatedText;
         utterance.lang = targetLanguage;
-        speechSynthesis.rate = 0.5
-        speechSynthesis.pitch = 1.3; // slightly higher pitch
-    
+        speechSynthesis.rate = 0.25
+        speechSynthesis.pitch = 1; // slightly higher pitch
+        console.log(targetLanguage)
         // Speak the question using the Web Speech API
         speechSynthesis.speak(utterance);
         //document.querySelector('#translated').innerHTML = `<h5 id="translated-text" >${translatedText}</h5>`;
