@@ -72,27 +72,20 @@ export default function InterviewRoom() {
         setCurrentQuestionIndex(randomQuestionIndex); // Update the currentQuestionIndex with the randomQuestionIndex
         
         setQuestionId(question.id)
-        //console.log(question.id)
+
 
       };
 
       async function readQuestion() {
-        // Get the question text
-        // let questionText = document.getElementById("question-text").textContent;
-        // const selectedLanguage = document.getElementById("language-select").value;
-    
-        // const translatedText = await translateText(questionText, selectedLanguage);
-       
         // Create a SpeechSynthesisUtterance object
         const utterance = new SpeechSynthesisUtterance();
         utterance.text = translatedText;
         utterance.lang = targetLanguage;
         speechSynthesis.rate = 0.25
         speechSynthesis.pitch = 1; // slightly higher pitch
-        console.log(targetLanguage)
+    
         // Speak the question using the Web Speech API
         speechSynthesis.speak(utterance);
-        //document.querySelector('#translated').innerHTML = `<h5 id="translated-text" >${translatedText}</h5>`;
     }
 
 
@@ -121,7 +114,7 @@ export default function InterviewRoom() {
                     <option value="fr-FR">French (France)</option>
                     <option value="ht-HT">Haitian Creole (Haiti)</option>
                   </select>
-                {/* <p className='pt-4'>Translated Question (English):</p> */}
+            
                 <h5 className='text-xl text-blue-700' id="question-text">{translatedText}</h5>
               
                 <button 
