@@ -56,6 +56,7 @@ const Info = styled.div`
 const Card = ({type}) => {
   const [posts, setPosts] = useState([]);
   const [src, setSrc] = useState(''); // State for src
+  const [videoId, setVideoId] = useState('')
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -77,7 +78,8 @@ const Card = ({type}) => {
     //const video = posts[i].mediaUrls[0]
     const video = posts[i].mediaUrls[0]
     setSrc(video); // Update src to video URL from the card
-    console.log(video)
+    setVideoId(posts[i]._id)
+    console.log(video, videoId)
     //return video
     //console.log(`play video: ${video}`)
   }

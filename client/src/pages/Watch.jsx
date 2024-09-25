@@ -177,8 +177,9 @@ let { mediaUrls, title , caption, tags, createdAt, userRef, user } = posts[0];
 
 const handleCardClick = (i) => {
   const video = posts[0].mediaUrls[0] // this is hardcoded I want to replace the hard coding with dynamic when the card is clicked
+  const videoId = posts[0]._id
   setSrc(video); // Update src to video URL from the card
-  console.log('this', video)
+  console.log('this', videoId)
   //return src
 };
 
