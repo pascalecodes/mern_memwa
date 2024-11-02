@@ -78,8 +78,8 @@ const Card = ({type}) => {
     //const video = posts[i].mediaUrls[0]
     const video = posts[i].mediaUrls[0]
     setSrc(video); // Update src to video URL from the card
-    setVideoId(posts[i]._id)
-    console.log(video, videoId)
+    // setVideoId(posts[i]._id)
+    // console.log(video, vide)
     //return video
     //console.log(`play video: ${video}`)
   }
