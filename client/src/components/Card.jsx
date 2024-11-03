@@ -1,6 +1,8 @@
+import axios from "axios";
 import {useEffect, useState} from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
+import {format} from 'timeago.js';
 
 const Container = styled.div`
   width: ${(props) => props.type !== "sm" && "360px"};
@@ -53,81 +55,84 @@ const Info = styled.div`
 
 
 
-const Card = ({type}) => {
-  const [posts, setPosts] = useState([]);
-  const [src, setSrc] = useState(''); // State for src
-  const [videoId, setVideoId] = useState('')
+const Card = ({type, video}) => {
+  const [post, setPost] = useState([]);
+  // const [src, setSrc] = useState(''); // State for src
+  // const [videoId, setVideoId] = useState('')
 
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchPost = async () => {
       try {
-        const res = await fetch(`/api/post/get?order=desc`);
-        const data = await res.json();
+        // const res = await fetch(`/api/post/get?order=desc`);
+        // const data = await res.json();
+        const res = await axios.get(`/api/post/get/661745e1e16363dc825f818b`);
         //console.log(data)
-        setPosts(data);
+        //setPost(data);
+        setPost(res.data);
         //console.log(posts)
       } catch (error) {
         console.log(error);
       }
     }
-    fetchPosts();
-  }, [posts]);
+    fetchPost();
+  }, [post._id]);
 
-  const showVid = async (i) => {
-    //const video= "this is placeholder"
-    //const video = posts[i].mediaUrls[0]
-    const video = posts[i].mediaUrls[0]
-    setSrc(video); // Update src to video URL from the card
-    // setVideoId(posts[i]._id)
-    // console.log(video, vide)
-    //return video
-    //console.log(`play video: ${video}`)
-  }
+  // const showVid = async (i) => {
+  //   //const video= "this is placeholder"
+  //   //const video = posts[i].mediaUrls[0]
+  //   const video = posts[i].mediaUrls[0]
+  //   setSrc(video); // Update src to video URL from the card
+  //   // setVideoId(posts[i]._id)
+  //   // console.log(video, vide)
+  //   //return video
+  //   //console.log(`play video: ${video}`)
+  // }
 
   //const videoUrl= video
   // const { currentVideo, relatedVideos } = posts;
   // console.log(currentVideo)
-  if (posts.length === 0) {
-    return <div>Loading...</div>;
-  }
+  // if (post.length === 0) {
+  //   return <div>Loading...</div>;
+  // }
 
-  const calculateDaysSinceCreation = (createdAt) => {
-    const postDate = new Date(createdAt);
-    const currentDate = new Date();
-    const timeDiff = Math.abs(currentDate.getTime() - postDate.getTime());
-    const daysSinceCreation = Math.ceil(timeDiff / (1000 * 3600 * 24));
-    return daysSinceCreation;
-  };
-
+  // const calculateDaysSinceCreation = (createdAt) => {
+  //   const postDate = new Date(createdAt);
+  //   const currentDate = new Date();
+  //   const timeDiff = Math.abs(currentDate.getTime() - postDate.getTime());
+  //   const daysSinceCreation = Math.ceil(timeDiff / (1000 * 3600 * 24));
+  //   return daysSinceCreation;
+  // };
   // const { mediaUrls, title } = posts[1];
 
   return (
-    //<Link to="/video/test" style={{textDecoration:"none"}}> 
-    <>
-      {posts.map((post, index) => (
-        <Link key={index} to={post.mediaUrls} style={{ textDecoration: 'none' }}>
-     {/* <Link to={mediaUrls} style={{textDecoration:"none"}}>  */}
+    //<Link to=`/post/${post._id}` style={{textDecoration:"none"}}> 
+    // <>
+    //   {posts.map((post, index) => (
+    //     <Link key={index} to={post.mediaUrls} style={{ textDecoration: 'none' }}>
+    //  {/* <Link to={mediaUrls} style={{textDecoration:"none"}}>  */}
+
+    <Link to={`/post/${post._id}`} style={{textDecoration:"none"}}> 
     <Container type={type}>
        <Image
           type={type}
-          src="https://content.wepik.com/statics/9411920/preview-page0.jpg"
+          src={"https://content.wepik.com/statics/9411920/preview-page0.jpg"}
         />
       
       <Details type={type}>
         <ChannelImage 
         type={type}
-        src="https://static-00.iconduck.com/assets.00/profile-default-icon-2048x2045-u3j7s5nj.png"/>
+        src={"https://static-00.iconduck.com/assets.00/profile-default-icon-2048x2045-u3j7s5nj.png"}/>
         <Texts>
-          <Title onClick={() => showVid(index)}>{post.title}</Title>
+          <Title>{post.title}</Title>
           <ChannelName>{post.caption}</ChannelName>
           <p className='text-blue-700'>{post.tags}</p>
-          <Info>660,908 views • {calculateDaysSinceCreation(post.createdAt)} days ago</Info>
+          <Info>660,908 views • {format(post.createdAt)}</Info>
         </Texts>
       </Details>
     </Container>
     </Link>
-  ))}
-    </>
+  // ))}
+  //   </>
   );
 };
 export default Card
