@@ -62,7 +62,16 @@ export const getPost = async (req, res, next) => {
   }
 };
 
-export const getPosts = async (req, res, next) => {
+export const getAllPosts = async (req, res, next) => {
+  try {
+    const posts = await Post.find();
+    res.status(200).json(posts);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const findPosts = async (req, res, next) => {
   try {
     const limit = parseInt(req.query.limit) || 9;
     const startIndex = parseInt(req.query.startIndex) || 0;
