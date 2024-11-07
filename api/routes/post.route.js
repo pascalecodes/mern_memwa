@@ -9,6 +9,6 @@ router.delete('/delete/:id', verifyToken, deletePost);
 router.post('/update/:id', verifyToken, updatePost);
 router.get('/get/:id', getPost);
 router.get('/get', findPosts);
-router.get('/get/posts', getAllPosts)
+router.get('/posts', getAllPosts)
 
 export default router
