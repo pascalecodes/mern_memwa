@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 import {format} from 'timeago.js';
 
+
 const Container = styled.div`
   width: ${(props) => props.type !== "sm" && "360px"};
   margin-bottom: ${(props) => (props.type === "sm" ? "10px" : "45px")};
@@ -55,27 +56,31 @@ const Info = styled.div`
 
 
 
-const Card = ({type, video}) => {
-  const [post, setPost] = useState([]);
+const Card = ({type}) => {
+  const [posts, setPosts] = useState([]);
   // const [src, setSrc] = useState(''); // State for src
   // const [videoId, setVideoId] = useState('')
 
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        // const res = await fetch(`/api/post/get?order=desc`);
+        //const res = await fetch(`/api/post/get?order=desc`);
         // const data = await res.json();
-        const res = await axios.get(`/api/post/get/661745e1e16363dc825f818b`);
+        const res = await axios.get(`/api/posts`);
+        //const res = await fetch(`/api/post/get?order=desc&limit=1`);
+        //const res = await fetch(`/api/posts`);
+        //const data = await res.json();
         //console.log(data)
+        setPosts(res.data);
+        console.log(res.data)
         //setPost(data);
-        setPost(res.data);
         //console.log(posts)
       } catch (error) {
         console.log(error);
       }
     }
     fetchPost();
-  }, [post._id]);
+  }, []);
 
   // const showVid = async (i) => {
   //   //const video= "this is placeholder"
@@ -106,12 +111,13 @@ const Card = ({type, video}) => {
 
   return (
     //<Link to=`/post/${post._id}` style={{textDecoration:"none"}}> 
-    // <>
-    //   {posts.map((post, index) => (
-    //     <Link key={index} to={post.mediaUrls} style={{ textDecoration: 'none' }}>
-    //  {/* <Link to={mediaUrls} style={{textDecoration:"none"}}>  */}
+    //<Link to={`/post/${post._id}`} style={{textDecoration:"none"}}> 
+    <>
+      {posts.map((post, index) => (
+        <Link key={index} to={post.mediaUrls} style={{ textDecoration: 'none' }}>
+     {/* <Link to={mediaUrls} style={{textDecoration:"none"}}>  */}
 
-    <Link to={`/post/${post._id}`} style={{textDecoration:"none"}}> 
+    
     <Container type={type}>
        <Image
           type={type}
@@ -131,8 +137,8 @@ const Card = ({type, video}) => {
       </Details>
     </Container>
     </Link>
-  // ))}
-  //   </>
+  ))}
+    </>
   );
 };
 export default Card

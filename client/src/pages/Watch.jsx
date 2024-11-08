@@ -135,7 +135,8 @@ export default function Watch() {
     const fetchPosts = async () => {
       try {
         //const res = await fetch(`/api/post/get?order=desc&limit=4`);
-        const res = await fetch(`/api/post/get?order=desc&limit=1`);
+        const res = await fetch(`/api/post/get?order=desc&limit=4`);
+        //const res = await axios.get(`/api/posts?order=desc`);
         const data = await res.json();
         setPosts(data);
         const userId= data[0].userRef

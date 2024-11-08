@@ -8,6 +8,8 @@ import postRouter from './routes/post.route.js';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 import Subscriber from './models/subscriber.model.js';
+import cors from 'cors'
+
 
 
 dotenv.config()
@@ -24,16 +26,20 @@ const app = express();
 
 app.use(express.json());
 
+app.use(cors());
+
 app.use(cookieParser());
 
 app.listen(7100, ()=> {
     console.log('Server is running on port 7100')
 })
 
-
+app.use('/api', postRouter);
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/post', postRouter);
+app.use('/api/posts', postRouter);
+
 
 app.post('/api/subscribe', async (req, res) => {
   try {
