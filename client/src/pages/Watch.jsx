@@ -6,7 +6,10 @@ import ThumbDownOffAltOutlinedIcon from "@mui/icons-material/ThumbDownOffAltOutl
 import ReplyOutlinedIcon from "@mui/icons-material/ReplyOutlined";
 import AddTaskOutlinedIcon from "@mui/icons-material/AddTaskOutlined";
 import Card from "../components/Card";
-//import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { format } from "timeago.js";
 // import Comments from '../components/Comments';
 import ReactPlayer from 'react-player';
 
@@ -123,21 +126,33 @@ export default function Watch() {
   const [users, setUsers] = useState([]);
   const [src, setSrc] = useState(''); // State for src
   //const { currentVideo } = useSelector((state) => state.video);
-  const [currentVideo, setVideo ] = useState('');
+  //const [currentVideo, setVideo ] = useState('');
  
+  // *******new adds
   // const { currentUser } = useSelector((state) => state.user);
   // const { currentVideo } = useSelector((state) => state.video);
   // const dispatch = useDispatch();
 
   // const path = useLocation().pathname.split("/")[2];
+  // console.log(path, "this is current", currentVideo)
+// -----------------
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         //const res = await fetch(`/api/post/get?order=desc&limit=4`);
-        const res = await fetch(`/api/post/get?order=desc&limit=4`);
         //const res = await axios.get(`/api/posts?order=desc`);
+        const res = await fetch(`/api/post/get?order=desc&limit=4`);
         const data = await res.json();
+
+        // *********NEW
+
+        // const videoRes = await axios .get(`/api/post/find/${path}`)
+        // //const channelRes = await axios .get(`/api/users/find/${videoRes.data.userId}`)
+        // //setChannel(channelRes.data)
+        // dispatch(fetchSuccess(videoRes.data))
+        // ------------
+
         setPosts(data);
         const userId= data[0].userRef
         const response =  await fetch(`/api/user/${userId}`);
