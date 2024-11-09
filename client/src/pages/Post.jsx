@@ -1,16 +1,37 @@
 import { useEffect, useState } from 'react';
+import styled from 'styled-components'
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from 'swiper';
-import { useSelector } from 'react-redux';
+//import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import 'swiper/css/bundle';
 import {FaShare,} from 'react-icons/fa';
 import Contact from '../components/Contact';
 import ReactPlayer from 'react-player';
 
-export default function Post() {
+const Container = styled.div`
+display: flex;
+gap: 24px;
+padding: 50px 20px;
+`;
+
+const Content = styled.div`
+flex: 5;
+`;
+const VideoWrapper = styled.div``;
+
+const VideoFrame = styled.video`
+  max-height: 720px;
+  width: 100%;
+  object-fit: cover;
+`;
+
+
+const Post = () => {
     SwiperCore.use([Navigation]);
     const [post, setPost] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -21,8 +42,17 @@ export default function Post() {
     const {currentUser} = useSelector((state) => state.user); 
     const [author, setAuthor] = useState(null);
     const [users, setUsers] = useState([]);
-  
     
+    // *****add user videos
+   
+  //   const { currentVideo } = useSelector((state) => state.video);
+  //   const dispatch = useDispatch();
+  
+  //   const path = useLocation().pathname.split("/")[2]  
+  //   const [user, setUser] = useState({})
+  // // console.log(path, "this is current", currentVideo)
+  
+  //__________________--
 
     useEffect (() => {
         const fetchPost = async () => {
@@ -30,6 +60,10 @@ export default function Post() {
                 setLoading(true);
                 const res = await fetch(`/api/post/get/${params.postId}`);
                 const data = await res.json();
+              // // ****** add user videos
+              //   const videoRes = await axios .get(`/api/posts/get/${path}`)
+              //   const userRes = await axios .get(`/api/users/get/${videoRes.data.userId}`)
+              // //-------------------
                 setAuthor(true);
                 //console.log(data)
               //  console.log(data.mediaUrls[0].includes('.webm' || 'video/mp4')? 'video/webm' : 'image/png')
@@ -41,6 +75,11 @@ export default function Post() {
             setPost(data);
             setLoading(false);
             setError(false);
+            // ********add 
+            // setUser(userRes.data)
+            // dispatch(fetchSuccess(videoRes.data))
+            // //---------
+
             } catch (error) {
                setError(true); 
                setLoading(false);
@@ -79,7 +118,7 @@ export default function Post() {
 
   return (
     
-    <main>
+    <Container>
         {loading && <p className='text-center my-7 text-2xl'>Loading...</p>}
         
         {error && <p className='text-red-700 text-center  my-7 text-2xl'>Something went wrong
@@ -219,6 +258,7 @@ export default function Post() {
         
         </div>
         )}
-    </main>
+    </Container>
   );
-}
+};
+export default Post
