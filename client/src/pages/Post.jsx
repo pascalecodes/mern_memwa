@@ -9,9 +9,13 @@ import SwiperCore from 'swiper';
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import 'swiper/css/bundle';
+import Card from "../components/Card";
+import axios from "axios";
 import {FaShare,} from 'react-icons/fa';
+//import { format } from "timeago.js";
 import Contact from '../components/Contact';
 import ReactPlayer from 'react-player';
+import { fetchSuccess, like, dislike } from '../redux/videoSlice';
 
 const Container = styled.div`
 display: flex;
@@ -30,6 +34,89 @@ const VideoFrame = styled.video`
   object-fit: cover;
 `;
 
+const Title = styled.h1`
+font-size: 18px;
+font-weight: 400;
+margin-top: 20px;
+margin-bottom: 10px;
+color: ${({ theme }) => theme.text};
+`;
+
+const Details = styled.div`
+display: flex;
+align-items: center;
+justify-content: space-between;
+`;
+
+const Info = styled.span`
+  color: ${({ theme }) => theme.textSoft};
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  gap: 20px;
+  color: ${({ theme }) => theme.text};
+`;
+
+const Button = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+`;
+
+const Hr = styled.hr`
+  margin: 15px 0px;
+  border: 0.5px solid ${({ theme }) => theme.soft};
+`;
+
+const Channel = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const ChannelInfo = styled.div`
+  display: flex;
+  gap: 20px;
+`;
+
+const Image = styled.img`
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+`;
+
+const ChannelDetail = styled.div`
+  display: flex;
+  flex-direction: column;
+  color: ${({ theme }) => theme.text};
+`;
+
+const ChannelName = styled.span`
+  font-weight: 500;
+`;
+
+const ChannelCounter = styled.span`
+  margin-top: 5px;
+  margin-bottom: 20px;
+  color: ${({ theme }) => theme.textSoft};
+  font-size: 12px;
+`;
+
+const Description = styled.p`
+  font-size: 14px;
+`;
+
+const Subscribe = styled.button`
+  background-color: #cc1a00;
+  font-weight: 500;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  height: max-content;
+  padding: 10px 20px;
+  cursor: pointer;
+`;
 
 const Post = () => {
     SwiperCore.use([Navigation]);
@@ -39,18 +126,18 @@ const Post = () => {
     const [copied, setCopied] = useState(false);
     const [contact, setContact] = useState(false);
     const params = useParams()
-    const {currentUser} = useSelector((state) => state.user); 
+    
     const [author, setAuthor] = useState(null);
     const [users, setUsers] = useState([]);
     
     // *****add user videos
-   
-  //   const { currentVideo } = useSelector((state) => state.video);
-  //   const dispatch = useDispatch();
+    const {currentUser} = useSelector((state) => state.user); 
+    const { currentVideo } = useSelector((state) => state.video);
+    const dispatch = useDispatch();
   
-  //   const path = useLocation().pathname.split("/")[2]  
-  //   const [user, setUser] = useState({})
-  // // console.log(path, "this is current", currentVideo)
+    const path = useLocation().pathname.split("/")[2]  
+    const [channel, setChannel] = useState({})
+  // console.log(path, "this is current", currentVideo)
   
   //__________________--
 
@@ -60,10 +147,11 @@ const Post = () => {
                 setLoading(true);
                 const res = await fetch(`/api/post/get/${params.postId}`);
                 const data = await res.json();
-              // // ****** add user videos
-              //   const videoRes = await axios .get(`/api/posts/get/${path}`)
-              //   const userRes = await axios .get(`/api/users/get/${videoRes.data.userId}`)
-              // //-------------------
+              // ****** add user videos
+              console.log(path, videoRes.data.userId)
+                const videoRes = await axios .get(`/api/post/get/${path}`)
+                const channelRes = await axios .get(`/api/users/get/${videoRes.data.userId}`)
+              //-------------------
                 setAuthor(true);
                 //console.log(data)
               //  console.log(data.mediaUrls[0].includes('.webm' || 'video/mp4')? 'video/webm' : 'image/png')
@@ -76,9 +164,9 @@ const Post = () => {
             setLoading(false);
             setError(false);
             // ********add 
-            // setUser(userRes.data)
-            // dispatch(fetchSuccess(videoRes.data))
-            // //---------
+            setChannel(channelRes.data)
+            dispatch(fetchSuccess(videoRes.data))
+            //---------
 
             } catch (error) {
                setError(true); 
@@ -86,7 +174,7 @@ const Post = () => {
             }
         };
         fetchPost();
-    }, [params.postId]);
+    }, [params.postId, path, dispatch]);
 
     const formatCreatedDate = (createdAt) => {
       const postDate = new Date(createdAt);
