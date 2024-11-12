@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components'
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -148,9 +148,10 @@ const Post = () => {
                 const res = await fetch(`/api/post/get/${params.postId}`);
                 const data = await res.json();
               // ****** add user videos
-              console.log(path, videoRes.data.userId)
+              console.log(videoRes.data)
                 const videoRes = await axios .get(`/api/post/get/${path}`)
-                const channelRes = await axios .get(`/api/users/get/${videoRes.data.userId}`)
+                const channelRes = await axios .get(`/api/user/posts/${videoRes.data.userId}`)
+                console.log(videoRes)
               //-------------------
                 setAuthor(true);
                 //console.log(data)
