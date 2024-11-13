@@ -137,7 +137,7 @@ const Post = () => {
   
     const path = useLocation().pathname.split("/")[2]  
     const [channel, setChannel] = useState({})
-  console.log(path, "this is current", currentVideo)
+    console.log(path, "this is current")
   
   //__________________--
 
@@ -148,8 +148,12 @@ const Post = () => {
                 const res = await fetch(`/api/post/get/${params.postId}`);
                 const data = await res.json();
               // ****** add user videos
-                const videoRes = await axios.get(`/api/post/get/${path}`)
+                // const videoRes = await axios.get(`/api/post/get/${path}`)
+                // const channelRes = await axios.get(`/api/user/posts/${videoRes.data.userId}`)
+
+                const videoRes = data
                 const channelRes = await axios.get(`/api/user/posts/${videoRes.data.userId}`)
+
               //-------------------
                 setAuthor(true);
                 //console.log(data)
@@ -159,6 +163,7 @@ const Post = () => {
                     setLoading(false);
                     return;
             }
+            console.log("test", res, videoRes)
             setPost(data);
             setLoading(false);
             setError(false);
