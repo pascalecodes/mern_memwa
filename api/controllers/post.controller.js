@@ -107,3 +107,17 @@ export const getByTag = async (req, res, next) => {
     next(err);
   }
 };
+
+export const getPostsByUserRef = async (req, res, next) => {
+  const { userRef } = req.params; // Extract userRef from request parameters
+  try {
+    const posts = await Post.find({ userRef }); // Query posts by userRef
+    if (!posts.length) {
+      return res.status(404).json({ message: 'No posts found for this user.' });
+    }
+    res.status(200).json(posts); // Return the found posts
+  } catch (error) {
+    console.error('Error fetching posts by userRef:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
