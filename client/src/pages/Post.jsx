@@ -15,7 +15,8 @@ import {FaShare,} from 'react-icons/fa';
 //import { format } from "timeago.js";
 import Contact from '../components/Contact';
 import ReactPlayer from 'react-player';
-import { fetchSuccess, like, dislike } from '../redux/videoSlice';
+import { setCurrentVideo,fetchSuccess, like, dislike } from '../redux/videoSlice';
+import Recommendation from '../components/Recommendation';
 
 const Container = styled.div`
 display: flex;
@@ -137,7 +138,8 @@ const Post = () => {
   
     const path = useLocation().pathname.split("/")[2]  
     const [channel, setChannel] = useState({})
-    console.log(path, "this is current")
+    //console.log(currentUser, "this is current")
+  
   
   //__________________--
 
@@ -150,10 +152,11 @@ const Post = () => {
               // ****** add user videos
                 // const videoRes = await axios.get(`/api/post/get/${path}`)
                 // const channelRes = await axios.get(`/api/user/posts/${videoRes.data.userId}`)
-
-                const videoRes = data
-                const channelRes = await axios.get(`/api/user/posts/${videoRes.data.userId}`)
-
+             //console.log(path)
+                const videoRes = await axios.get(`/api/post/get/${path}`)
+                //const channelRes = await axios.get(`/api/user/posts/${videoRes.data._id}`)
+                const channelRes = await axios.get(`/api/post/user/${videoRes.data.userRef}`)
+                console.log("video", channelRes)
               //-------------------
                 setAuthor(true);
                 //console.log(data)
@@ -163,12 +166,13 @@ const Post = () => {
                     setLoading(false);
                     return;
             }
-            console.log("test", res, videoRes)
+            //console.log("test", res, videoRes)
             setPost(data);
             setLoading(false);
             setError(false);
             // ********add 
             setChannel(channelRes.data)
+            dispatch(setCurrentVideo(videoRes.data))
             dispatch(fetchSuccess(videoRes.data))
             //---------
 
@@ -213,11 +217,11 @@ const Post = () => {
     <Container>
         {loading && <p className='text-center my-7 text-2xl'>Loading...</p>}
         
-        {error && <p className='text-red-700 text-center  my-7 text-2xl'>Something went wrong
+        {error && <div className='text-red-700 text-center  my-7 text-2xl'>Something went wrong
         <Link to={`/`} className="text-slate-700 p-4 text-sm font-semibold uppercase cursor-pointer hover:opacity-75" >
         <p>Home</p>
         </Link>
-        </p> }
+        </div> }
         
         {post && !loading && !error && ( 
         <div>
