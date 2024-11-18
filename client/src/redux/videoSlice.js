@@ -10,6 +10,9 @@ export const videoSlice = createSlice({
   name: "video",
   initialState,
   reducers: {
+    setCurrentVideo(state, action) {
+        state.currentVideo = action.payload; // Set the current video
+    },
     fetchStart: (state) => {
       state.loading = true;
     },
@@ -46,7 +49,7 @@ export const videoSlice = createSlice({
   },
 });
 
-export const { fetchStart, fetchSuccess, fetchFailure, like, dislike } =
+export const {setCurrentVideo, fetchStart, fetchSuccess, fetchFailure, like, dislike } =
   videoSlice.actions;
 
 export default videoSlice.reducer;
