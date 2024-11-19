@@ -25,7 +25,7 @@ padding: 50px 20px;
 `;
 
 const Content = styled.div`
-flex: 5;
+flex: 8;
 `;
 const VideoWrapper = styled.div``;
 
@@ -156,7 +156,7 @@ const Post = () => {
                 const videoRes = await axios.get(`/api/post/get/${path}`)
                 //const channelRes = await axios.get(`/api/user/posts/${videoRes.data._id}`)
                 const channelRes = await axios.get(`/api/post/user/${videoRes.data.userRef}`)
-                console.log("video", channelRes)
+                console.log("video", channelRes.data)
               //-------------------
                 setAuthor(true);
                 //console.log(data)
@@ -354,6 +354,7 @@ const Post = () => {
         
         </div>
         )}
+        <Recommendation tags={currentVideo.tags} />
     </Container>
   );
 };
