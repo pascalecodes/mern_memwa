@@ -16,7 +16,7 @@ import {FaShare,} from 'react-icons/fa';
 import Contact from '../components/Contact';
 import ReactPlayer from 'react-player';
 import { setCurrentVideo,fetchSuccess, like, dislike } from '../redux/videoSlice';
-import Recommendation from '../components/Recommendation';
+//import Recommendation from '../components/Recommendation';
 
 const Container = styled.div`
 display: flex;
@@ -354,7 +354,15 @@ const Post = () => {
         
         </div>
         )}
-        <Recommendation tags={currentVideo.tags} />
+       <div>
+      
+      {channel.map((video) => (
+        <Card type="sm" key={video._id} video={video} />
+      ))}
+    
+       </div>
+        
+        
     </Container>
   );
 };
