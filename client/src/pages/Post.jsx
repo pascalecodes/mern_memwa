@@ -175,7 +175,6 @@ const Post = () => {
             dispatch(setCurrentVideo(videoRes.data))
             dispatch(fetchSuccess(videoRes.data))
             //---------
-
             } catch (error) {
                setError(true); 
                setLoading(false);
@@ -354,14 +353,13 @@ const Post = () => {
         
         </div>
         )}
-       <div>
-      
-      {channel.map((video) => (
-        <Card type="sm" key={video._id} video={video} />
-      ))}
-    
-       </div>
-        
+        <div>
+        {/* {channel._id} */}
+        {/* {channel.map(post)} */}
+        {channel.length > 0 ? channel.map((video) => (
+        <Card type="sm" key={video._id} video={video} /> 
+      )) : "no post"}
+        </div>
         
     </Container>
   );
