@@ -12,6 +12,7 @@ import { useLocation } from "react-router-dom";
 import { format } from "timeago.js";
 // import Comments from '../components/Comments';
 import ReactPlayer from 'react-player';
+//import Recommendation from "../components/Recommendation";
 
 
 const Container = styled.div`
@@ -297,6 +298,7 @@ const handleCardClick = (i) => {
         <Card type="sm"/> */}
 
       </Recommendation>
+      {/* <Recommendation tags={currentVideo.tags} /> */}
     </Container>
     </div>
   )  
