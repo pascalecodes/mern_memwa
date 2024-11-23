@@ -16,8 +16,8 @@ import {FaShare,} from 'react-icons/fa';
 import Contact from '../components/Contact';
 import ReactPlayer from 'react-player';
 import { setCurrentVideo,fetchSuccess, like, dislike } from '../redux/videoSlice';
-//import Recommendation from '../components/Recommendation';
-import UserPosts from '../components/UserPosts';
+import Recommendation from '../components/Recommendation';
+//import UserPosts from '../components/UserPosts';
 
 const Container = styled.div`
 display: flex;
@@ -369,6 +369,7 @@ const Post = () => {
       ))}
     </div> */}
     {/* <UserPosts channel={channel} /> */}
+    <Recommendation tags={currentVideo.tags} />
     </Container>
   );
 };
