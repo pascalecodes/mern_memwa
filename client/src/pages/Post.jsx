@@ -17,6 +17,7 @@ import Contact from '../components/Contact';
 import ReactPlayer from 'react-player';
 import { setCurrentVideo,fetchSuccess, like, dislike } from '../redux/videoSlice';
 //import Recommendation from '../components/Recommendation';
+import UserPosts from '../components/UserPosts';
 
 const Container = styled.div`
 display: flex;
@@ -172,6 +173,7 @@ const Post = () => {
             setError(false);
             // ********add 
             setChannel(channelRes.data)
+            console.log("this", channel)
             dispatch(setCurrentVideo(videoRes.data))
             dispatch(fetchSuccess(videoRes.data))
             //---------
@@ -353,14 +355,20 @@ const Post = () => {
         
         </div>
         )}
-        <div>
+        {/* <div> */}
         {/* {channel._id} */}
         {/* {channel.map(post)} */}
-        {channel.length > 0 ? channel.map((video) => (
+        {/* {channel.length > 0 ? channel.map((video) => (
         <Card type="sm" key={video._id} video={video} /> 
       )) : "no post"}
-        </div>
+        </div> */}
         
+         {/* <div>
+      {videos.map((video) => (
+        <Card type="sm" key={video._id} video={video} />
+      ))}
+    </div> */}
+    {/* <UserPosts channel={channel} /> */}
     </Container>
   );
 };
