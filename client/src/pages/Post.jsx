@@ -369,7 +369,7 @@ const Post = () => {
       ))}
     </div> */}
     {/* <UserPosts channel={channel} /> */}
-    <Recommendation tags={currentVideo.tags} />
+    <Recommendation post={channel.post} />
     </Container>
   );
 };
