@@ -12,7 +12,8 @@ import { useLocation } from "react-router-dom";
 import { format } from "timeago.js";
 // import Comments from '../components/Comments';
 import ReactPlayer from 'react-player';
-//import Recommendation from "../components/Recommendation";
+import Recommendation from "../components/Recommendation";
+import { setCurrentVideo,fetchSuccess} from '../redux/videoSlice';
 
 
 const Container = styled.div`
@@ -65,13 +66,13 @@ const Hr = styled.hr`
   border: 0.5px solid ${({ theme }) => theme.soft};
 `;
 
-const Recommendation = styled.div`
-  flex: 2;
+// const Recommendation = styled.div`
+//   flex: 2;
 
-  height: 1000px; // Set the desired height for the recommendation section
-  overflow-y: scroll; // Enable vertical scrolling
+//   height: 1000px; // Set the desired height for the recommendation section
+//   overflow-y: scroll; // Enable vertical scrolling
 
-`;
+// `;
 const Channel = styled.div`
   display: flex;
   justify-content: space-between;
@@ -130,9 +131,9 @@ export default function Watch() {
   //const [currentVideo, setVideo ] = useState('');
  
   // *******new adds
-  // const { currentUser } = useSelector((state) => state.user);
-  // const { currentVideo } = useSelector((state) => state.video);
-  // const dispatch = useDispatch();
+  //const { currentUser } = useSelector((state) => state.user);
+  const { currentVideo } = useSelector((state) => state.video);
+  const dispatch = useDispatch();
 
   // const path = useLocation().pathname.split("/")[2];
   // console.log(path, "this is current", currentVideo)
@@ -145,6 +146,8 @@ export default function Watch() {
         //const res = await axios.get(`/api/posts?order=desc`);
         const res = await fetch(`/api/post/get?order=desc&limit=4`);
         const data = await res.json();
+        // const videoRes = await axios.get(`/api/post/get/${path}`)
+        // const channelRes = await axios.get(`/api/post/user/${videoRes.data.userRef}`)
 
         // *********NEW
 
@@ -162,6 +165,8 @@ export default function Watch() {
         //setVideo(mediaUrls) // get video
         setUsers(author);
         //console.log(author)
+        dispatch(setCurrentVideo(data[0]))
+        dispatch(fetchSuccess(data[0]))
       } catch (error) {
         console.log(error);
       }
@@ -286,9 +291,9 @@ const handleCardClick = (i) => {
         <Hr />
         {/* <Comments/> */}
       </Content>
-      <Recommendation>
+      {/* <Recommendation> */}
       
-      <Card onClick={() => handleCardClick(posts)}type="sm"/> {src}
+      {/* <Card onClick={() => handleCardClick(posts)}type="sm"/> {src} */}
         {/* <Card type="sm"/>
         <Card type="sm"/>
         <Card type="sm"/>
@@ -297,8 +302,8 @@ const handleCardClick = (i) => {
         <Card type="sm"/>
         <Card type="sm"/> */}
 
-      </Recommendation>
-      {/* <Recommendation tags={currentVideo.tags} /> */}
+      {/* </Recommendation> */}
+      <Recommendation tags={currentVideo.tags} />
     </Container>
     </div>
   )  
