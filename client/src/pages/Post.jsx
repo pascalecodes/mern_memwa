@@ -370,7 +370,7 @@ const Post = () => {
     </div> */}
     {/* <UserPosts channel={channel} /> */}
     
-    <UserPosts channel={channel} />
+    {/* <UserPosts channel={channel} /> */}
     </Container>
   );
 };
