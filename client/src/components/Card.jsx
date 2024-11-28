@@ -64,12 +64,13 @@ const Card = ({type}) => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        //const res = await fetch(`/api/post/get?order=desc`);
-        // const data = await res.json();
-        const res = await axios.get(`/api/posts`);
+        const res = await fetch(`/api/post/get?order=desc`);
+        const data = await res.json();
+        //const res = await axios.get(`/api/posts`);
         //const data = await res.json();
         //console.log(data)
-        setPosts(res.data);
+        //setPosts(res.data);
+        setPosts(data);
       } catch (error) {
         console.log(error);
       }
@@ -109,7 +110,7 @@ const Card = ({type}) => {
     //<Link to={`/post/${post._id}`} style={{textDecoration:"none"}}> 
     <>
       {posts.map((post, index) => (
-        <Link key={index} to={`/post/${post._id}`} style={{ textDecoration: 'none' }}>
+        <Link key={index} to={post.mediaUrls} style={{ textDecoration: 'none' }}>
      {/* <Link to={mediaUrls} style={{textDecoration:"none"}}>  */}
 
     
