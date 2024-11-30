@@ -157,7 +157,7 @@ const Post = () => {
                 const videoRes = await axios.get(`/api/post/get/${path}`)
                 //const channelRes = await axios.get(`/api/user/posts/${videoRes.data._id}`)
                 const channelRes = await axios.get(`/api/post/user/${videoRes.data.userRef}`)
-                console.log("video", channelRes.data)
+                //console.log("video", channelRes.data)
               //-------------------
                 setAuthor(true);
                 //console.log(data)
@@ -173,7 +173,7 @@ const Post = () => {
             setError(false);
             // ********add 
             setChannel(channelRes.data)
-            console.log("this", channel)
+            //console.log("this", channel)
             dispatch(setCurrentVideo(videoRes.data))
             dispatch(fetchSuccess(videoRes.data))
             //---------
@@ -369,7 +369,8 @@ const Post = () => {
       ))}
     </div> */}
     {/* <UserPosts channel={channel} /> */}
-    <UserPosts post={post.userRef} />
+    {/* <UserPosts post={post.userRef} /> */}
+    <Recommendation tags={currentVideo.tags} />
     
     
     </Container>
