@@ -12,7 +12,7 @@ import { useLocation } from "react-router-dom";
 import { format } from "timeago.js";
 // import Comments from '../components/Comments';
 import ReactPlayer from 'react-player';
-import Recommendation from "../components/Recommendation";
+//import Recommendation from "../components/Recommendation";
 import { setCurrentVideo,fetchSuccess} from '../redux/videoSlice';
 
 
@@ -66,13 +66,13 @@ const Hr = styled.hr`
   border: 0.5px solid ${({ theme }) => theme.soft};
 `;
 
-// const Recommendation = styled.div`
-//   flex: 2;
+const Recommendation = styled.div`
+  flex: 2;
 
-//   height: 1000px; // Set the desired height for the recommendation section
-//   overflow-y: scroll; // Enable vertical scrolling
+  height: 1000px; // Set the desired height for the recommendation section
+  overflow-y: scroll; // Enable vertical scrolling
 
-// `;
+`;
 const Channel = styled.div`
   display: flex;
   justify-content: space-between;
@@ -291,19 +291,19 @@ const handleCardClick = (i) => {
         <Hr />
         {/* <Comments/> */}
       </Content>
-      {/* <Recommendation> */}
+      <Recommendation>
       
       {/* <Card onClick={() => handleCardClick(posts)}type="sm"/> {src} */}
-        {/* <Card type="sm"/>
         <Card type="sm"/>
+        {/* <Card type="sm"/>
         <Card type="sm"/>
         <Card type="sm"/>
         <Card type="sm"/>
         <Card type="sm"/>
         <Card type="sm"/> */}
 
-      {/* </Recommendation> */}
-      <Recommendation tags={currentVideo.tags} />
+      </Recommendation>
+      {/* <Recommendation tags={currentVideo.tags} /> */}
     </Container>
     </div>
   )  

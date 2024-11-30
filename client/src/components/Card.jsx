@@ -110,7 +110,8 @@ const Card = ({type}) => {
     //<Link to={`/post/${post._id}`} style={{textDecoration:"none"}}> 
     <>
       {posts.map((post, index) => (
-        <Link key={index} to={post.mediaUrls} style={{ textDecoration: 'none' }}>
+        // <Link key={index} to={post.mediaUrls} style={{ textDecoration: 'none' }}>
+        <Link key={index} to={`/post/${post._id}`} style={{textDecoration:"none"}}> 
      {/* <Link to={mediaUrls} style={{textDecoration:"none"}}>  */}
 
     
