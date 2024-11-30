@@ -352,7 +352,7 @@ const Post = () => {
             )}
             {contact && <Contact post={post} /> }
           </div>
-        
+          
         </div>
         )}
         {/* <div> */}
@@ -369,8 +369,9 @@ const Post = () => {
       ))}
     </div> */}
     {/* <UserPosts channel={channel} /> */}
+    <UserPosts post={post.userRef} />
     
-    {/* <UserPosts channel={channel} /> */}
+    
     </Container>
   );
 };
