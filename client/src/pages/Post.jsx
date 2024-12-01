@@ -26,7 +26,7 @@ padding: 50px 20px;
 `;
 
 const Content = styled.div`
-flex: 8;
+flex: 5;
 `;
 const VideoWrapper = styled.div``;
 
@@ -214,8 +214,8 @@ const Post = () => {
   }, [post, users]);
 
   return (
-    
     <Container>
+      <Content>
         {loading && <p className='text-center my-7 text-2xl'>Loading...</p>}
         
         {error && <div className='text-red-700 text-center  my-7 text-2xl'>Something went wrong
@@ -355,6 +355,7 @@ const Post = () => {
           
         </div>
         )}
+        </Content>
         {/* <div> */}
         {/* {channel._id} */}
         {/* {channel.map(post)} */}
