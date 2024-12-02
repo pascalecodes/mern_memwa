@@ -299,11 +299,11 @@ let { mediaUrls, title , caption, tags, createdAt, userRef, user } = posts[0];
         <Hr />
         {/* <Comments/> */}
       </Content>
-      <Recommendation>
+      {/* <Recommendation> */}
       
       {/* <Card onClick={() => handleCardClick(posts)}type="sm"/> {src} */}
         {/* <Card type="sm" post={posts}/> */}
-        <Card type="sm" key={posts._id} posts={posts} />
+        {/* <Card type="sm" key={posts._id} posts={posts} /> */}
         {/* <Card type="sm"/>
         <Card type="sm"/>
         <Card type="sm"/>
@@ -311,8 +311,8 @@ let { mediaUrls, title , caption, tags, createdAt, userRef, user } = posts[0];
         <Card type="sm"/>
         <Card type="sm"/> */}
 
-      </Recommendation>
-      {/* <Recommendation tags={tags} /> */}
+      {/* </Recommendation> */}
+      <Recommendation tags={tags}/>
     </Container>
     </div>
   )  
