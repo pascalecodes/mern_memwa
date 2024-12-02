@@ -8,11 +8,11 @@ import AddTaskOutlinedIcon from "@mui/icons-material/AddTaskOutlined";
 import Card from "../components/Card";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { format } from "timeago.js";
 // import Comments from '../components/Comments';
 import ReactPlayer from 'react-player';
-//import Recommendation from "../components/Recommendation";
+import Recommendation from "../components/Recommendation";
 import { setCurrentVideo,fetchSuccess} from '../redux/videoSlice';
 
 
@@ -66,13 +66,13 @@ const Hr = styled.hr`
   border: 0.5px solid ${({ theme }) => theme.soft};
 `;
 
-const Recommendation = styled.div`
-  flex: 2;
+// const Recommendation = styled.div`
+//   flex: 2;
 
-  height: 1000px; // Set the desired height for the recommendation section
-  overflow-y: scroll; // Enable vertical scrolling
+//   height: 1000px; // Set the desired height for the recommendation section
+//   overflow-y: scroll; // Enable vertical scrolling
 
-`;
+// `;
 const Channel = styled.div`
   display: flex;
   justify-content: space-between;
@@ -129,7 +129,8 @@ export default function Watch() {
   const [src, setSrc] = useState(''); // State for src
   //const { currentVideo } = useSelector((state) => state.video);
   //const [currentVideo, setVideo ] = useState('');
- 
+  const params = useParams()
+  const path = useLocation().pathname.split("/")[2] 
   // *******new adds
   //const { currentUser } = useSelector((state) => state.user);
   const { currentVideo } = useSelector((state) => state.video);
@@ -144,10 +145,12 @@ export default function Watch() {
       try {
         //const res = await fetch(`/api/post/get?order=desc&limit=4`);
         //const res = await axios.get(`/api/posts?order=desc`);
-        const res = await fetch(`/api/post/get?order=desc&limit=4`);
+        //const res = await fetch(`/api/post/get?order=desc&limit=4`);
+        const res = await fetch(`/api/posts?order=desc`);
         const data = await res.json();
-        // const videoRes = await axios.get(`/api/post/get/${path}`)
-        // const channelRes = await axios.get(`/api/post/user/${videoRes.data.userRef}`)
+         //const videoRes = await axios.get(`/api/post/get/${path}`)
+        //  const videoRes= await axios.get(`/api/posts`)
+        //  const channelRes = await axios.get(`/api/post/user/${videoRes.data[0].userRef}`)
 
         // *********NEW
 
@@ -158,6 +161,7 @@ export default function Watch() {
         // ------------
 
         setPosts(data);
+        //setPosts(videoRes.data);
         const userId= data[0].userRef
         const response =  await fetch(`/api/user/${userId}`);
         const userData = await response.json();
@@ -165,15 +169,17 @@ export default function Watch() {
         //setVideo(mediaUrls) // get video
         setUsers(author);
         //console.log(author)
-        dispatch(setCurrentVideo(data[0]))
-        dispatch(fetchSuccess(data[0]))
+        // dispatch(setCurrentVideo(data))
+        // dispatch(fetchSuccess(data))
+        //dispatch(fetchSuccess(videoRes.data))
+
       } catch (error) {
         console.log(error);
       }
     }
   
     fetchPosts();
-  }, [users]);
+  }, [users,  dispatch]);
 
   // const { currentVideo, relatedVideos } = posts;
   // console.log(currentVideo)
@@ -197,13 +203,13 @@ export default function Watch() {
 //}
 let { mediaUrls, title , caption, tags, createdAt, userRef, user } = posts[0];
 
-const handleCardClick = (i) => {
-  const video = posts[0].mediaUrls[0] // this is hardcoded I want to replace the hard coding with dynamic when the card is clicked
-  const videoId = posts[0]._id
-  setSrc(video); // Update src to video URL from the card
-  console.log('this', videoId)
-  //return src
-};
+// const handleCardClick = (i) => {
+//   const video = posts[0].mediaUrls[0] // this is hardcoded I want to replace the hard coding with dynamic when the card is clicked
+//   const videoId = posts[0]._id
+//   setSrc(video); // Update src to video URL from the card
+//   console.log('this', videoId)
+//   //return src
+// };
 
   // const calculateDaysSinceCreation = (createdAt) => {
   //   const postDate = new Date(createdAt);
@@ -275,7 +281,7 @@ const handleCardClick = (i) => {
           <ChannelInfo>
             <Image src="https://w7.pngwing.com/pngs/205/731/png-transparent-default-avatar-thumbnail.png" />
             <ChannelDetail>
-              <ChannelName onClick={handleCardClick} >{users}</ChannelName>
+              <ChannelName  >{users}</ChannelName>
               <p>{posts.mediaUrls}</p>
               <ChannelCounter>200K subscribers</ChannelCounter>
               <Description>
@@ -291,10 +297,10 @@ const handleCardClick = (i) => {
         <Hr />
         {/* <Comments/> */}
       </Content>
-      <Recommendation>
+      {/* <Recommendation> */}
       
       {/* <Card onClick={() => handleCardClick(posts)}type="sm"/> {src} */}
-        <Card type="sm"/>
+        {/* <Card type="sm"/> */}
         {/* <Card type="sm"/>
         <Card type="sm"/>
         <Card type="sm"/>
@@ -302,8 +308,8 @@ const handleCardClick = (i) => {
         <Card type="sm"/>
         <Card type="sm"/> */}
 
-      </Recommendation>
-      {/* <Recommendation tags={currentVideo.tags} /> */}
+      {/* </Recommendation> */}
+      <Recommendation tags={tags} />
     </Container>
     </div>
   )  

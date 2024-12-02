@@ -150,14 +150,13 @@ const Card = ({type, video}) => {
       //const res = await axios.get(`/api/users/find/${video.uerRef}`);
       const res = await axios.get(`/api/post/user/${video.userRef}`);
       //const res = await axios.get(`/videos/${type}`);
-      console.log(res.data)
       setChannel(res.data);
     }
     fetchChannel();
-  }, [video.userRef]); 
+  }, []); 
 
   return (
-    <Link to={`/video/${video._id}`} style={{textDecoration:"none"}}> 
+    <Link to={`/post/${video._id}`} style={{textDecoration:"none"}}> 
     <Container type={type}>
        <Image
           type={type}
@@ -172,7 +171,7 @@ const Card = ({type, video}) => {
         <Texts>
           <Title>{video.title}</Title>
           <ChannelName>{video.caption}</ChannelName>
-          <p className='text-blue-700'>#{video.tags}</p>
+          <p className='text-blue-700'>{video.tags}</p>
           <Info>660,908 views • {video.likes} likes • {format(video.createdAt)}</Info>
         </Texts>
       </Details>

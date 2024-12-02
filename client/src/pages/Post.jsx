@@ -171,6 +171,7 @@ const Post = () => {
             setPost(data);
             setLoading(false);
             setError(false);
+          
             // ********add 
             setChannel(channelRes.data)
             //console.log("this", channel)
@@ -370,8 +371,8 @@ const Post = () => {
       ))}
     </div> */}
     {/* <UserPosts channel={channel} /> */}
-    {/* <UserPosts post={post.userRef} /> */}
-    <Recommendation tags={currentVideo.tags} />
+    <UserPosts post={currentVideo.userRef} />
+    {/* <Recommendation tags={currentVideo.tags} /> */}
     
     
     </Container>
