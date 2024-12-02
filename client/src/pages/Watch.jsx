@@ -145,9 +145,10 @@ export default function Watch() {
       try {
         //const res = await fetch(`/api/post/get?order=desc&limit=4`);
         //const res = await axios.get(`/api/posts?order=desc`);
-        //const res = await fetch(`/api/post/get?order=desc&limit=4`);
-        const res = await fetch(`/api/posts?order=desc`);
+        const res = await fetch(`/api/post/get?order=desc`);
+        //const res = await fetch(`/api/posts?order=desc`);
         const data = await res.json();
+        //const data = await res.data
          //const videoRes = await axios.get(`/api/post/get/${path}`)
         //  const videoRes= await axios.get(`/api/posts`)
         //  const channelRes = await axios.get(`/api/post/user/${videoRes.data[0].userRef}`)
@@ -161,6 +162,7 @@ export default function Watch() {
         // ------------
 
         setPosts(data);
+        console.log(data)
         //setPosts(videoRes.data);
         const userId= data[0].userRef
         const response =  await fetch(`/api/user/${userId}`);
@@ -297,10 +299,11 @@ let { mediaUrls, title , caption, tags, createdAt, userRef, user } = posts[0];
         <Hr />
         {/* <Comments/> */}
       </Content>
-      {/* <Recommendation> */}
+      <Recommendation>
       
       {/* <Card onClick={() => handleCardClick(posts)}type="sm"/> {src} */}
-        {/* <Card type="sm"/> */}
+        {/* <Card type="sm" post={posts}/> */}
+        <Card type="sm" key={posts._id} posts={posts} />
         {/* <Card type="sm"/>
         <Card type="sm"/>
         <Card type="sm"/>
@@ -308,8 +311,8 @@ let { mediaUrls, title , caption, tags, createdAt, userRef, user } = posts[0];
         <Card type="sm"/>
         <Card type="sm"/> */}
 
-      {/* </Recommendation> */}
-      <Recommendation tags={tags} />
+      </Recommendation>
+      {/* <Recommendation tags={tags} /> */}
     </Container>
     </div>
   )  
