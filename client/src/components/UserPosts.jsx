@@ -21,14 +21,12 @@ const Container = styled.div`
 //   }, [tags]);
 const UserPosts = ({ post }) => {
   const [videos, setVideos] = useState([]);
-
-  console.log(post)
   useEffect(() => {
     const fetchVideos = async () => {
       //const res = await axios.get(`/api/post/tags?tags=${tags}`);
       const res = await axios.get(`/api/post/user/${post}`)
       setVideos(res.data);
-      console.log(res)
+      //console.log(res)
     };
     fetchVideos();
   }, [post]);
