@@ -55,28 +55,29 @@ const Info = styled.div`
 `;
 
 
+////***************Testing */
+// const Card = ({type}) => {
+//   const [posts, setPosts] = useState([]);
+//   // const [src, setSrc] = useState(''); // State for src
+//   // const [videoId, setVideoId] = useState('')
 
-const Card = ({type}) => {
-  const [posts, setPosts] = useState([]);
-  // const [src, setSrc] = useState(''); // State for src
-  // const [videoId, setVideoId] = useState('')
-
-  useEffect(() => {
-    const fetchPost = async () => {
-      try {
-        const res = await fetch(`/api/post/get?order=desc`);
-        const data = await res.json();
-        //const res = await axios.get(`/api/posts`);
-        //const data = await res.json();
-        //console.log(data)
-        //setPosts(res.data);
-        setPosts(data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    fetchPost();
-  }, []);
+//   useEffect(() => {
+//     const fetchPost = async () => {
+//       try {
+//         const res = await fetch(`/api/post/get?order=desc`);
+//         const data = await res.json();
+//         //const res = await axios.get(`/api/posts`);
+//         //const data = await res.json();
+//         //console.log(data)
+//         //setPosts(res.data);
+//         setPosts(data);
+//       } catch (error) {
+//         console.log(error);
+//       }
+//     }
+//     fetchPost();
+//   }, []);
+////****************above */
 
   // const showVid = async (i) => {
   //   //const video= "this is placeholder"
@@ -104,43 +105,83 @@ const Card = ({type}) => {
   //   return daysSinceCreation;
   // };
   // const { mediaUrls, title } = posts[1];
-
-  return (
-    //<Link to=`/post/${post._id}` style={{textDecoration:"none"}}> 
-    //<Link to={`/post/${post._id}`} style={{textDecoration:"none"}}> 
-    <>
-      {posts.map((post, index) => (
-        // <Link key={index} to={post.mediaUrls} style={{ textDecoration: 'none' }}>
-        <Link key={index} to={`/post/${post._id}`} style={{textDecoration:"none"}}> 
-     {/* <Link to={mediaUrls} style={{textDecoration:"none"}}>  */}
+//*****************************testing */
+//   return (
+//     //<Link to=`/post/${post._id}` style={{textDecoration:"none"}}> 
+//     //<Link to={`/post/${post._id}`} style={{textDecoration:"none"}}> 
+//     <>
+//       {posts.map((post, index) => (
+//         // <Link key={index} to={post.mediaUrls} style={{ textDecoration: 'none' }}>
+//         <Link key={index} to={`/post/${post._id}`} style={{textDecoration:"none"}}> 
+//      {/* <Link to={mediaUrls} style={{textDecoration:"none"}}>  */}
 
     
+//     <Container type={type}>
+//        <Image
+//           type={type}
+//           src={"https://content.wepik.com/statics/9411920/preview-page0.jpg"}
+//         />
+      
+//       <Details type={type}>
+//         <ChannelImage 
+//         type={type}
+//         src={"https://static-00.iconduck.com/assets.00/profile-default-icon-2048x2045-u3j7s5nj.png"}/>
+//         <Texts>
+//           <Title>{post.title}</Title>
+//           <ChannelName>{post.caption}</ChannelName>
+//           <p className='text-blue-700'>{post.tags}</p>
+//           <Info>660,908 views • {format(post.createdAt)}</Info>
+//         </Texts>
+//       </Details>
+//     </Container>
+//     </Link>
+//   ))}
+//     </>
+//   );
+// };
+// export default Card
+
+// ***** NEW test
+const Card = ({type, video}) => {
+  const [channel, setChannel] = useState({});
+
+  useEffect(() => {
+    const fetchChannel = async () => {
+      //const res = await axios.get(`/api/users/find/${video.uerRef}`);
+      const res = await axios.get(`/api/post/user/${video.userRef}`);
+      //const res = await axios.get(`/videos/${type}`);
+      console.log(res.data)
+      setChannel(res.data);
+    }
+    fetchChannel();
+  }, [video.userRef]); 
+
+  return (
+    <Link to={`/video/${video._id}`} style={{textDecoration:"none"}}> 
     <Container type={type}>
        <Image
           type={type}
+          // src={video.mediaUrls}
           src={"https://content.wepik.com/statics/9411920/preview-page0.jpg"}
         />
-      
       <Details type={type}>
         <ChannelImage 
         type={type}
+        // src={channel.img}
         src={"https://static-00.iconduck.com/assets.00/profile-default-icon-2048x2045-u3j7s5nj.png"}/>
         <Texts>
-          <Title>{post.title}</Title>
-          <ChannelName>{post.caption}</ChannelName>
-          <p className='text-blue-700'>{post.tags}</p>
-          <Info>660,908 views • {format(post.createdAt)}</Info>
+          <Title>{video.title}</Title>
+          <ChannelName>{video.caption}</ChannelName>
+          <p className='text-blue-700'>#{video.tags}</p>
+          <Info>660,908 views • {video.likes} likes • {format(video.createdAt)}</Info>
         </Texts>
       </Details>
     </Container>
     </Link>
-  ))}
-    </>
   );
 };
+
 export default Card
-
-
 
 
 
