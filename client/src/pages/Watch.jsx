@@ -170,7 +170,7 @@ export default function Watch() {
         const author = userData.username
         //setVideo(mediaUrls) // get video
         setUsers(author);
-        //console.log(author)
+        console.log('user', userData)
         // dispatch(setCurrentVideo(data))
         // dispatch(fetchSuccess(data))
         //dispatch(fetchSuccess(videoRes.data))
@@ -181,7 +181,7 @@ export default function Watch() {
     }
   
     fetchPosts();
-  }, [users,  dispatch]);
+  }, [users]);
 
   // const { currentVideo, relatedVideos } = posts;
   // console.log(currentVideo)
@@ -203,7 +203,7 @@ export default function Watch() {
   //   return mediaUrls
   // }
 //}
-let { mediaUrls, title , caption, tags, createdAt, userRef, user } = posts[0];
+//let { mediaUrls, title , caption, tags, createdAt, userRef, user } = posts[0];
 
 // const handleCardClick = (i) => {
 //   const video = posts[0].mediaUrls[0] // this is hardcoded I want to replace the hard coding with dynamic when the card is clicked
@@ -227,10 +227,10 @@ let { mediaUrls, title , caption, tags, createdAt, userRef, user } = posts[0];
   //   return date
   // };
 
-  const formatCreatedDate = (createdAt) => {
-    const postDate = new Date(createdAt);
-    return postDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-  };
+  // const formatCreatedDate = (createdAt) => {
+  //   const postDate = new Date(createdAt);
+  //   return postDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  // };
 
   //work on getting post to watch page
 
@@ -248,21 +248,20 @@ let { mediaUrls, title , caption, tags, createdAt, userRef, user } = posts[0];
             width="100%" 
             height="720" 
             //src="https://www.youtube.com/embed/_A20kVsaqIk?si=GvLxnWd3On6YpPI-" 
-            src={src || mediaUrls}
-            title="YouTube video player" 
-            frameBorder="0" 
+            src={posts[0].mediaUrls}
+            title="video player" 
             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" 
             referrerPolicy="strict-origin-when-cross-origin" 
             allowFullScreen>
          </iframe>
         </VideoWrapper>
-        <Title>{title}</Title>
+        <Title>{posts[0].title}</Title>
         
         {/* add real author from post and post info */}
-        <ChannelName>{caption}</ChannelName>
-        <p>{tags}</p>
+        <ChannelName>{posts[0].caption}</ChannelName>
+        <p>{posts[0].tags}</p>
         <Details>
-          <Info>5,938,514 views • {formatCreatedDate(createdAt)}</Info>
+          <Info>5,938,514 views • {format(posts[0].createdAt)}</Info>
           <Buttons>
             <Button>
               <ThumbUpOutlinedIcon /> 123
@@ -299,7 +298,7 @@ let { mediaUrls, title , caption, tags, createdAt, userRef, user } = posts[0];
         <Hr />
         {/* <Comments/> */}
       </Content>
-      {/* <Recommendation> */}
+      <Recommendation>
       
       {/* <Card onClick={() => handleCardClick(posts)}type="sm"/> {src} */}
         {/* <Card type="sm" post={posts}/> */}
@@ -311,8 +310,8 @@ let { mediaUrls, title , caption, tags, createdAt, userRef, user } = posts[0];
         <Card type="sm"/>
         <Card type="sm"/> */}
 
-      {/* </Recommendation> */}
-      <Recommendation tags={tags}/>
+      </Recommendation>
+      {/* <Recommendation tags={tags}/> */}
     </Container>
     </div>
   )  
