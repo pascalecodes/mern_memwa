@@ -144,13 +144,17 @@ const Info = styled.div`
 // ***** NEW test
 const Card = ({type, video}) => {
   const [channel, setChannel] = useState({});
+  const [author, setAuthor] = useState({});
 
   useEffect(() => {
     const fetchChannel = async () => {
       //const res = await axios.get(`/api/users/find/${video.uerRef}`);
       const res = await axios.get(`/api/post/user/${video.userRef}`);
+      const getAuthorName = await axios.get(`/api/user/${video.userRef}`)
+      //console.log(getAuthorName.data)
       //const res = await axios.get(`/videos/${type}`);
       setChannel(res.data);
+      setAuthor('author', getAuthorName.data)
     }
     fetchChannel();
   }, []); 
