@@ -10,9 +10,10 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useParams } from "react-router-dom";
 import { format } from "timeago.js";
+import { Link } from 'react-router-dom';
 // import Comments from '../components/Comments';
 import ReactPlayer from 'react-player';
-import Recommendation from "../components/Recommendation";
+//import Recommendation from "../components/Recommendation";
 import { setCurrentVideo,fetchSuccess} from '../redux/videoSlice';
 
 
@@ -66,13 +67,13 @@ const Hr = styled.hr`
   border: 0.5px solid ${({ theme }) => theme.soft};
 `;
 
-// const Recommendation = styled.div`
-//   flex: 2;
+const Recommendation = styled.div`
+  flex: 2;
 
-//   height: 1000px; // Set the desired height for the recommendation section
-//   overflow-y: scroll; // Enable vertical scrolling
+  height: 1000px; // Set the desired height for the recommendation section
+  overflow-y: scroll; // Enable vertical scrolling
 
-// `;
+`;
 const Channel = styled.div`
   display: flex;
   justify-content: space-between;
@@ -181,7 +182,7 @@ export default function Watch() {
     }
   
     fetchPosts();
-  }, [users]);
+  }, []);
 
   // const { currentVideo, relatedVideos } = posts;
   // console.log(currentVideo)
@@ -255,8 +256,9 @@ export default function Watch() {
             allowFullScreen>
          </iframe>
         </VideoWrapper>
+        <Link to={`/post/${posts[0]._id}`} style={{textDecoration:"none"}}> 
         <Title>{posts[0].title}</Title>
-        
+        </Link>
         {/* add real author from post and post info */}
         <ChannelName>{posts[0].caption}</ChannelName>
         <p>{posts[0].tags}</p>
@@ -301,7 +303,7 @@ export default function Watch() {
       <Recommendation>
       
       {/* <Card onClick={() => handleCardClick(posts)}type="sm"/> {src} */}
-        {/* <Card type="sm" post={posts}/> */}
+        {/* <Card type="sm" key={posts._id} video={posts}/> */}
         {/* <Card type="sm" key={posts._id} posts={posts} /> */}
         {/* <Card type="sm"/>
         <Card type="sm"/>
@@ -309,6 +311,9 @@ export default function Watch() {
         <Card type="sm"/>
         <Card type="sm"/>
         <Card type="sm"/> */}
+         {posts.map((video) => (
+        <Card type="sm" key={video._id} video={video} />
+      ))}
 
       </Recommendation>
       {/* <Recommendation tags={tags}/> */}

@@ -215,6 +215,10 @@ const Post = () => {
   }, [post, users]);
 
   return (
+    <div>
+    <div className='flex flex-col p-2 px-3  mx-auto'>
+             <h2 className='text-blue-700 font-bold text-2xl lg:text-4xl mx-auto text-center'>Story</h2> 
+         </div>
     <Container>
       <Content>
         {loading && <p className='text-center my-7 text-2xl'>Loading...</p>}
@@ -376,6 +380,7 @@ const Post = () => {
     
     
     </Container>
+    </div>
   );
 };
 export default Post
