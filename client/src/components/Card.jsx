@@ -150,11 +150,11 @@ const Card = ({type, video}) => {
     const fetchChannel = async () => {
       //const res = await axios.get(`/api/users/find/${video.uerRef}`);
       const res = await axios.get(`/api/post/user/${video.userRef}`);
-      const getAuthorName = await axios.get(`/api/user/${video.userRef}`)
-      //console.log(getAuthorName.data)
+      const getAuthorName = await axios.get(`/api/user/find/${video.userRef}`)
       //const res = await axios.get(`/videos/${type}`);
       setChannel(res.data);
-      setAuthor('author', getAuthorName.data)
+      //console.log(channel)
+      setAuthor('author', getAuthorName.data.username)
     }
     fetchChannel();
   }, []); 
@@ -174,7 +174,7 @@ const Card = ({type, video}) => {
         src={"https://static-00.iconduck.com/assets.00/profile-default-icon-2048x2045-u3j7s5nj.png"}/>
         <Texts>
           <Title>{video.title}</Title>
-          <ChannelName>{video.caption}</ChannelName>
+          <ChannelName>{author._id} </ChannelName>
           <p className='text-blue-700'>{video.tags}</p>
           <Info>660,908 views • {video.likes} likes • {format(video.createdAt)}</Info>
         </Texts>
