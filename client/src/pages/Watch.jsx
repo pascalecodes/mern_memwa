@@ -126,7 +126,7 @@ const Subscribe = styled.button`
 
 export default function Watch() {
   const [posts, setPosts] = useState([]);
-  const [users, setUsers] = useState([]);
+  const [user, setUser] = useState([]);
   const [src, setSrc] = useState(''); // State for src
   //const { currentVideo } = useSelector((state) => state.video);
   //const [currentVideo, setVideo ] = useState('');
@@ -163,15 +163,18 @@ export default function Watch() {
         // ------------
 
         setPosts(data);
-        console.log(data)
+        //console.log(data[0].userRef)
         //setPosts(videoRes.data);
         const userId= data[0].userRef
-        const response =  await fetch(`/api/user/${userId}`);
-        const userData = await response.json();
-        const author = userData.username
+        //const response =  await fetch(`/api/user/${userId}`);
+        const response =  await axios.get(`/api/user/find/${userId}`);
+        //console.log('response', response.data.username)
+        //const userData = await response.json();
+        //const author = userData.username
+        const author = response.username
         //setVideo(mediaUrls) // get video
-        setUsers(author);
-        console.log('user', userData)
+        setUser(response.data.username);
+        //console.log('user', user)
         // dispatch(setCurrentVideo(data))
         // dispatch(fetchSuccess(data))
         //dispatch(fetchSuccess(videoRes.data))
@@ -284,8 +287,7 @@ export default function Watch() {
           <ChannelInfo>
             <Image src="https://w7.pngwing.com/pngs/205/731/png-transparent-default-avatar-thumbnail.png" />
             <ChannelDetail>
-              <ChannelName  >{users}</ChannelName>
-              <p>{posts.mediaUrls}</p>
+              <ChannelName  >{user}</ChannelName>
               <ChannelCounter>200K subscribers</ChannelCounter>
               <Description>
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -301,6 +303,7 @@ export default function Watch() {
         {/* <Comments/> */}
       </Content>
       <Recommendation>
+      <h1 className='text-blue-700 font-bold'>EXPLORE MORE STORIES</h1>
       
       {/* <Card onClick={() => handleCardClick(posts)}type="sm"/> {src} */}
         {/* <Card type="sm" key={posts._id} video={posts}/> */}
