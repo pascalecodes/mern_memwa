@@ -16,7 +16,7 @@ import {FaShare,} from 'react-icons/fa';
 import Contact from '../components/Contact';
 import ReactPlayer from 'react-player';
 import { setCurrentVideo,fetchSuccess, like, dislike } from '../redux/videoSlice';
-import Recommendation from '../components/Recommendation';
+//import Recommendation from '../components/Recommendation';
 import UserPosts from '../components/UserPosts';
 
 const Container = styled.div`
@@ -120,6 +120,13 @@ const Subscribe = styled.button`
   cursor: pointer;
 `;
 
+const Recommendation = styled.div`
+  flex: 2;
+
+  height: 1000px; // Set the desired height for the recommendation section
+  overflow-y: scroll; // Enable vertical scrolling
+
+`;
 const Post = () => {
     SwiperCore.use([Navigation]);
     const [post, setPost] = useState(null);
@@ -376,9 +383,11 @@ const Post = () => {
       ))}
     </div> */}
     {/* <UserPosts channel={channel} /> */}
-    <UserPosts post={currentVideo.userRef} />
+    <Recommendation>
+    <h1 className='text-blue-700 font-bold'>MORE STORIES from {users}</h1>
+    <UserPosts post={currentVideo.userRef}  />
     {/* <Recommendation tags={currentVideo.tags} /> */}
-    
+    </Recommendation>
     
     </Container>
     </div>
