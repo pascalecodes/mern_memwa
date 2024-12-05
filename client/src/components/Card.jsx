@@ -145,6 +145,7 @@ const Info = styled.div`
 const Card = ({type, video}) => {
   const [channel, setChannel] = useState({});
   const [author, setAuthor] = useState({});
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const fetchChannel = async () => {
@@ -158,6 +159,28 @@ const Card = ({type, video}) => {
     }
     fetchChannel();
   }, []); 
+
+  useEffect(() => {
+    // Fetch user data from your database or API and store it in the state
+    const fetchUser = async (userId) => {
+      try {
+        const response = await fetch(`/api/user/find/${userId}`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const userData = await response.json();
+        setUsers(userData.username);
+         //console.log('user', users)
+      } catch (error) {
+        console.error('Error fetching user:', error);
+      }
+    };
+     // Fetch usernames for all posts if they aren't already fetched
+    if (video) {
+      fetchUser(video.userRef);
+    }
+ ;
+}, [video, users]);
 
   return (
     <Link to={`/post/${video._id}`} style={{textDecoration:"none"}}> 
@@ -174,7 +197,7 @@ const Card = ({type, video}) => {
         src={"https://static-00.iconduck.com/assets.00/profile-default-icon-2048x2045-u3j7s5nj.png"}/>
         <Texts>
           <Title>{video.title}</Title>
-          <ChannelName>{author._id} </ChannelName>
+          <ChannelName>{users} </ChannelName>
           <p className='text-blue-700'>{video.tags}</p>
           <Info>660,908 views • {video.likes} likes • {format(video.createdAt)}</Info>
         </Texts>
