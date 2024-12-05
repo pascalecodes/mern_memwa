@@ -197,12 +197,13 @@ const Post = () => {
       // Fetch user data from your database or API and store it in the state
       const fetchUser = async (userId) => {
         try {
-          const response = await fetch(`/api/user/${userId}`);
+          const response = await fetch(`/api/user/find/${userId}`);
           if (!response.ok) {
             throw new Error('Network response was not ok');
           }
           const userData = await response.json();
           setUsers(userData.username);
+           //console.log('user', users)
         } catch (error) {
           console.error('Error fetching user:', error);
         }
