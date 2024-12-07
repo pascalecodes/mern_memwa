@@ -1,10 +1,29 @@
 import { useSelector } from "react-redux"
+import styled from 'styled-components'
 import { useRef, useState, useEffect } from "react"
 import {getDownloadURL, getStorage, ref, uploadBytesResumable} from 'firebase/storage'
 import { app } from '../firebase'
 import { updateUserStart, updateUserFailure, updateUserSuccess, deleteUserFailure, deleteUserStart, deleteUserSuccess, signOutUserStart, signOutUserFailure, signOutUserSuccess } from "../redux/user/userSlice"
 import { useDispatch } from "react-redux"
 import { Link } from 'react-router-dom'
+
+const Container = styled.div`
+display: flex;
+gap: 24px;
+padding: 10px 20px;
+`;
+
+const Content = styled.div`
+flex: 2;
+`;
+
+const Recommendation = styled.div`
+  flex: 2;
+
+  height: 1000px; // Set the desired height for the recommendation section
+  overflow-y: scroll; // Enable vertical scrolling
+
+`;
 
 export default function Profile() {
   const fileRef = useRef(null)
@@ -143,7 +162,8 @@ export default function Profile() {
     <div className="p-3 max-w-lg mx-auto">
       <h1 className='text-blue-700 font-bold text-2xl lg:text-4xl mx-auto text-center'>Profile</h1> 
       {/* <h1 className='text-3xl font-semibold text-center my-7'>Profile</h1> */}
-      
+      <Container>
+        <Content>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4"> 
         <input onChange={(e)=> setFile(e.target.files[0])} type='file' ref={fileRef} hidden accept='image/*'/> 
         <img onClick={()=>fileRef.current.click()} 
@@ -182,7 +202,7 @@ export default function Profile() {
       <button onClick={handleShowPosts} className="text-green-700 w-full">Show Posts
       </button>
       <p className="text-red-700 mt-5">{showPostsError ? 'Error showing posts' : ''}</p>
-      
+      <Recommendation>
       {userPosts && userPosts.length > 0 && (
      <div className="flex flex-col gap-4">
       <h1 className="text-blue-700 text-center text-2xl font-semibold">Your Posts</h1>
@@ -219,6 +239,9 @@ export default function Profile() {
       ))}
      </div>
       )}
+      </Recommendation>
+      </Content>
+      </Container>
     </div>
   );
 }
