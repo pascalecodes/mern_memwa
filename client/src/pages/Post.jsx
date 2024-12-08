@@ -225,7 +225,7 @@ const Post = () => {
   return (
     <div>
     <div className='flex flex-col p-2 px-3  mx-auto'>
-             <h2 className='text-blue-700 font-bold text-2xl lg:text-4xl mx-auto text-center'>Moments</h2> 
+             <h2 className='text-blue-700 font-bold text-2xl lg:text-4xl mx-auto text-center'>Moment</h2> 
          </div>
     <Container>
       <Content>
