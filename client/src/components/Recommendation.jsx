@@ -7,6 +7,7 @@ const Container = styled.div`
   flex: 2;
    height: 1000px; // Set the desired height for the recommendation section
   overflow-y: scroll; // Enable vertical scrolling
+  
 `;
 
 const Recommendation = ({ tags }) => {

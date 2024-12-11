@@ -27,6 +27,7 @@ padding-left: 24px;
 
 const Content = styled.div`
 flex: 5;
+
 `;
 const VideoWrapper = styled.div``;
 
@@ -73,6 +74,13 @@ const Recommendation = styled.div`
   height: 1000px; // Set the desired height for the recommendation section
   overflow-y: scroll; // Enable vertical scrolling
 
+  @media (max-width: 768px) { // Adjust for mobile screens
+    flex: none; // Reset flex to allow stacking
+    height: auto; // Allow height to adjust based on content
+    position: relative; // Position relative for stacking
+    margin-top: 20px; // Add margin to separate from other sections
+    width: 100%; // Ensure it takes full width on mobile
+  }
 `;
 const Channel = styled.div`
   display: flex;
