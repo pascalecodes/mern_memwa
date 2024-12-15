@@ -34,6 +34,8 @@ export default function Terms() {
         <h2 className='text-2xl text-blue-700 mt-4'>Memwa's Rights</h2>
         <p>Memwa reserves the right to modify or terminate the Service at any time.</p>
         <p>Memwa reserves the right to refuse service to anyone for any reason.</p>
+        <h2 className='text-2xl text-blue-700 mt-4'>Objectionable Content Policy</h2>
+        <p>By using this website, you agree to our Community Guidelines which prohibit the posting of inappropriate content, including but not limited to sexually explicit material, hate speech, or harmful content. Repeated violations may result in account suspension or termination.</p>
         <h2 className='text-2xl text-blue-700 mt-4' >Indemnification</h2>
         <p>You agree to indemnify and hold Memwa harmless from any and all claims, losses, damages, liabilities, costs, and expenses (including attorneys' fees) arising out of or in connection with your use of the Service.</p>
         <h2 className='text-2xl text-blue-700 mt-4'>Dispute Resolution</h2>
