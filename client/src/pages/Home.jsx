@@ -26,7 +26,7 @@ export default function Home() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await fetch(`/api/post/get?order=desc&limit=20`);
+        const res = await fetch(`/api/post/get?order=desc&limit=10`);
         const data = await res.json();
         setPosts(data);
       } catch (error) {
