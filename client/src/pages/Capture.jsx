@@ -159,11 +159,11 @@ function Capture() {
             const file = await response.blob();
     
             const fileType = 'video/webm'; // or any other supported format
-            const fileName = `-capture-video.webm`;
+            const fileName = `-capture.webm`;
             const fileToUpload = new File([file], fileName, {
               type: fileType
             });
-            console.log(recordedVideo, fileName, fileToUpload)
+            //console.log(recordedVideo, fileName, fileToUpload)
     
             const downloadURL = await storeMedia(fileToUpload);
          

@@ -175,7 +175,7 @@ function AnswerQuestion({ questionId, questionName, questionTag}) {
             const fileToUpload = new File([file], fileName, {
               type: fileType
             });
-            console.log(recordedVideo, fileName, fileToUpload)
+            //console.log(recordedVideo, fileName, fileToUpload)
     
             const downloadURL = await storeMedia(fileToUpload);
             // Update your form data with the downloadURL
