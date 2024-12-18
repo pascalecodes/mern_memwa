@@ -125,7 +125,7 @@ export default function InterviewRoom() {
                     className='text-white text-center bg-green-700 p-2 m-2' >Read</button>
                 <div>
               <AnswerQuestion 
-               questionId={questions[currentQuestionIndex]?.id}
+               questionId={questions[currentQuestionIndex]?._id}
                questionName={questions[currentQuestionIndex]?.name}
                questionTag={questions[currentQuestionIndex]?.tag}
               />

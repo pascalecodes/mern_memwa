@@ -182,6 +182,8 @@ function AnswerQuestion({ questionId, questionName, questionTag}) {
             setFormData((prevFormData) => ({
               ...prevFormData,
               mediaUrls: [...prevFormData.mediaUrls, downloadURL],
+              title: `answer  `,
+              caption: 'my answer ',
               description: `response for: ${questionName}`,
               tags: questionTag
             }));
