@@ -144,7 +144,7 @@ export default function Watch() {
   //const { currentUser } = useSelector((state) => state.user);
   const { currentVideo } = useSelector((state) => state.video);
   const dispatch = useDispatch();
-
+  const [currentPost, setCurrentPost] = useState(posts[0]);
   // const path = useLocation().pathname.split("/")[2];
   // console.log(path, "this is current", currentVideo)
 // -----------------
@@ -245,6 +245,10 @@ export default function Watch() {
   // };
 
   //work on getting post to watch page
+   // Function to handle click on a post
+   const handlePostClick = (post) => {
+    setCurrentPost(post);
+    };
 
   return (
     <div>
