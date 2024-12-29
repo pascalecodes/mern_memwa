@@ -247,6 +247,7 @@ export default function Watch() {
   //work on getting post to watch page
    // Function to handle click on a post
    const handlePostClick = (post) => {
+    console.log('click test')
     setCurrentPost(post);
     };
 
@@ -264,7 +265,7 @@ export default function Watch() {
             width="100%" 
             height="720" 
             //src="https://www.youtube.com/embed/_A20kVsaqIk?si=GvLxnWd3On6YpPI-" 
-            src={posts[0].mediaUrls}
+            src={posts[0].mediaUrls || currentPost.mediaUrls}
             title="video player" 
             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" 
             referrerPolicy="strict-origin-when-cross-origin" 
@@ -327,7 +328,7 @@ export default function Watch() {
         <Card type="sm"/>
         <Card type="sm"/> */}
          {posts.map((video) => (
-        <Card type="sm" key={video._id} video={video} />
+        <Card type="sm" key={video._id} onClick={() => handlePostClick(video)} video={video} />
       ))}
 
       </Recommendation>
