@@ -186,7 +186,6 @@ export default function Watch() {
         // dispatch(setCurrentVideo(data))
         // dispatch(fetchSuccess(data))
         //dispatch(fetchSuccess(videoRes.data))
-
       } catch (error) {
         console.log(error);
       }
@@ -247,8 +246,8 @@ export default function Watch() {
   //work on getting post to watch page
    // Function to handle click on a post
    const handlePostClick = (post) => {
-    console.log('click test')
     setCurrentPost(post);
+    console.log('click test')
     };
 
   return (
@@ -328,7 +327,7 @@ export default function Watch() {
         <Card type="sm"/>
         <Card type="sm"/> */}
          {posts.map((video) => (
-        <Card type="sm" key={video._id} onClick={() => handlePostClick(video)} video={video} />
+        <Card type="sm" key={video._id}  video={video} />
       ))}
 
       </Recommendation>
