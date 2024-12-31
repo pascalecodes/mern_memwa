@@ -148,6 +148,9 @@ export default function Watch() {
   // const path = useLocation().pathname.split("/")[2];
   // console.log(path, "this is current", currentVideo)
 // -----------------
+const [currentIndex, setCurrentIndex] = useState(0);
+
+
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -173,6 +176,7 @@ export default function Watch() {
         setPosts(data);
         //console.log(data[0].userRef)
         //setPosts(videoRes.data);
+        console.log(posts)
         const userId= data[0].userRef
         //const response =  await fetch(`/api/user/${userId}`);
         const response =  await axios.get(`/api/user/find/${userId}`);
@@ -201,6 +205,16 @@ export default function Watch() {
     return <div>Loading...</div>;
   }
 
+
+  const handleNext = (posts) => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % posts.length);
+    console.log(currentIndex)
+};
+
+const handlePrev = (posts) => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + posts.length) % posts.length);
+  
+};
   //const { mediaUrls, title , caption, tags, createdAt, userRef, user } = posts[0];
   //console.log(`media: ${mediaUrls}}`)
   // const videoLink = ({video}) => {
@@ -247,7 +261,7 @@ export default function Watch() {
    // Function to handle click on a post
    const handlePostClick = (post) => {
     setCurrentPost(post);
-    console.log('click test')
+    console.log('click test', post)
     };
 
   return (
@@ -259,26 +273,43 @@ export default function Watch() {
             </div>
     <Container>
       <Content>
+     
         <VideoWrapper>
           <iframe 
             width="100%" 
             height="720" 
             //src="https://www.youtube.com/embed/_A20kVsaqIk?si=GvLxnWd3On6YpPI-" 
-            src={posts[0].mediaUrls || currentPost.mediaUrls}
+            src={posts[0].mediaUrls || posts[currentIndex].mediaUrls} //posts[0].mediaUrls || 
             title="video player" 
             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" 
             referrerPolicy="strict-origin-when-cross-origin" 
             allowFullScreen>
          </iframe>
         </VideoWrapper>
+        {/* <button 
+                onClick={handlePrev} 
+                style={{ position: 'absolute', left: '100px', top: '50%', transform: 'translateY(-50%)', backgroundColor: 'rgba(0, 0, 0, 0.5)', color: 'white' }}
+            >
+                &lt; Prev
+            </button>
+            <button 
+                onClick={handleNext} 
+                style={{ position: 'absolute', right: '700px', top: '50%', transform: 'translateY(-50%)', backgroundColor: 'rgba(0, 0, 0, 0.5)', color: 'white' }}
+            >
+                Next &gt;
+            </button> */}
+         
+
         <Link to={`/post/${posts[0]._id}`} style={{textDecoration:"none"}}> 
-        <Title>{posts[0].title}</Title>
+        <Title>{posts[currentIndex].title}</Title> 
+         {/* posts[0] */}
         </Link>
         {/* add real author from post and post info */}
         <ChannelName>{posts[0].caption}</ChannelName>
-        <p>{posts[0].tags}</p>
+        <p>{posts[currentIndex].tags}</p>
+        {/* posts[0] */}
         <Details>
-          <Info>5,938,514 views • {format(posts[0].createdAt)}</Info>
+          <Info>5,938,514 views • {format(posts[currentIndex].createdAt)}</Info>
           <Buttons>
             <Button>
               <ThumbUpOutlinedIcon /> 123
@@ -314,7 +345,7 @@ export default function Watch() {
         <Hr />
         {/* <Comments/> */}
       </Content>
-      <Recommendation>
+      <Recommendation >
       <h1 className='text-blue-700 font-bold'>EXPLORE MORE STORIES</h1>
       
       {/* <Card onClick={() => handleCardClick(posts)}type="sm"/> {src} */}
