@@ -301,7 +301,7 @@ const handlePrev = (posts) => {
          
 
         <Link to={`/post/${posts[0]._id}`} style={{textDecoration:"none"}}> 
-        <Title>{posts[currentIndex].title}</Title> 
+        <Title >{posts[currentIndex].title}</Title> 
          {/* posts[0] */}
         </Link>
         {/* add real author from post and post info */}
