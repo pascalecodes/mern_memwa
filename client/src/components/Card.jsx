@@ -183,7 +183,7 @@ const Card = ({type, video}) => {
 }, [video, users]);
 
   return (
-    <Link to={`/post/${video._id}`} style={{textDecoration:"none"}}> 
+    // <Link to={`/post/${video._id}`} style={{textDecoration:"none"}}> 
     <Container type={type}>
        <Image
           type={type}
@@ -203,7 +203,7 @@ const Card = ({type, video}) => {
         </Texts>
       </Details>
     </Container>
-    </Link>
+    // </Link>
   );
 };
 
