@@ -146,6 +146,8 @@ const Card = ({type, video}) => {
   const [channel, setChannel] = useState({});
   const [author, setAuthor] = useState({});
   const [users, setUsers] = useState([]);
+  const [currentPost, setCurrentPost] = useState(video[0]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const fetchChannel = async () => {
@@ -182,9 +184,16 @@ const Card = ({type, video}) => {
  ;
 }, [video, users]);
 
+ // Function to handle click on a post
+ const handlePostClick = (post) => {
+  setCurrentPost(post);
+  console.log(currentPost)
+  };
+
+
   return (
     // <Link to={`/post/${video._id}`} style={{textDecoration:"none"}}> 
-    <Container type={type}>
+    <Container type={type} onClick={() => handlePostClick(video)}>
        <Image
           type={type}
           // src={video.mediaUrls}
