@@ -144,7 +144,7 @@ export default function Watch() {
   //const { currentUser } = useSelector((state) => state.user);
   const { currentVideo } = useSelector((state) => state.video);
   const dispatch = useDispatch();
-  const [currentPost, setCurrentPost] = useState(posts[0]);
+  // const [currentPost, setCurrentPost] = useState(posts[0]);
   // const path = useLocation().pathname.split("/")[2];
   // console.log(path, "this is current", currentVideo)
 // -----------------
@@ -176,7 +176,6 @@ const [currentIndex, setCurrentIndex] = useState(0);
         setPosts(data);
         //console.log(data[0].userRef)
         //setPosts(videoRes.data);
-        console.log(posts)
         const userId= data[0].userRef
         //const response =  await fetch(`/api/user/${userId}`);
         const response =  await axios.get(`/api/user/find/${userId}`);
@@ -197,7 +196,7 @@ const [currentIndex, setCurrentIndex] = useState(0);
   
     fetchPosts();
   }, []);
-
+  console.log("start", posts)
   // const { currentVideo, relatedVideos } = posts;
   // console.log(currentVideo)
 
@@ -206,7 +205,7 @@ const [currentIndex, setCurrentIndex] = useState(0);
   }
 
 
-  const handleNext = (posts) => {
+const handleNext = (posts) => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % posts.length);
     console.log(currentIndex)
 };
@@ -259,10 +258,10 @@ const handlePrev = (posts) => {
 
   //work on getting post to watch page
    // Function to handle click on a post
-   const handlePostClick = (post) => {
-    setCurrentPost(post);
-    console.log('click test', post)
-    };
+  //  const handlePostClick = (post) => {
+  //   setCurrentPost(post);
+  //   console.log('click test', post)
+  //   };
 
   return (
     <div>
@@ -286,7 +285,7 @@ const handlePrev = (posts) => {
             allowFullScreen>
          </iframe>
         </VideoWrapper>
-        {/* <button 
+        <button 
                 onClick={handlePrev} 
                 style={{ position: 'absolute', left: '100px', top: '50%', transform: 'translateY(-50%)', backgroundColor: 'rgba(0, 0, 0, 0.5)', color: 'white' }}
             >
@@ -297,7 +296,7 @@ const handlePrev = (posts) => {
                 style={{ position: 'absolute', right: '700px', top: '50%', transform: 'translateY(-50%)', backgroundColor: 'rgba(0, 0, 0, 0.5)', color: 'white' }}
             >
                 Next &gt;
-            </button> */}
+            </button>
          
 
         <Link to={`/post/${posts[0]._id}`} style={{textDecoration:"none"}}> 

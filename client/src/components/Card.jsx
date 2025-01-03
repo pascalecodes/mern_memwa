@@ -192,8 +192,8 @@ const Card = ({type, video}) => {
 
 
   return (
-    // <Link to={`/post/${video._id}`} style={{textDecoration:"none"}}> 
-    <Container type={type} onClick={() => handlePostClick(video)}>
+    <Link to={`/post/${video._id}`} style={{textDecoration:"none"}}> 
+    <Container type={type} >
        <Image
           type={type}
           // src={video.mediaUrls}
@@ -212,7 +212,7 @@ const Card = ({type, video}) => {
         </Texts>
       </Details>
     </Container>
-    // </Link>
+    </Link>
   );
 };
 
