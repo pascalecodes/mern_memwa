@@ -224,7 +224,6 @@ const getUser = async (postUser) => {
       if (posts.length > 0 && posts[currentIndex]) {
           setLoading(true); // Set loading to true before fetching
           getUser(posts[currentIndex].userRef); // Call getUser with the userRef
-          console.log('user', user)
       }
   }, [currentIndex, posts]); // Run when currentIndex or posts change
 
@@ -332,13 +331,13 @@ const handlePrev = () => {
         </VideoWrapper>
         <button 
                 onClick={handlePrev} 
-                style={{ position: 'absolute', left: '100px', top: '90%', transform: 'translateY(-50%)', backgroundColor: 'rgba(0, 0, 0, 0.5)', color: 'white',   borderRadius: '4px', padding: '10px'}}
+                style={{ position: 'absolute', left: '100px', top: '75%', transform: 'translateY(-50%)', backgroundColor: 'rgba(0, 0, 0, 0.5)', color: 'white',   borderRadius: '4px', padding: '10px'}}
             >
                 &lt; Prev
             </button>
             <button 
                 onClick={handleNext} 
-                style={{ position: 'absolute', right: '700px', top: '90%', transform: 'translateY(-50%)', backgroundColor: 'rgba(0, 0, 0, 0.5)', color: 'white',  borderRadius: '4px',  padding: '10px'}}
+                style={{ position: 'absolute', right: '700px', top: '75%', transform: 'translateY(-50%)', backgroundColor: 'rgba(0, 0, 0, 0.5)', color: 'white',  borderRadius: '4px',  padding: '10px'}}
             >
                 Next &gt;
             </button>
