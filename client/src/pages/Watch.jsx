@@ -305,13 +305,13 @@ const handlePrev = () => {
         </VideoWrapper>
         <button 
                 onClick={handlePrev} 
-                style={{ position: 'absolute', left: '100px', top: '50%', transform: 'translateY(-50%)', backgroundColor: 'rgba(0, 0, 0, 0.5)', color: 'white' }}
+                style={{ position: 'absolute', left: '100px', top: '90%', transform: 'translateY(-50%)', backgroundColor: 'rgba(0, 0, 0, 0.5)', color: 'white',   borderRadius: '4px', padding: '10px'}}
             >
                 &lt; Prev
             </button>
             <button 
                 onClick={handleNext} 
-                style={{ position: 'absolute', right: '700px', top: '50%', transform: 'translateY(-50%)', backgroundColor: 'rgba(0, 0, 0, 0.5)', color: 'white' }}
+                style={{ position: 'absolute', right: '700px', top: '90%', transform: 'translateY(-50%)', backgroundColor: 'rgba(0, 0, 0, 0.5)', color: 'white',  borderRadius: '4px',  padding: '10px'}}
             >
                 Next &gt;
             </button>
