@@ -149,7 +149,8 @@ export default function Watch() {
   // console.log(path, "this is current", currentVideo)
 // -----------------
 const [currentIndex, setCurrentIndex] = useState(0);
-
+const [loading, setLoading] = useState(true);
+const [error, setError] = useState(null);
 
 
   useEffect(() => {
@@ -158,6 +159,9 @@ const [currentIndex, setCurrentIndex] = useState(0);
         //const res = await fetch(`/api/post/get?order=desc&limit=4`);
         //const res = await axios.get(`/api/posts?order=desc`);
         const res = await fetch(`/api/post/get?order=desc`);
+        if (!res.ok) {
+          throw new Error('Network response was not ok');
+        }
         //const res = await fetch(`/api/posts?order=desc`);
         const data = await res.json();
         //const data = await res.data
@@ -190,28 +194,44 @@ const [currentIndex, setCurrentIndex] = useState(0);
         // dispatch(fetchSuccess(data))
         //dispatch(fetchSuccess(videoRes.data))
       } catch (error) {
+        setError(error.message);
         console.log(error);
+      } finally {
+      setLoading(false);
       }
     }
   
     fetchPosts();
   }, []);
-  console.log("start", posts)
+ 
   // const { currentVideo, relatedVideos } = posts;
   // console.log(currentVideo)
 
-  if (posts.length === 0) {
+if (posts.length === 0) {
     return <div>Loading...</div>;
-  }
+}
+
+if (loading) {
+    return <div>Loading...</div>; // Show a loading state
+}
+
+if (error) {
+    return <div>Error: {error}</div>; // Show error message
+}
+
+if (!posts || posts.length === 0) {
+    return <div>No videos available.</div>; // Handle empty posts
+}
 
 
-const handleNext = (posts) => {
+const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % posts.length);
-    console.log(currentIndex)
+    console.log('next', currentIndex)
 };
 
-const handlePrev = (posts) => {
+const handlePrev = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + posts.length) % posts.length);
+    console.log('prev', currentIndex)
   
 };
   //const { mediaUrls, title , caption, tags, createdAt, userRef, user } = posts[0];
@@ -278,7 +298,7 @@ const handlePrev = (posts) => {
             width="100%" 
             height="720" 
             //src="https://www.youtube.com/embed/_A20kVsaqIk?si=GvLxnWd3On6YpPI-" 
-            src={posts[0].mediaUrls || posts[currentIndex].mediaUrls} //posts[0].mediaUrls || 
+            src={posts[currentIndex].mediaUrls} //posts[0].mediaUrls || 
             title="video player" 
             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture;" 
             referrerPolicy="strict-origin-when-cross-origin" 
@@ -304,7 +324,7 @@ const handlePrev = (posts) => {
          {/* posts[0] */}
         </Link>
         {/* add real author from post and post info */}
-        <ChannelName>{posts[0].caption}</ChannelName>
+        <ChannelName>{posts[currentIndex].caption}</ChannelName>
         <p>{posts[currentIndex].tags}</p>
         {/* posts[0] */}
         <Details>
