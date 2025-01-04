@@ -226,12 +226,10 @@ if (!posts || posts.length === 0) {
 
 const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % posts.length);
-    console.log('next', currentIndex)
 };
 
 const handlePrev = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + posts.length) % posts.length);
-    console.log('prev', currentIndex)
   
 };
   //const { mediaUrls, title , caption, tags, createdAt, userRef, user } = posts[0];
@@ -381,7 +379,7 @@ const handlePrev = () => {
       ))}
 
       </Recommendation>
-      {/* <Recommendation tags={tags}/> */}
+      {/* <Recommendation tags={posts[currentIndex].tags}/> */}
     </Container>
     </div>
   )  
