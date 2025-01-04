@@ -152,6 +152,21 @@ const [currentIndex, setCurrentIndex] = useState(0);
 const [loading, setLoading] = useState(true);
 const [error, setError] = useState(null);
 
+const getUser = async (postUser) => {
+  try {
+  // const postUser= post.userRef
+  // console.log('Postuser', postUser)
+  const response =  await axios.get(`/api/user/find/${postUser}`);
+  //console.log('response', response.data)
+  setUser(response.data.username);
+  // console.log('user', response.data.username)
+  } catch (error) {
+    setError(error.message);
+    console.log(error);
+  } finally {
+  setLoading(false);
+  }
+};
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -188,7 +203,7 @@ const [error, setError] = useState(null);
         //const author = userData.username
         const author = response.username
         //setVideo(mediaUrls) // get video
-        setUser(response.data.username);
+        //setUser(response.data.username);
         //console.log('user', user)
         // dispatch(setCurrentVideo(data))
         // dispatch(fetchSuccess(data))
@@ -203,7 +218,16 @@ const [error, setError] = useState(null);
   
     fetchPosts();
   }, []);
- 
+
+
+    useEffect(() => {
+      if (posts.length > 0 && posts[currentIndex]) {
+          setLoading(true); // Set loading to true before fetching
+          getUser(posts[currentIndex].userRef); // Call getUser with the userRef
+          console.log('user', user)
+      }
+  }, [currentIndex, posts]); // Run when currentIndex or posts change
+
   // const { currentVideo, relatedVideos } = posts;
   // console.log(currentVideo)
 
@@ -223,6 +247,9 @@ if (!posts || posts.length === 0) {
     return <div>No videos available.</div>; // Handle empty posts
 }
 
+if (!user) {
+  return <div>No user found.</div>;
+}
 
 const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % posts.length);
@@ -349,11 +376,11 @@ const handlePrev = () => {
             <ChannelDetail>
               <ChannelName  >{user}</ChannelName>
               <ChannelCounter>200K subscribers</ChannelCounter>
-              <Description>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              <Description> {posts[currentIndex].description}
+                {/* Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                 Doloribus laborum delectus unde quaerat dolore culpa sit aliquam
                 at. Vitae facere ipsum totam ratione exercitationem. Suscipit
-                animi accusantium dolores ipsam ut.
+                animi accusantium dolores ipsam ut. */}
               </Description>
             </ChannelDetail>
           </ChannelInfo>
