@@ -337,7 +337,7 @@ const handlePrev = () => {
             </button>
             <button 
                 onClick={handleNext} 
-                style={{ position: 'absolute', right: '700px', top: '75%', transform: 'translateY(-50%)', backgroundColor: 'rgba(0, 0, 0, 0.5)', color: 'white',  borderRadius: '4px',  padding: '10px'}}
+                style={{ position: 'absolute', right: '500px', top: '75%', transform: 'translateY(-50%)', backgroundColor: 'rgba(0, 0, 0, 0.5)', color: 'white',  borderRadius: '4px',  padding: '10px'}}
             >
                 Next &gt;
             </button>
