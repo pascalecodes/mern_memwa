@@ -88,6 +88,14 @@ export default function Faq() {
                 info@memwa.app
         </Link> 
         </p>
+        <h2 className='text-2xl text-blue-700 mt-4'>Suggestions or Feature requests?</h2>
+        <p className='mb-4 text-slate-700'>If you have any suggestions on how we can improve or features you would like us to add, feel free to email us!<span> </span>  
+        <Link 
+              to={`mailto:info@memwa.app?subject=Question on Policies Memwa app`}
+              className='text-blue-500 hover:opacity-95'>
+                wish@memwa.app
+        </Link> 
+        </p>
     </div>
     </div>
   )
