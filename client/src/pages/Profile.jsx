@@ -37,6 +37,7 @@ export default function Profile() {
   const [userPosts, setUserPosts] = useState([]);
   const dispatch = useDispatch(); 
 
+
   useEffect(()=> {
     if (file) {
       handleFileUpload(file)
@@ -157,6 +158,13 @@ export default function Profile() {
 
   };
 
+   // Create an array to hold the IDs of answered questions
+   const answeredQuestionIds = userPosts.map(post => post.title); // Assuming 'id' holds the ID of the question related to the post
+
+  //  const AnsweredQuestions = ({ questions, answeredIds }) => {
+  //   // Filter questions to get titles of the questions corresponding to the answered IDs
+  //   const answeredQuestions = questions.filter(question => answeredIds.includes(question._id));}
+  
 
   return (
     <div className="p-3 max-w-lg mx-auto">
@@ -236,6 +244,17 @@ export default function Profile() {
         </div>
       </div>
       ))}
+{/* Not using the below until replaced with real answered questions */}
+      <div className="hidden">
+      <h2 className="text-blue-500 text-xl font-semibold">Answered Questions</h2>
+      <ul>
+        {answeredQuestionIds.map(post => (
+          <li key={post._id} className="border-b p-2">
+            {post} {/* Assuming each question has a 'title' property */}
+          </li>
+        ))}
+      </ul>
+    </div>
      </div>
       )}
      
@@ -243,6 +262,25 @@ export default function Profile() {
       
     </div>
   );
+
+//    //not real questions answered just posts by user will have to add question ID to post schema to use and update 
+//    const AnsweredQuestions = ({ posts, answeredIds }) => {
+//     // Filter questions to get titles of the questions corresponding to the answered IDs
+//     const answeredQuestions = posts.filter(post => answeredIds.includes(post._id));
+
+//   return (
+//     <div>
+//       <h2 className="text-blue-500 text-xl font-semibold">Answered Questions</h2>
+//       <ul>
+//         {answeredQuestions.map(post => (
+//           <li key={post._id} className="border-b p-2">
+//             {post.title} {/* Assuming each question has a 'title' property */}
+//           </li>
+//         ))}
+//       </ul>
+//     </div>
+//   );
+// };
 }
 
 
