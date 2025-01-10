@@ -27,6 +27,9 @@ function AnswerQuestion({ questionId, questionName, questionTag}) {
         privacy: false,
         cloudinaryId: '',
         likes: 0,
+        questionId:[],
+        order: [],
+        type: '',
     });
 
     const [uploading, setUploading] = useState(false);
@@ -85,7 +88,7 @@ function AnswerQuestion({ questionId, questionName, questionTag}) {
             const fileName = new Date().getTime() + file.name;
             const storageRef = ref(storage, fileName);
             const uploadTask = uploadBytesResumable(storageRef, file);
-            console.log(fileName)
+            //console.log(fileName)
             uploadTask.on(
                 'state_changed', 
                 (snapshot) => {
@@ -185,7 +188,8 @@ function AnswerQuestion({ questionId, questionName, questionTag}) {
               title: `answer  `,
               caption: 'my answer ',
               description: `response for: ${questionName}`,
-              tags: questionTag
+              tags: questionTag,
+              questionId: questionId
             }));
             setUploading(false);
           } catch (err) {
