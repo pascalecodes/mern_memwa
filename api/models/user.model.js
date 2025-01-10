@@ -30,11 +30,15 @@ const UserSchema = new mongoose.Schema({
     },
     bio: {
       type: String,
-      required: false
+      required: false,
     },
     createdAt: {
       type: Date,
       default: Date.now
+    },
+    answeredQuestions: {
+      type: Array,
+      required: false,
     }
   }, {timestamps: true});
 
