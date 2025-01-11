@@ -265,7 +265,7 @@ function AnswerQuestion({ questionId, questionName, questionTag}) {
         localStorage.setItem(`uploadedQuestionIds_${currentUser.userId}`, JSON.stringify(uploadedQuestionIds));
     };
     // fix questions uploaded ***********
-   
+   //<FaCog className='mx-auto'/>  settigns icon
 
     return (
         <Container>
@@ -274,8 +274,8 @@ function AnswerQuestion({ questionId, questionName, questionTag}) {
                     <div>
                         <div className=" p-2 video-controls">
                             {!permission ? (
-                                <button onClick={getCameraPermission} type="button" className='mx-auto text-center  rounded-lg  italic text-slate-700 underline'>
-                                    {!permission ?  ( <> <FaCog className='mx-auto'/> Enable Camera</>) : ('Camera Active') }
+                                <button onClick={getCameraPermission} type="button" className='mx-auto text-center  rounded-lg text-white bg-red-500 p-2 '>
+                                    {!permission ?  ( <> Answer Question</>) : ('Camera Active') }
                                 </button>
                             ): null }
                             <video ref={liveVideoFeed} autoPlay muted className='overla'/> 
@@ -320,7 +320,7 @@ function AnswerQuestion({ questionId, questionName, questionTag}) {
                 
                 {isUploadPageVisible && (
                 <div className='mx-auto' id="upload-page-sec">
-                    <p className='text-blue-700 font-bold text-md lg:text-l text-center pb-2'>Answer file added to entry complete your answer entry by adding additional information and upload to our servers.</p>
+                    <p className='text-blue-700 font-bold text-md lg:text-l text-center pb-2'>Answer file added to form complete your answer post by adding additional information and upload to our servers.</p>
                     <div>
                         <form onSubmit={handleSubmit} className='flex flex-col sm:flex-row gap-4'>
                             <div className='flex flex-col gap-4 flex-1'>
