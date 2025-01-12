@@ -189,7 +189,9 @@ function AnswerQuestion({ questionId, questionName, questionTag}) {
               caption: 'my answer ',
               description: `response for: ${questionName}`,
               tags: questionTag,
-              questionId: questionId
+              questionId: [questionId],
+            //   order: [],
+            //   type: '',
             }));
             setUploading(false);
           } catch (err) {
