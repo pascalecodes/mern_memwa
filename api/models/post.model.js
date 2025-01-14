@@ -37,19 +37,19 @@ const PostSchema = new mongoose.Schema(
     userRef: {
       type: String,
       required: true,
-    },
-    questionId: {
-      type: String,
-      required: false,
-    },
-    order: {
-      type: Number,
-      required: false,
-    },
-    type: {
-      type: String,
-      required:false,
     }
+    // questionId: {
+    //   type: String,
+    //   required: false,
+    // },
+    // order: {
+    //   type: Number,
+    //   required: false,
+    // },
+    // type: {
+    //   type: String,
+    //   required:false,
+    // }
   },
   { timestamps: true }
 );
