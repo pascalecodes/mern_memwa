@@ -27,9 +27,9 @@ function AnswerQuestion({ questionId, questionName, questionTag}) {
         privacy: false,
         cloudinaryId: '',
         likes: 0,
-        questionId:[],
-        order: [],
-        type: '',
+        questionId:'',
+        order: 0,
+        type: 'default',
     });
 
     const [uploading, setUploading] = useState(false);
@@ -189,9 +189,7 @@ function AnswerQuestion({ questionId, questionName, questionTag}) {
               caption: 'my answer ',
               description: `response for: ${questionName}`,
               tags: questionTag,
-              questionId: [questionId],
-            //   order: [],
-            //   type: '',
+              questionId: `${questionId}`,
             }));
             setUploading(false);
           } catch (err) {
@@ -338,6 +336,15 @@ function AnswerQuestion({ questionId, questionName, questionTag}) {
                                 <input type="text" placeholder='Tags' className='border p-3 rounded-lg' id='tags'
                                 onChange={handleChange}
                                 value={formData.tags}/>
+                                <input hidden type="number" placeholder='QuestionId' className='border p-3 rounded-lg' id='questionid'
+                                onChange={handleChange}
+                                value={formData.questionId}/>
+                                <input hidden type="number" placeholder='Order' className='border p-3 rounded-lg' id='order'
+                                onChange={handleChange}
+                                value={formData.order}/>
+                                <input hidden type="string" placeholder='Type' className='border p-3 rounded-lg' id='type'
+                                onChange={handleChange}
+                                value={formData.questionId}/>
                                 <div className='flex gp-6 flex-wrap'>
                                     <div className='flex gap-2'>
                                         <input type="checkbox" id="privacy" className='w-5' 
